@@ -22,15 +22,17 @@ alias gs="git status"
 alias gl="git log"
 alias gauth="gh auth setup-git"
 
-# default bash alias
+# default
 alias new="clear && cd && exec bash"
 alias ls="ls -lha --color=auto"
-alias sets='gnome-control-center'
-alias conf='$EDITOR ~/.bash_aliases'
+alias bashconf='$EDITOR ~/.bash_aliases'
 alias note='cd ~/Notes && nvim .'
-alias ra="ranger"
+alias ya="yazi"
 alias c="cmatrix -sC cyan -u 3"
-alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Shell:Editor:Display:DE:WM:Terminal:CPU:GPU:Memory:Swap:Disk:Battery:Break:Colors"
+alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+
+# specific
+alias sets='gnome-control-center'
 
 # other useful aliases
 alias heroic="flatpak run com.heroicgameslauncher.hgl"
