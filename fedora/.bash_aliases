@@ -1,7 +1,23 @@
-# ~/.bash_aliases
+# dotfiles/fedora/.bash_aliases
 
-# env variables
-EDITOR=nvim
+
+# default
+alias new="clear && cd && exec bash"
+alias ls="ls -lha --color=auto"
+alias bashconf='$EDITOR ~/.bash_aliases'
+alias note='cd ~/Notes && nvim .'
+alias ya="yazi"
+alias c="cmatrix -sC cyan -u 3"
+alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+
+# git
+alias ga="git add"
+alias gc="git commit"
+alias gpu="git push"
+alias gpl="git pull"
+alias gs="git status"
+alias gl="git log"
+alias gauth="gh auth setup-git"
 
 # package managers
 alias dnfinst="sudo dnf install"
@@ -13,28 +29,8 @@ alias flatrem="flatpak remove --noninteractive -y"
 alias flatfind="flatpak search"
 alias up="sudo dnf upgrade --refresh --best --allowerasing -y && flatpak update -y"
 
-# git
-alias ga="git add"
-alias gc="git commit"
-alias gpu="git push"
-alias gpl="git pull"
-alias gs="git status"
-alias gl="git log"
-alias gauth="gh auth setup-git"
-
-# default
-alias new="clear && cd && exec bash"
-alias ls="ls -lha --color=auto"
-alias bashconf='$EDITOR ~/.bash_aliases'
-alias note='cd ~/Notes && nvim .'
-alias ya="yazi"
-alias c="cmatrix -sC cyan -u 3"
-alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
-
 # specific
 alias sets='gnome-control-center'
-
-# other useful aliases
 alias heroic="flatpak run com.heroicgameslauncher.hgl"
 alias connect_arch='ssh -p 19376 192.168.0.103'
 alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
