@@ -5,19 +5,21 @@
 alias new="clear && cd && exec bash"
 alias ls="ls -lha --color=auto --group-directories-first"
 alias bashconf='$EDITOR ~/.bash_aliases'
+alias gitconf='$EDITOR ~/.gitconfig'
 alias note='cd ~/Notes && nvim .'
 alias ya="yazi"
 alias c="cmatrix -sC cyan -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 
+alias g="git"
 # git
-alias ga="git add"
-alias gc="git commit"
-alias gpu="git push"
-alias gpl="git pull"
-alias gs="git status"
-alias gl="git log"
-alias gauth="gh auth setup-git"
+# alias ga="git add"
+# alias gc="git commit"
+# alias gpu="git push"
+# alias gpl="git pull"
+# alias gs="git status"
+# alias gl="git log"
+# alias gauth="gh auth setup-git"
 
 # package managers
 alias dnfinst="sudo dnf install"
