@@ -15,14 +15,7 @@ alias icat="kitty icat"
 
 
 if [ "$HOSTNAME" = "fedora" ]; then
-  echo FEDORA
-  # specific
-  alias heroic="flatpak run com.heroicgameslauncher.hgl"
-  alias connect_arch='ssh -p 19376 192.168.0.103'
-  alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
-  alias minecraft="java -jar ~/Downloads/TLauncher.v10/TLauncher.jar"
-  alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
-  # package managers
+  # package managers aliases
   alias dnfinst="sudo dnf install"
   alias dnfrem="sudo dnf remove"
   alias dnfind="dnf search"
@@ -31,10 +24,18 @@ if [ "$HOSTNAME" = "fedora" ]; then
   alias flatrem="flatpak remove --noninteractive -y"
   alias flatfind="flatpak search"
   alias up="sudo dnf upgrade --refresh --best --allowerasing -y && flatpak update -y"
+  # other specific stuff
+  alias heroic="flatpak run com.heroicgameslauncher.hgl"
+  alias connect_arch='ssh -p 19376 192.168.0.103'
+  alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
+  alias minecraft="java -jar ~/Downloads/TLauncher.v10/TLauncher.jar"
+  alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
 fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
-  echo ARCH
+  # package manager aliases
+  alias up="pacman -Qdtq && pacman -Rs - && sudo pacman -Syu"
+  # other specific
   alias swayconf="nvim ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 fi
