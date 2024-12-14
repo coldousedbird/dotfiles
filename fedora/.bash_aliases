@@ -3,7 +3,7 @@
 
 # default
 alias new="clear && cd && exec bash"
-alias ls="ls -lha --color=auto"
+alias ls="ls -lha --color=auto --group-directories-first"
 alias bashconf='$EDITOR ~/.bash_aliases'
 alias note='cd ~/Notes && nvim .'
 alias ya="yazi"
@@ -35,4 +35,3 @@ alias heroic="flatpak run com.heroicgameslauncher.hgl"
 alias connect_arch='ssh -p 19376 192.168.0.103'
 alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
 alias minecraft="java -jar ~/Downloads/TLauncher.v10/TLauncher.jar"
-
