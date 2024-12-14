@@ -10,7 +10,7 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
-[gui]
+[core]
 	editor = nvim
 [web]
   browser = chromium
@@ -32,4 +32,3 @@
   brname = !git branch | grep "^*" | awk '{ print $2 }'
   # Delete a branch
   brdel = branch -D
-
