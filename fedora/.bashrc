@@ -18,8 +18,3 @@ fi
 
 # greetings!
 ff
-
-# synth-shell-prompt.sh
-# if [ -f /home/coldousedbird/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
-#	source /home/coldousedbird/.config/synth-shell/synth-shell-prompt.sh
-# fi

@@ -10,13 +10,7 @@ alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 
 # git
-alias ga="git add"
-alias gc="git commit"
-alias gpu="git push"
-alias gpl="git pull"
-alias gs="git status"
-alias gl="git log"
-alias gauth="gh auth setup-git"
+alias g="git"
 
 # specific
 alias swayconf="nvim ~/.config/sway/config"

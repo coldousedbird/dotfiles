@@ -20,8 +20,8 @@
   s = status
   a = add
   c = commit
-  pu = git push
-  pl = git pull
+  pu = push
+  pl = pull
   l = log
   auth = gh auth setup-git
   # Show all branches
