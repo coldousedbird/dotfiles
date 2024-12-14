@@ -10,6 +10,8 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
+[gui]
+	editor = nvim
 [web]
   browser = chromium
 [init]
