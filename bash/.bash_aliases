@@ -3,9 +3,13 @@
 
 # default
 alias new="clear && cd && exec bash"
-alias ls="ls -lha --color=auto --group-directories-first"
-alias editconf="$EDITOR ~/dotfiles"
-alias note="cd ~/Notes && nvim"
+# alias ls="ls -lha --color=auto --group-directories-first"
+alias l='eza -a --group-directories-first'
+alias ll='eza -alh --group-directories-first --git-repos'
+alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
+alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
+alias conf="cd ~/dotfiles && $EDITOR"
+alias note="cd ~/Notes && $EDITOR"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
@@ -35,7 +39,7 @@ if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
   alias up="sudo pacman -Qdtq && pacman -Rs - && sudo pacman -Syu"
   # other specific
-  alias swayconf="nvim ~/.config/sway/config"
+  alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 fi
 

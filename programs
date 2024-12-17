@@ -4,4 +4,6 @@ cmatrix
 nvim
 git
 stow
-zoxide
+fd
+ripgrep
+translate-shell
