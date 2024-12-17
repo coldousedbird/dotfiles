@@ -4,8 +4,7 @@
 # default
 alias new="clear && cd && exec bash"
 alias ls="ls -lha --color=auto --group-directories-first"
-alias bashconf="$EDITOR ~/.bash_aliases"
-alias gitconf="$EDITOR ~/.gitconfig"
+alias editconf="$EDITOR ~/dotfiles"
 alias note="cd ~/Notes && nvim"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
