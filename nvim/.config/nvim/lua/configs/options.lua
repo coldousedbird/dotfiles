@@ -1,8 +1,3 @@
--- vim.cmd("set expandtab")
--- vim.cmd("set tabstop=2")
--- vim.cmd("set softtabstop=2")
--- vim.cmd("set shiftwidth=2")
--- vim.opt["clipboard"] = "unnamedplus"
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\' -- ?
 
@@ -12,20 +7,20 @@ local options = {
   relativenumber = true,     -- show relative line numbers
   number = true,             -- show current line number
 
-  expandtab = true,	     
-  tabstop = 2,
-  softtabstop = 2,
-  shiftwidth = 2,
-  smarttab = true,
-  smartindent = true,
+  expandtab = true,	         -- use spaces instead of tabs
+  tabstop = 2,               -- number of spaces for single <tab>
+  softtabstop = 2,           -- ?
+  shiftwidth = 2,            -- step of (auto)indent
+  smarttab = true,           -- autochoice number of spaces on <tab>
+  smartindent = true,        -- auto indentation on new lines
 
-  incsearch = true,
+  incsearch = true,          -- show search matches as typing continues
 
-  termguicolors = true,
-  colorcolumn = '130',
-  cursorline = true,
+  termguicolors = true,      -- true color support ???
+  colorcolumn = '130',       -- highlight column
+  cursorline = true,         -- highlight current line
 
-  updatetime = 50,
+  updatetime = 4000,         -- faster completion with 50 ms (default is 4000ms)
 }
 
 for option, value in pairs(options) do
