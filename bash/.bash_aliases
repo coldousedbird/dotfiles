@@ -29,7 +29,7 @@ if [ "$HOSTNAME" = "fedora" ]; then
   alias connect_arch='ssh -p 19376 192.168.0.103'
   alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
   alias minecraft="java -jar ~/Downloads/TLauncher.v10/TLauncher.jar"
-  alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
+  alias llm="~/Programming/GPT/llm_setup.sh"
 fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
