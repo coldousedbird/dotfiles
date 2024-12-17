@@ -37,7 +37,8 @@ fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
-  alias up="sudo pacman -Qdtq && pacman -Rs - && sudo pacman -Syu"
+  alias cl="sudo pacman -Qdtq | pacman -Rs -"
+  alias up="sudo pacman -Syu"
   # other specific
   alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
