@@ -3,7 +3,7 @@
 
 # default
 alias new="clear && cd && exec bash"
-# alias ls="ls -lha --color=auto --group-directories-first"
+alias ls="ls -a --color=auto --group-directories-first"
 alias l='eza -a --group-directories-first'
 alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
