@@ -12,16 +12,15 @@ return {
         --   statusline = 1000,
         --   tabline = 1000,
         --   winbar = 1000,
-        -- }
+        -- },
         sections = {
-          lualine a = {'mode'},
-          lualine b = {'branch', 'diff', 'diagnostics'},
-          lualine c = {'filename'},
-
-          lualine x = {'encoding', 'fileformat', 'filetype'},
-          lualine y = {'progress'},
-          lualine z = {'location'}
-        },
+          lualine_a = {'mode'},
+          lualine_b = {'branch', 'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
+        }
       }
     })
   end
