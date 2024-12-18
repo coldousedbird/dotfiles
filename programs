@@ -1,10 +1,18 @@
-kitty
-fastfetch
-cmatrix
-nvim
-git
-stow
-fd
-ripgrep
-translate-shell
-wl-clipboard
+# in use right now
+kitty           - cool terminal emulator
+fastfetch       - fast neofetch
+cmatrix         - fun
+git             - version control system
+stow            - easy configs 
+fd              - fast file search
+ripgrep         - recursively searches for content inside files
+translate-shell - tty translator
+wl-clipboard    - wayland clipboard manager
+nvim            - advanced vim with lua
+eza             - ls+tree, but better
+
+# potentially useful
+zoxide - cd with memory
+bat    - cat with syntax higlighting and more
+most   - more and less pagers alternative
+
