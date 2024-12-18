@@ -21,6 +21,8 @@ local options = {
   cursorline = true,         -- highlight current line
 
   updatetime = 4000,         -- faster completion with 50 ms (default is 4000ms)
+
+  wildmenu = true,
 }
 
 for option, value in pairs(options) do
