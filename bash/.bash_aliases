@@ -39,6 +39,7 @@ fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
+  alias rm="sudo pacman -Rs"
   alias cl="sudo pacman -Qdtq | pacman -Rs -"
   alias up="sudo pacman -Syu"
   # other specific
