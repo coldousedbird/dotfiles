@@ -21,7 +21,7 @@ wk.add({
 
   -- Tabs
   { "<leader>t", ":tabe<CR>", desc = "Spawn new empty tab"},
-  { "<t>", ":tabn<CR>", desc = "Switch to next tab"},
+  { "<C-t>", ":tabn<CR>", desc = "Switch to next tab"},
   { "<S-t>", ":tabp<CR>", desc = "Switch to previous tab"},
 
   -- Windows
