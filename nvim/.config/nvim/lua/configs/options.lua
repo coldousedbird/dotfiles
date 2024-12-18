@@ -23,6 +23,8 @@ local options = {
   updatetime = 4000,         -- faster completion with 50 ms (default is 4000ms)
 
   wildmenu = true,
+  wildmode = "longest:full,full",
+  splitright = true,
 }
 
 for option, value in pairs(options) do

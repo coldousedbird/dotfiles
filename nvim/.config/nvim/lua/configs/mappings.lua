@@ -13,7 +13,7 @@ wk.add({
   { "<C-k>", "<C-w><C-k>", desc = "Move to above window" },
   { "<C-l>", "<C-w><C-l>", desc = "Move to right window" },
   { "<C-u>", "<C-u>zz", desc = "Scroll up and center" },
-  { "<leader>Y", '"*Y', desc = "Yank line to system clipboard" },
+  -- { "<leader>Y", '"*Y', desc = "Yank line to system clipboard" },
   { "<leader>l", "<cmd>Lazy home<CR>", desc = "Open Lazy main menu" },
   { "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Substitute word under cursor" },
   { "<leader>y", '"*y', desc = "Yank to system clipboard" },
@@ -29,7 +29,7 @@ wk.add({
 wk.add({
   {
     mode = { "v" },
-    { "<leader>y", '"*y', desc = "Yank to system clipboard" },
+    -- { "<leader>y", '"*y', desc = "Yank to system clipboard" },
     { "J", ":m '>+1<CR>gv=gv", desc = "Move line down" },
     { "K", ":m '<-2<CR>gv=gv", desc = "Move line up" },
   },

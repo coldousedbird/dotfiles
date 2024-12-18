@@ -15,6 +15,6 @@ return {
         },
       },
     }
-    vim.keymap.set("n", "<C-b>", ":Telescope file_browser<CR>")
+    vim.keymap.set("n", "<leader>b", ":Telescope file_browser<CR>")
   end
 }
