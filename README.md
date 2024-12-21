@@ -6,7 +6,7 @@ here they won't be lost. you can use them, if find them useful.
 ```bash
 git clone https://github.com/coldousedbird/dotfiles
 cd dotfiles
-stow bash nvim sway
+stow bash nvim sway etc
 ```
 
 stow creates symlinks to files, depending on their path, e.g.:
@@ -46,7 +46,7 @@ wonderful terminal emulator!
 
 ### nvim
 complex modular text editor. you can find more detailed description in nvim/README.md
-placed in nvim 
+placed in nvim. 
 
 ### sway 
 tiling window compositor, running under Wayland. there are also dots for wofi and other related stuff.
@@ -54,5 +54,5 @@ tiling window compositor, running under Wayland. there are also dots for wofi an
 ### mangohud
 monitoring overlay. mostly for games.
 
-
-
+### fonts
+cool nerdfont.
