@@ -80,3 +80,6 @@ monitoring overlay. mostly for games.
 
 ### fonts
 cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
+
+### themes
+borderless everforest themes for jtk and gnome-shell
