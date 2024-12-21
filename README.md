@@ -79,4 +79,4 @@ tiling window compositor, running under Wayland. there are also dots for wofi an
 monitoring overlay. mostly for games.
 
 ### fonts
-cool "CommitMono" nerdfont from [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CommitMono.zip]
+cool "CommitMono" nerdfont from [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CommitMono.zip)
