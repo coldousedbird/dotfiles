@@ -13,6 +13,26 @@ stow creates symlinks to files, depending on their path, e.g.:
 if file's path is `./dotfiles/kitty/.config/kitty/kitty.conf`
 after `cd dotfiles && stow kitty` will be created symlink in `~/.config/kitty/kitty.config`
 
+## programs
+### in use right now
+kitty           - cool terminal emulator
+fastfetch       - fast neofetch
+cmatrix         - fun
+git             - version control system
+stow            - easy configs 
+fd              - fast file search
+ripgrep         - recursively searches for content inside files
+translate-shell - tty translator
+wl-clipboard    - wayland clipboard manager
+nvim            - advanced vim with lua
+eza             - ls+tree, but better
+cmus            - tty music player in C
+### potentially useful
+zoxide - cd with memory
+bat    - cat with syntax higlighting and more
+most   - more and less pagers alternative
+
+
 ## dots
 ### bash
 important files, which are placed in user home directory ~.
