@@ -1,6 +1,6 @@
 [user]
-	email = coldousedbird
-	name = coldousedbird
+  email = coldousedbird@gmail.com
+  name = coldousedbird
 [credential]
 	helper = cache --timeout 7200
 	helper = oauth
