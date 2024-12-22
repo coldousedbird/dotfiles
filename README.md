@@ -45,7 +45,7 @@ important files, which are placed in user home directory ~.
 wonderful terminal emulator!
 
 ### nvim
-complex modular text editor. config was massively inspired by @typecraft and Andrey0189/nvim-config
+complex modular text editor. config was massively inspired by @typecraft - cpow/neovim-for-newbs and Andrey0189/nvim-config
 #### packages
 1. lazy.nvim - package manager
 2. neainas/everforest-nvim - colorscheme
