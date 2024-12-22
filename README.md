@@ -68,8 +68,8 @@ leader is space
  6. ctrl+t    - switch to next tab
  7. leader+w  - spawn new window (inside tab)
  8. ctrl+hjkl - switch windows
- 9. ZQ        - :q! - quit without saving (quit from file will close it's window or tab (if tab has single window))
-10. ZZ        - :wq - save and quit       (quit from file will close it's window or tab (if tab has single window))
+ 9. ZQ        - :q! - quit, no save (quit from file will close it's window or tab (if tab has single window))
+10. ZZ        - :wq - save and quit (quit from file will close it's window or tab (if tab has single window))
  
 
 ### sway 
@@ -83,3 +83,11 @@ cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
 
 ### themes
 borderless everforest themes for jtk and gnome-shell
+
+## TODO;
+1. glow.nvim
+2. .icons
+3. lsp and autocompletions
+4. dashboard
+5. fix cursorline
+6. fix cmdpalette
