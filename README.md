@@ -82,11 +82,3 @@ cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
 
 ### themes
 borderless everforest themes for jtk and gnome-shell
-
-## TODO;
-1. glow.nvim
-2. .icons
-3. lsp and autocompletions
-4. dashboard
-5. fix cursorline
-6. fix cmdpalette
