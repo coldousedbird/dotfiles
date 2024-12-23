@@ -3,7 +3,6 @@ return {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-      vim.keymap.set("n", "<leader>m", "<cmd>Mason<CR>")
     end,
   },
   {
@@ -32,6 +31,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       lspconfig.lua_ls.setup({})
+      -- lspconfig.ast_grep.setup({})
     end,
   },
 }

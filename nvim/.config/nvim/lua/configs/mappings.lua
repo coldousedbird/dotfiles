@@ -5,16 +5,17 @@ wk.add({
     mode = { "n", "v" },
     -- Menus
     { "<leader>l",  "<cmd>Lazy home<CR>",              desc = "Lazy" },
+    { "<leader>m",  "<cmd>Mason<CR>",                  desc = "Mason" },
     { "<leader>ff", "<cmd>Telescope find_files<CR>",   desc = "Telescope find files" },
     { "<leader>p",  "<cmd>Telescope live_grep<CR>",    desc = "Telescope live grep" },
     { "<leader>b",  "<cmd>Telescope file_browser<CR>", desc = "Telescope browser" },
-    { "<leader>m",  "<cmd>Glow<CR>",                   desc = "markdown preview" },
+    { "<leader>g",  "<cmd>Glow<CR>",                   desc = "Glow markdown" },
     -- ??? { "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Substitute word under cursor" },
 
     -- LSP
-    { "<leader>h",  vim.lsp.buf.hover,                 desc = "hover" },
-    { "<leader>d",  vim.lsp.buf.definition,            desc = "definition" },
-    { "<leader>fo", vim.lsp.buf.format,                desc = "format" },
+    { "<leader>h",  vim.lsp.buf.hover,                 desc = "Hover" },
+    { "<leader>d",  vim.lsp.buf.definition,            desc = "Definition" },
+    { "<leader>fo", vim.lsp.buf.format,                desc = "Format" },
     { "<leader>c",  vim.lsp.buf.code_action,           desc = "Code actions" },
 
     -- Tabs
