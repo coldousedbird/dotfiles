@@ -13,9 +13,11 @@ alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias note="cd ~/Notes && $EDITOR"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
-alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias g="git"
 alias icat="kitty icat"
+alias rm="echo you probably need to use rem (trash-put)"
+alias rem="trash-put"
 
 
 if [ "$HOSTNAME" = "fedora" ]; then
