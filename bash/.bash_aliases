@@ -29,7 +29,7 @@ if [ "$HOSTNAME" = "fedora" ]; then
   alias flatinst="flatpak install --noninteractive -y flathub"
   alias flatrem="flatpak remove --noninteractive -y"
   alias flatfind="flatpak search"
-  alias up="sudo dnf upgrade --refresh --best --allowerasing -y && flatpak update -y"
+  alias up="sudo sh -c 'printf \"dnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
   # other specific stuff
   alias heroic="flatpak run com.heroicgameslauncher.hgl"
   alias connect_arch='ssh -p 19376 192.168.0.103'
