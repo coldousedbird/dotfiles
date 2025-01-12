@@ -8,6 +8,8 @@ alias l='eza -a --group-directories-first'
 alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
+alias mv='mv -v'
+alias mkd='mkdir -vp'
 alias conf="cd ~/dotfiles && $EDITOR"
 alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias note="cd ~/Notes && $EDITOR"
