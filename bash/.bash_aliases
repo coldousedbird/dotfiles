@@ -9,6 +9,11 @@ alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
 alias mv='mv -v'
+# format filename - replace space with underscores & turn all letters to lowercase
+# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+format() {
+  mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+}
 alias mkd='mkdir -vp'
 alias conf="cd ~/dotfiles && $EDITOR"
 alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
@@ -52,4 +57,3 @@ if [ "$HOSTNAME" = "archlinux" ]; then
   alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 fi
-
