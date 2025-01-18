@@ -26,8 +26,8 @@ alias icat="kitty icat"
 alias rm="echo you probably need to use rem"
 alias rem="trash-put"
 # language translation
-alias toru="trans -t russian"
-alias toen="trans -t english"
+alias ru="trans -t russian -v -j"
+alias en="trans -t english -v -j"
 
 if [ "$HOSTNAME" = "fedora" ]; then
   # package managers aliases
