@@ -28,6 +28,8 @@ alias rem="trash-put"
 # language translation
 alias ru="trans -t russian -v -j"
 alias en="trans -t english -v -j"
+# id3 tags editor
+alias tags="id3v2"
 
 if [ "$HOSTNAME" = "fedora" ]; then
   # package managers aliases
