@@ -25,11 +25,13 @@ after `cd dotfiles && stow kitty` will be created symlink in `~/.config/kitty/ki
 - translate-shell - tty translator
 - wl-clipboard    - wayland clipboard manager
 - nvim            - advanced vim with lua
-- eza             - ls+tree, but better
+- eza             - better ls+tree
 - cmus            - tty music player in C
+- id3v2           - terminal id3-tags editor
+- bat             - cat with syntax higlighting and more
+
 ### potentially useful
 - zoxide - cd with memory
-- bat    - cat with syntax higlighting and more
 - most   - more and less pagers alternative
 
 

@@ -2,6 +2,7 @@
 
 # environment variables
 EDITOR=nvim
+PAGER=less
 LESSSECURE=1
 PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[0m\]\n'
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'

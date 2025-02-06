@@ -8,6 +8,13 @@ alias l='eza -a --group-directories-first'
 alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
+alias mv='mv -v'
+# format filename - replace space with underscores & turn all letters to lowercase
+# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+format() {
+  mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+}
+alias mkd='mkdir -vp'
 alias conf="cd ~/dotfiles && $EDITOR"
 alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias note="cd ~/Notes && $EDITOR"
@@ -16,9 +23,13 @@ alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias g="git"
 alias icat="kitty icat"
-alias rm="echo you probably need to use rem (trash-put)"
+alias rm="echo you probably need to use rem"
 alias rem="trash-put"
-
+# language translation
+alias ru="trans -t russian -v -j"
+alias en="trans -t english -v -j"
+# id3 tags editor
+alias tags="id3v2"
 
 if [ "$HOSTNAME" = "fedora" ]; then
   # package managers aliases
@@ -29,7 +40,7 @@ if [ "$HOSTNAME" = "fedora" ]; then
   alias flatinst="flatpak install --noninteractive -y flathub"
   alias flatrem="flatpak remove --noninteractive -y"
   alias flatfind="flatpak search"
-  alias up="sudo dnf upgrade --refresh --best --allowerasing -y && flatpak update -y"
+  alias up="sudo sh -c 'printf \"dnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
   # other specific stuff
   alias heroic="flatpak run com.heroicgameslauncher.hgl"
   alias connect_arch='ssh -p 19376 192.168.0.103'
@@ -50,4 +61,3 @@ if [ "$HOSTNAME" = "archlinux" ]; then
   alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 fi
-
