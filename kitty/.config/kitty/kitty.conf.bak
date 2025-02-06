@@ -1,7 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
-
+linux_display_server wayland
 # BEGIN_KITTY_THEME
-# Desert Night
+# Everforest Dark Hard
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -11,10 +11,10 @@ include current-theme.conf
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-# font_family      monospace
-# bold_font        auto
-# italic_font      auto
-# bold_italic_font auto
+font_family      CommitMono Nerd Font Mono
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. The easiest way to select fonts is to run the `kitten
@@ -25,7 +25,7 @@ include current-theme.conf
 #: <https://sw.kovidgoyal.net/kitty/kittens/choose-fonts/#font-spec-
 #: syntax>.
 
-# font_size 11.0
+font_size 11.0
 
 #: Font size (in pts).
 
@@ -956,7 +956,7 @@ include current-theme.conf
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-# hide_window_decorations no
+hide_window_decorations yes 
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only and titlebar-and-corners can be used
@@ -1222,7 +1222,7 @@ include current-theme.conf
 
 #: The foreground and background colors.
 
-# background_opacity 1.0
+background_opacity 0.9 
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -2643,3 +2643,11 @@ include current-theme.conf
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_FONTS
+font_family      family="CommitMono Nerd Font Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
