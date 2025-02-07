@@ -30,6 +30,9 @@ alias ru="trans -t russian -v -j"
 alias en="trans -t english -v -j"
 # id3 tags editor
 alias tags="id3v2"
+alias lsblk="lsblk -fo +size"
+# decompress .tar.gz
+alias decompress="tar -xvzf"
 
 if [ "$HOSTNAME" = "fedora" ]; then
   # package managers aliases
@@ -52,11 +55,11 @@ fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
-  alias pacrm="sudo pacman -Rs"
-  alias paccl="sudo pacman -Qdtq | pacman -Rs -"
-  alias pacfd="pacman -Ss"
-  alias pacfdinst="sudo pacman -Qs"
-  alias pacup="sudo pacman -Syu"
+  alias pacman_remove="sudo pacman -Rs"
+  alias pacman_clear="sudo pacman -Qdtq | pacman -Rs -"
+  alias pacman_find="pacman -Ss"
+  alias pacman_find_installed="sudo pacman -Qs"
+  alias pacman_update="sudo pacman -Syu"
   # other specific
   alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
