@@ -20,7 +20,7 @@ alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias note="cd ~/Notes && $EDITOR"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
-alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias g="git"
 alias icat="kitty icat"
 alias rm="echo you probably need to use rem"
@@ -30,6 +30,9 @@ alias ru="trans -t russian -v -j"
 alias en="trans -t english -v -j"
 # id3 tags editor
 alias tags="id3v2"
+alias lsblk="lsblk -fo +size"
+# decompress .tar.gz
+alias decompress="tar -xvzf"
 
 if [ "$HOSTNAME" = "fedora" ]; then
   # package managers aliases
@@ -52,11 +55,11 @@ fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
-  alias pacrm="sudo pacman -Rs"
-  alias paccl="sudo pacman -Qdtq | pacman -Rs -"
-  alias pacfd="pacman -Ss"
-  alias pacfdinst="sudo pacman -Qs"
-  alias pacup="sudo pacman -Syu"
+  alias pacman_remove="sudo pacman -Rs"
+  alias pacman_clear="sudo pacman -Qdtq | pacman -Rs -"
+  alias pacman_find="pacman -Ss"
+  alias pacman_find_installed="sudo pacman -Qs"
+  alias pacman_update="sudo pacman -Syu"
   # other specific
   alias swayconf="$EDITOR ~/.config/sway/config"
   alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
