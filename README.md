@@ -83,7 +83,7 @@ monitoring overlay. mostly for games.
 cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
 
 ### themes
-borderless everforest themes for jtk and gnome-shell
+borderless everforest themes for Gtk and gnome-shell
 
 ## TODO;
 - enable ast-grep, beautysh
