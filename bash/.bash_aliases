@@ -22,6 +22,27 @@ alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias g="git"
+alias g_log="gh login"
+alias g_auth="gh auth setup-git"
+# docker aliases/functions
+alias d="docker"
+alias dim="docker images"
+alias dc="docker compose"
+drem () {
+  d kill $1 ; d rm $1 ; d rmi $1  
+}
+drun () {
+  d run -d -p 80:80 --name=$1 $1
+}
+dremake () {
+  drem $1 ; \
+  d build . -t $1 && \
+  drun $1
+}
+dsh () {
+  d exec -it $1 /bin/sh
+}
+
 alias icat="kitty icat"
 alias rm="echo you probably need to use rem"
 alias rem="trash-put"
