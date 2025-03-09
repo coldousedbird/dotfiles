@@ -1,29 +1,60 @@
 # dotfiles/bash/.bash_aliases
 
 
-# default
-alias new="clear && cd && exec bash"
+
+# list file system related stuff
 alias ls="ls -a --color=auto --group-directories-first"
 alias l='eza -a --group-directories-first'
 alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
-alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
+alias llt='eza -alhT --group-directories-first --git-repos --git-ignore'
+alias lsblk="lsblk -o NAME,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
+
+# edit file structure
 alias mv='mv -v'
-# format filename - replace space with underscores & turn all letters to lowercase
-# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
-format() {
-  mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-}
 alias mkd='mkdir -vp'
-alias conf="cd ~/dotfiles && $EDITOR"
-alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
-alias note="cd ~/Notes && $EDITOR"
+alias rm="echo you probably need to use rem"
+alias rem="trash-put"
+format() { # replace spaces with underscores & turn all letters to lowercase
+  mv -vT "$1" $( echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_' )
+}          # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+
+# editor
+edit () {
+  cd $(dirname $1) && $EDITOR $(basename $1)
+}
+conf () {
+  edit ~/dotfiles/$1
+}
+note () {
+  edit ~/Notes/$1
+}
+
+# miscellaneous terminal stuff
+sudo() {
+  su -c "$*"
+}
+alias new="clear && cd && exec bash"
+alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+alias icat="kitty icat"
+alias ru="trans -t russian -v -j"     # translation english to russian
+alias en="trans -t english -v -j"     # translation russian to english
+alias tags="id3v2"                    # id3 tags editor
+alias decompress="tar -xvzf"          # decompress .tar.gz
+# other specific stuff
+alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
+alias llm_setup="~/Programming/GPT/llm_setup.sh"
+alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
+alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
+
+# git & github
 alias g="git"
-alias g_log="gh login"
-alias g_auth="gh auth setup-git"
+alias gh_log="gh auth login"
+alias gh_auth="gh auth setup-git"
+
 # docker aliases/functions
 alias d="docker"
 alias dim="docker images"
@@ -43,35 +74,32 @@ dsh () {
   d exec -it $1 /bin/sh
 }
 
-alias icat="kitty icat"
-alias rm="echo you probably need to use rem"
-alias rem="trash-put"
-# language translation
-alias ru="trans -t russian -v -j"
-alias en="trans -t english -v -j"
-# id3 tags editor
-alias tags="id3v2"
-alias lsblk="lsblk -fo +size"
-# decompress .tar.gz
-alias decompress="tar -xvzf"
+UP="printf \"UPGRADING AND CLEARING SYSTEM\n\" ; sudo sh -c ':"
 
-if [ "$HOSTNAME" = "fedora" ]; then
-  # package managers aliases
-  alias dnfinst="sudo dnf install"
-  alias dnfrem="sudo dnf remove"
-  alias dnfind="dnf search"
-  alias dnfup="sudo dnf update"
-  alias flatinst="flatpak install --noninteractive -y flathub"
-  alias flatrem="flatpak remove --noninteractive -y"
-  alias flatfind="flatpak search"
-  alias up="sudo sh -c 'printf \"dnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
-  # other specific stuff
-  alias heroic="flatpak run com.heroicgameslauncher.hgl"
-  alias connect_arch='ssh -p 19376 192.168.0.103'
-  alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
-  alias minecraft="java -jar ~/Downloads/TLauncher.v10/TLauncher.jar"
-  alias llm_setup="~/Programming/GPT/llm_setup.sh"
-  alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
+# package managers
+if [ -e /bin/dnf ]; then
+  alias dnf_search="dnf search"
+  alias dnf_list="dnf list"
+  alias dnf_install="sudo dnf install"
+  alias dnf_remove="sudo dnf remove"
+  DNF_UPGRADE="dnf upgrade --refresh --best --allowerasing -y"
+  DNF_CLEAR="dnf autoremove ; dnf clean all"
+  alias dnf_upgrade="sudo $DNF_UPGRADE"
+  alias dnf_clear="sudo $DNF_CLEAR"
+  UP="$UP ; printf \"\n\ndnf upgrade\n\" ; $DNF_UPGRADE ; printf \"\n\ndnf clear\n\" ; $DNF_CLEAR" 
+  # alias up="sudo sh -c 'printf \"\n\ndnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
+fi
+
+if [ -e /bin/flatpak ]; then
+  alias flat_search="flatpak search"
+  alias flat_list="flatpak list"
+  alias flat_install="flatpak install --noninteractive -y" # flathub
+  alias flat_remove="flatpak remove --noninteractive -y"
+  FLAT_UPGRADE="flatpak upgrade --noninteractive -y"
+  FLAT_CLEAR="flatpak uninstall --unused ; flatpak repair"
+  alias flat_upgrade=$FLAT_UPGRADE
+  alias flat_clear=$FLAT_CLEAR
+  UP="$UP ; printf \"\n\nflatpak upgrade\n\" ; $FLAT_UPGRADE ; printf \"\n\nflatpak clear\n\" ; $FLAT_CLEAR "
 fi
 
 if [ "$HOSTNAME" = "archlinux" ]; then
@@ -81,7 +109,8 @@ if [ "$HOSTNAME" = "archlinux" ]; then
   alias pacman_find="pacman -Ss"
   alias pacman_find_installed="sudo pacman -Qs"
   alias pacman_update="sudo pacman -Syu"
-  # other specific
-  alias swayconf="$EDITOR ~/.config/sway/config"
-  alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 fi
+
+UP="$UP\'"
+alias up=$UP
+
