@@ -29,10 +29,12 @@ after `cd dotfiles && stow kitty` will be created symlink in `~/.config/kitty/ki
 - cmus            - tty music player in C
 - id3v2           - terminal id3-tags editor
 - bat             - cat with syntax higlighting and more
+- btop            - great resource monitoring instrument
 
 ### potentially useful
 - zoxide - cd with memory
 - most   - more and less pagers alternative
+- xxh    - tool for using dotfiles via SSH connection
 
 
 ## dots
@@ -45,6 +47,8 @@ important files, which are placed in user home directory ~.
 
 ### kitty
 wonderful terminal emulator!
+- `current-theme.conf` - theme "Everforest Dark Hard", chosen by default.
+- `kitty.conf`         - kitty config: 0.8 opacity, font "CommitMonoMono", fontsize 11.0, no window decorations.
 
 ### nvim
 complex modular text editor. config was massively inspired by @typecraft - cpow/neovim-for-newbs and Andrey0189/nvim-config
