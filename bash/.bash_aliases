@@ -50,6 +50,18 @@ alias rem="trash-put"
 # network
 alias ports="ss -tunlp"
 alias check_tcp="nc -zvn"
+# ssh () {
+#   if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
+#     printf "setting up ssh" ; \
+#     eval $(ssh-agent) > /dev/null 2>&1 && \
+#     ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
+#   fi
+#   ssh $*
+# }
+
+alias ssh_setup="eval $(ssh-agent) > /dev/null && ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa"
+
+
 # language translation
 alias ru="trans -t russian -v -j"
 alias en="trans -t english -v -j"
