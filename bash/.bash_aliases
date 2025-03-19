@@ -15,6 +15,7 @@ format() {
   mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 }
 alias mkd='mkdir -vp'
+alias sizes="sudo du --max-depth=1 -hL"
 alias conf="cd ~/dotfiles && $EDITOR"
 alias vimkeys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias note="cd ~/Notes && $EDITOR"
@@ -46,13 +47,17 @@ dsh () {
 alias icat="kitty icat"
 alias rm="echo you probably need to use rem"
 alias rem="trash-put"
+# network
+alias ports="ss -tunlp"
+alias check_tcp="nc -zvn"
 # language translation
 alias ru="trans -t russian -v -j"
 alias en="trans -t english -v -j"
 # id3 tags editor
 alias tags="id3v2"
 alias lsblk="lsblk -fo +size"
-# decompress .tar.gz
+# compression
+alias compress="tar -czvf"
 alias decompress="tar -xvzf"
 
 if [ "$HOSTNAME" = "fedora" ]; then
