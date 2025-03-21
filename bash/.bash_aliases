@@ -9,11 +9,10 @@ alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhTL=5 --group-directories-first --git-repos --git-ignore'
 alias mv='mv -v'
-# format filename - replace space with underscores & turn all letters to lowercase
-# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
-format() {
+format() {    # snake-case formatting filenames
   mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-}
+}     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+
 alias mkd='mkdir -vp'
 alias sizes="sudo du --max-depth=1 -hL"
 alias conf="cd ~/dotfiles && $EDITOR"
@@ -45,22 +44,22 @@ dsh () {
 }
 
 alias icat="kitty icat"
+kssh () {
+  if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
+    printf "setting up ssh" ; \
+    eval $(ssh-agent) > /dev/null 2>&1 && \
+    ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
+  fi
+  kitten ssh $*
+}
+
+#alias ssh_setup="eval $(ssh-agent) > /dev/null && ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa"
+
 alias rm="echo you probably need to use rem"
 alias rem="trash-put"
 # network
 alias ports="ss -tunlp"
 alias check_tcp="nc -zvn"
-# ssh () {
-#   if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
-#     printf "setting up ssh" ; \
-#     eval $(ssh-agent) > /dev/null 2>&1 && \
-#     ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
-#   fi
-#   ssh $*
-# }
-
-alias ssh_setup="eval $(ssh-agent) > /dev/null && ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa"
-
 
 # language translation
 alias ru="trans -t russian -v -j"
