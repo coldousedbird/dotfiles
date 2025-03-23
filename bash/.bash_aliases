@@ -26,7 +26,7 @@ format() {    # snake-case formatting filenames
 ## text
 alias vi="$EDITOR"
 edit () {
-  cd $(dirname $1) && $EDITOR $(basename $1)
+  cd $(dirname $1) && vi $(basename $1)
 }
 conf () {
   edit ~/dotfiles/$1
