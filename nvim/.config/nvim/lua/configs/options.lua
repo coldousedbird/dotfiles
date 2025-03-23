@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\' -- ?
+vim.g.loaded_netrwPlugin = 0
 
 local options = {
   clipboard = 'unnamedplus', -- use system clipboard instead of local
