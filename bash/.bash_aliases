@@ -9,17 +9,22 @@ alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhT --group-directories-first --git-repos --git-ignore'
 alias lsblk="lsblk -o NAME,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
+alias sizes="sudo du --max-depth=1 -hL"
+
 
 # edit file structure
 alias mv='mv -v'
 alias mkd='mkdir -vp'
 alias rm="echo you probably need to use rem"
 alias rem="trash-put"
-format() { # replace spaces with underscores & turn all letters to lowercase
-  mv -vT "$1" $( echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_' )
-}          # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+format() {    # snake-case formatting filenames
+  mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+}     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
 
-# editor
+
+# view and edit files
+## text
+alias vi="$EDITOR"
 edit () {
   cd $(dirname $1) && $EDITOR $(basename $1)
 }
@@ -29,26 +34,44 @@ conf () {
 note () {
   edit ~/Notes/$1
 }
+# alias conf="cd ~/dotfiles && $EDITOR"
+# alias note="cd ~/Notes && $EDITOR"
 
-# miscellaneous terminal stuff
-sudo() {
-  su -c "$*"
-}
+## audio
+alias tags="id3v2"
+
+## archives
+alias compress="tar -czvf"
+alias decompress="tar -xvzf"
+
+
+# terminal stuff
 alias new="clear && cd && exec bash"
 alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias icat="kitty icat"
-alias ru="trans -t russian -v -j"     # translation english to russian
-alias en="trans -t english -v -j"     # translation russian to english
-alias tags="id3v2"                    # id3 tags editor
-alias decompress="tar -xvzf"          # decompress .tar.gz
-# other specific stuff
+# language translation
+alias ru="trans -t russian -v -j"     # translate english to russian
+alias en="trans -t english -v -j"     # translate russian to english
+# specific
 alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
 alias llm_setup="~/Programming/GPT/llm_setup.sh"
 alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
 alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
+# network
+alias ports="ss -tunlp"
+alias check_tcp="nc -zvn"
+# ssh
+kssh () {
+  if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
+    printf "setting up ssh" ; \
+    eval $(ssh-agent) > /dev/null 2>&1 && \
+    ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
+  fi
+  kitten ssh $*
+}
 
 # git & github
 alias g="git"
@@ -57,8 +80,9 @@ alias gh_auth="gh auth setup-git"
 
 # docker aliases/functions
 alias d="docker"
-alias dim="docker images"
-alias dc="docker compose"
+alias dimg="docker images"
+alias dnet="docker network"
+alias dcom="docker compose"
 drem () {
   d kill $1 ; d rm $1 ; d rmi $1  
 }
@@ -74,9 +98,8 @@ dsh () {
   d exec -it $1 /bin/sh
 }
 
-UP="printf \"UPGRADING AND CLEARING SYSTEM\n\" ; sudo sh -c ':"
-
 # package managers
+UP="printf \"UPGRADING AND CLEARING SYSTEM\n\" ; sudo sh -c ':"
 if [ -e /bin/dnf ]; then
   alias dnf_search="dnf search"
   alias dnf_list="dnf list"
@@ -87,13 +110,11 @@ if [ -e /bin/dnf ]; then
   alias dnf_upgrade="sudo $DNF_UPGRADE"
   alias dnf_clear="sudo $DNF_CLEAR"
   UP="$UP ; printf \"\n\ndnf upgrade\n\" ; $DNF_UPGRADE ; printf \"\n\ndnf clear\n\" ; $DNF_CLEAR" 
-  # alias up="sudo sh -c 'printf \"\n\ndnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
 fi
-
 if [ -e /bin/flatpak ]; then
   alias flat_search="flatpak search"
   alias flat_list="flatpak list"
-  alias flat_install="flatpak install --noninteractive -y" # flathub
+  alias flat_install="flatpak install --noninteractive -y"
   alias flat_remove="flatpak remove --noninteractive -y"
   FLAT_UPGRADE="flatpak upgrade --noninteractive -y"
   FLAT_CLEAR="flatpak uninstall --unused ; flatpak repair"
@@ -101,7 +122,6 @@ if [ -e /bin/flatpak ]; then
   alias flat_clear=$FLAT_CLEAR
   UP="$UP ; printf \"\n\nflatpak upgrade\n\" ; $FLAT_UPGRADE ; printf \"\n\nflatpak clear\n\" ; $FLAT_CLEAR "
 fi
-
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
   alias pacman_remove="sudo pacman -Rs"
@@ -112,5 +132,6 @@ if [ "$HOSTNAME" = "archlinux" ]; then
 fi
 
 UP="$UP\'"
+# alias up="sudo sh -c 'printf \"\n\ndnf upgrade\n\" && dnf upgrade --refresh --best --allowerasing -y && printf \"\n\nflatpak upgrade\n\" && flatpak update -y'"
 alias up=$UP
 
