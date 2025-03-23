@@ -25,17 +25,8 @@ format() {    # snake-case formatting filenames
 # view and edit files
 ## text
 alias vi="$EDITOR"
-edit () {
-  cd $(dirname $1) && vi $(basename $1)
-}
-conf () {
-  edit ~/dotfiles/$1
-}
-note () {
-  edit ~/Notes/$1
-}
-# alias conf="cd ~/dotfiles && $EDITOR"
-# alias note="cd ~/Notes && $EDITOR"
+alias conf="cd ~/dotfiles && $EDITOR"
+alias note="cd ~/Notes && $EDITOR"
 
 ## audio
 alias tags="id3v2"
