@@ -10,7 +10,7 @@ alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhT --group-directories-first --git-repos --git-ignore'
 alias lsblk="lsblk -o NAME,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
 alias sizes="sudo du --max-depth=1 -hL"
-
+alias grep="grep --color=auto"
 
 # edit file structure
 alias mv='mv -v'
@@ -54,15 +54,6 @@ alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
 # network
 alias ports="ss -tunlp"
 alias check_tcp="nc -zvn"
-# ssh
-kssh () {
-  if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
-    printf "setting up ssh" ; \
-    eval $(ssh-agent) > /dev/null 2>&1 && \
-    ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
-  fi
-  kitten ssh $*
-}
 
 # git & github
 alias g="git"
@@ -88,6 +79,34 @@ dremake () {
 dsh () {
   d exec -it $1 /bin/sh
 }
+
+# fzf
+## eval "$(fzf --bash)"
+## export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
+
+alias fzf="fzf --preview='bat --color=always {}'"
+fzvi() {
+  $EDITOR $(fzf --preview='bat --color=always {}')
+}
+fzssh() { # to be updated with fzf
+  if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
+    printf "setting up ssh\n" ; \
+    eval $(ssh-agent) > /dev/null 2>&1 && \
+    ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
+  fi
+  kitten ssh $(grep '^Host ' ~/.ssh/config | grep -v '\*' | awk '{print $2}' | fzf)
+  #$*
+}
+ssh-add-server () {
+  echo "following servers are found and added to ssh config:"
+  for hostname in "$@"; do
+    server=$(grep "$hostname" $ANSIBLE_INVENTORY)
+    echo $server | awk -F' ' '{split($2, a, "="); printf "\nHost %s\n  Hostname %s", $1, a[2]}' >> ~/.ssh/config
+    echo $server
+  done
+}
+
 
 # package managers
 UP="printf \"UPGRADING AND CLEARING SYSTEM\n\" ; sudo sh -c ':"
