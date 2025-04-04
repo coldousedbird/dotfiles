@@ -80,22 +80,16 @@ dsh () {
   d exec -it $1 /bin/sh
 }
 
-# fzf
-## eval "$(fzf --bash)"
-## export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
 
-alias fzf="fzf --preview='bat --color=always {}'"
-fzvi() {
-  $EDITOR $(fzf --preview='bat --color=always {}')
-}
-fzssh() { # to be updated with fzf
+# ssh
+ssh() {
   if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
-    printf "setting up ssh\n" ; \
-    eval $(ssh-agent) > /dev/null 2>&1 && \
-    ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ecdsa > /dev/null
+    #printf "setting up ssh\n" ; \
+    #eval $(ssh-agent) > /dev/null 2>&1 && \
+    #ssh-add -l > /dev/null || 
+    ssh-add ~/.ssh/id_ecdsa
   fi
-  kitten ssh $(grep '^Host ' ~/.ssh/config | grep -v '\*' | awk '{print $2}' | fzf)
+  kitten ssh $1
   #$*
 }
 ssh-add-server () {
@@ -106,6 +100,24 @@ ssh-add-server () {
     echo $server
   done
 }
+
+
+# fzf
+## eval "$(fzf --bash)"
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
+
+alias fzf="fzf --preview='bat --color=always {}'"
+fcd() { 
+  cd $( fd --no-require-git -iHL --type directory | \fzf) 
+}
+fvi() { 
+  $EDITOR $(fzf --preview='bat --color=always {}') 
+}
+fssh() {
+  ssh $(grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
+}
+
 
 
 # package managers
