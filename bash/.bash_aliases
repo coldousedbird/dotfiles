@@ -8,7 +8,7 @@ alias l='eza -a --group-directories-first'
 alias ll='eza -alh --group-directories-first --git-repos'
 alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
 alias llt='eza -alhT --group-directories-first --git-repos --git-ignore'
-alias lsblk="lsblk -o NAME,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
+alias lsblk="lsblk -o NAME,TYPE,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
 alias sizes="sudo du --max-depth=1 -hL"
 alias grep="grep --color=auto"
 
@@ -82,23 +82,31 @@ dsh () {
 
 
 # ssh
-ssh() {
-  if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
-    #printf "setting up ssh\n" ; \
-    #eval $(ssh-agent) > /dev/null 2>&1 && \
-    #ssh-add -l > /dev/null || 
-    ssh-add ~/.ssh/id_ecdsa
+kssh() {
+  if [ -n ${1+x} ]; then
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
+      eval $(ssh-agent) \
+      ssh-add ~/.ssh/id_ecdsa
+    fi
+    kitten ssh $1
+  else
+    echo "set server name or use fssh command"
   fi
-  kitten ssh $1
-  #$*
 }
 ssh-add-server () {
-  echo "following servers are found and added to ssh config:"
-  for hostname in "$@"; do
-    server=$(grep "$hostname" $ANSIBLE_INVENTORY)
-    echo $server | awk -F' ' '{split($2, a, "="); printf "\nHost %s\n  Hostname %s", $1, a[2]}' >> ~/.ssh/config
-    echo $server
-  done
+  if [ -n "$1" ]; then
+    for hostname in "$@"; do
+      server=$(grep "$hostname" ${ANSIBLE_INVENTORY/#\~/$HOME}) # ~/axi/Ansible-inventory/inventory)
+      if [ -n "$server" ]; then
+        echo $server | awk -F' ' '{split($2, a, "="); printf "\nHost %s\n  Hostname %s", $1, a[2]}' >> ~/.ssh/config
+        echo "added $server to ssh config"
+      else
+        echo "server $1 not found"
+      fi
+    done
+  else
+    echo "set server name"
+  fi
 }
 
 
@@ -107,15 +115,22 @@ ssh-add-server () {
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
 
-alias fzf="fzf --preview='bat --color=always {}'"
+alias fzfi="fzf --preview='bat --color=always {}'"
 fcd() { 
-  cd $( fd --no-require-git -iHL --type directory | \fzf) 
+  cd ${1:-.}
+  FIND_DIRECTORY=$(fd --no-require-git -iHL --type directory | \fzf)
+  cd ${FIND_DIRECTORY:--}
 }
 fvi() { 
-  $EDITOR $(fzf --preview='bat --color=always {}') 
+  FILE=$(fzf --preview='bat --color=always {}') 
+  if [ -n "$FILE" ]; then
+    echo $FILE
+    $EDITOR $FILE
+  fi
 }
 fssh() {
-  ssh $(grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
+  cd ${1:-.}
+  kssh $(grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
 }
 
 
