@@ -137,9 +137,14 @@ fvi() {
     $EDITOR $FILE
   fi
 }
+fhost() {
+  grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf 
+}
 fssh() {
   cd ${1:-.}
-  kssh $(grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf)
+  host=$(fhost)
+  echo $host
+  kssh $host
 }
 
 
