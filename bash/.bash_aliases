@@ -32,8 +32,17 @@ alias note="cd ~/Notes && $EDITOR"
 alias tags="id3v2"
 
 ## archives
-alias compress="tar -czvf"
-alias decompress="tar -xvzf"
+compress() {
+  tar -cz $1 -f $1.tar.gz
+}
+decompress() {
+  dest_name=$(basename $1)
+  dest_path=$(dirname $1)/${dest_name:0:-7}
+  if [ ! -d "$dest_path" ]; then
+    mkdir -v $dest_path
+  fi
+  tar -xzf $1 -C $dest_path
+}
 
 
 # terminal stuff
