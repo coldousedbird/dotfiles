@@ -151,30 +151,42 @@ if [ -e /bin/dnf ]; then
   alias dnf_list="dnf list"
   alias dnf_install="sudo dnf install"
   alias dnf_remove="sudo dnf remove"
-  DNF_UPGRADE="dnf upgrade --refresh --best --allowerasing -y"
-  DNF_CLEAR="dnf autoremove ; dnf clean all"
-  alias dnf_upgrade="sudo $DNF_UPGRADE"
-  alias dnf_clear="sudo $DNF_CLEAR"
-  UP="$UP ; printf \"\n\ndnf upgrade\n\" ; $DNF_UPGRADE ; printf \"\n\ndnf clear\n\" ; $DNF_CLEAR" 
+  UPGRADE="dnf upgrade --refresh --best --allowerasing -y"
+  CLEAR="dnf autoremove ; dnf clean all"
+  alias dnf_upgrade="sudo $UPGRADE"
+  alias dnf_clear="sudo $CLEAR"
+  UP="$UP ; printf \"\n\ndnf upgrade\n\" ; $UPGRADE ; printf \"\n\ndnf clear\n\" ; $CLEAR" 
 fi
 if [ -e /bin/flatpak ]; then
   alias flat_search="flatpak search"
   alias flat_list="flatpak list"
   alias flat_install="flatpak install --noninteractive -y"
   alias flat_remove="flatpak remove --noninteractive -y"
-  FLAT_UPGRADE="flatpak upgrade --noninteractive -y"
-  FLAT_CLEAR="flatpak uninstall --unused ; flatpak repair"
-  alias flat_upgrade=$FLAT_UPGRADE
-  alias flat_clear=$FLAT_CLEAR
-  UP="$UP ; printf \"\n\nflatpak upgrade\n\" ; $FLAT_UPGRADE ; printf \"\n\nflatpak clear\n\" ; $FLAT_CLEAR "
+  UPGRADE="flatpak upgrade --noninteractive -y"
+  CLEAR="flatpak uninstall --unused ; flatpak repair"
+  alias flat_upgrade=$UPGRADE
+  alias flat_clear=$CLEAR
+  UP="$UP ; printf \"\n\nflatpak upgrade\n\" ; $UPGRADE ; printf \"\n\nflatpak clear\n\" ; $CLEAR "
 fi
 if [ "$HOSTNAME" = "archlinux" ]; then
   # package manager aliases
   alias pacman_remove="sudo pacman -Rs"
   alias pacman_clear="sudo pacman -Qdtq | pacman -Rs -"
   alias pacman_find="pacman -Ss"
-  alias pacman_find_installed="sudo pacman -Qs"
+  alias pacman_find_installed="pacman -Qs"
   alias pacman_update="sudo pacman -Syu"
+fi
+if [ -e /bin/apt ]; then
+  # package manager aliases
+  alias apt_search="apt search"
+  alias apt_list="apt list"
+  alias apt_install="sudo apt install"
+  alias apt_remove="sudo apt autoremove"
+  UPGRADE="apt update && apt upgrade"
+  CLEAR="apt autoclean"
+  alias apt_upgrade=$UPGRADE
+  alias apt_clear=$CLEAR
+  UP="$UP ; printf \"\n\napt upgrade\n\" ; $UPGRADE ; printf \"\n\napt clear\n\" ; $CLEAR "
 fi
 
 UP="$UP\'"
