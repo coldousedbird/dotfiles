@@ -23,11 +23,7 @@ i use fedora, arch, and wsl ubuntu on different devices.
 - nvim            - advanced vim with lua
 - stow            - easy configs deploy
 - fd              - fast file search
-- fzf             - fuzzy find line from list
-- ripgrep         - recursively searches for content inside files
-- translate-shell - tty translator
-- wl-clipboard    - wayland clipboard manager
-- eza             - better ls+tree
+- fzf             - fuzzy find line from list ripgrep         - recursively searches for content inside files translate-shell - tty translator wl-clipboard    - wayland clipboard manager eza             - better ls+tree
 - cmus            - tty music player in C
 - id3v2           - terminal id3-tags editor
 - bat             - cat with syntax higlighting
@@ -74,7 +70,7 @@ i use fedora, arch, and wsl ubuntu on different devices.
 - bash     - important files, which are placed in user home directory ~.
 - kitty    - simple config of wonderful terminal emulator.
 - nvim     - complex modular text editor. 
-             config was massively inspired by [@typecraft](https://github.com/cpow/neovim-for-newbs) and [Ampersand](Andrey0189/nvim-config).
+             config was massively inspired by [typecraft](https://github.com/cpow/neovim-for-newbs) and [ampersand](https://github.com/Andrey0189/nvim-config).
              kudos to these distinguished gentlemans.
 - sway     - tiling window compositor, running under Wayland. there are also dots for wofi and other related stuff.
 - mangohud - monitoring overlay. mostly for games.
