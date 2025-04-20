@@ -23,7 +23,11 @@ i use fedora, arch, and wsl ubuntu on different devices.
 - nvim            - advanced vim with lua
 - stow            - easy configs deploy
 - fd              - fast file search
-- fzf             - fuzzy find line from list ripgrep         - recursively searches for content inside files translate-shell - tty translator wl-clipboard    - wayland clipboard manager eza             - better ls+tree
+- fzf             - fuzzy find line from list 
+- ripgrep         - recursively searches for content inside files
+- translate-shell - tty translator
+- wl-clipboard    - wayland clipboard manager 
+- eza             - better ls+tree
 - cmus            - tty music player in C
 - id3v2           - terminal id3-tags editor
 - bat             - cat with syntax higlighting
