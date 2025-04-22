@@ -121,6 +121,8 @@ ssh-add-server () {
 
 # fzf
 ## eval "$(fzf --bash)"
+source /usr/share/doc/fzf/examples/completion.bash
+source /usr/share/doc/fzf/examples/key-bindings.bash
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
 
