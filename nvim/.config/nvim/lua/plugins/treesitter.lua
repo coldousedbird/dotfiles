@@ -5,7 +5,7 @@ return {
       config.setup({
         ensure_installed = {"sway", "lua", "asm", "bash", "vim", "regex", "dockerfile", "yaml", "c", "cpp", "rust", "html", "css", "csv", "sql", "markdown", "markdown_inline", "jinja", "jinja_inline", "comment", "jsonc" },
         sync_install = false,
-        higlight = { enable = true },
+        highlight = { enable = true },
         indent = { enable = true },
       })
     end
