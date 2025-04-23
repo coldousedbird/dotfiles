@@ -25,9 +25,9 @@
   pu = push
   pl = pull
   l = log
-  # Show all branches
+  # brances related aliases
   br = branch -av
-  # Show the current branch name (useful for shell prompts)
-  brname = !git branch | grep "^*" | awk '{ print $2 }'
-  # Delete a branch
+  brcur = !git branch | grep "^*" | awk '{ print $2 }'
   brdel = branch -D
+  brch = !git checkout $(git branch | awk '{print $NF}' | fzf)
+
