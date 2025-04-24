@@ -19,13 +19,13 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # user aliases
-if [ -f .bash_aliases ]; then
-. .bash_aliases
+if [ -f ~/.bash_aliases ]; then
+. ~/.bash_aliases
 fi
 
 # host-specific aliases (not in repo)
-if [ -f .bash_specific ]; then
-. .bash_specific
+if [ -f ~/.bash_specific ]; then
+. ~/.bash_specific
 fi
 
 # greetings!
