@@ -93,8 +93,9 @@ dsh () {
 # ssh
 kssh() {
   if [ -n ${1+x} ]; then
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then \
-      eval $(ssh-agent) \
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+      echo "ssh agent evaluation"
+      eval $(ssh-agent)
       ssh-add ~/.ssh/id_ecdsa
     fi
     kitten ssh $1
@@ -103,19 +104,25 @@ kssh() {
   fi
 }
 ssh-add-server () {
-  if [ -n "$1" ]; then
-    for hostname in "$@"; do
-      server=$(grep "$hostname" ${ANSIBLE_INVENTORY/#\~/$HOME}) # ~/axi/Ansible-inventory/inventory)
-      if [ -n "$server" ]; then
-        echo $server | awk -F' ' '{split($2, a, "="); printf "\nHost %s\n  Hostname %s", $1, a[2]}' >> ~/.ssh/config
-        echo "added $server to ssh config"
-      else
-        echo "server $1 not found"
-      fi
-    done
-  else
-    echo "set server name"
+  if [ -z "$1" ]; then
+    echo "! set server name"
+    return 1
   fi
+  for hostname in "$@"; do
+    server=$(grep "$hostname" ${ANSIBLE_INVENTORY/#\~/$HOME}) # ~/axi/Ansible-inventory/inventory)
+    server_name=$(echo $server | awk '{print $1}')
+    server_addr=$(echo $server | awk '{split($2, a, "="); print a[2]}')
+    if [ -z "$server" ]; then
+      echo "! server $1 not found"
+      return 1
+    fi
+    if [ -n "$(grep $server_addr ~/.ssh/config)" ]; then
+      echo "! server with address $server_addr already exists in ~/.ssh/config"
+      return 1
+    fi
+    echo -e "Host $server_name\n  Hostname $server_addr" >> ~/.ssh/config
+    echo "+ added $server_name:$server_addr to ssh config"
+  done
 }
 
 
