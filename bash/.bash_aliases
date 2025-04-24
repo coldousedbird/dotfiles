@@ -21,8 +21,10 @@ format() {    # snake-case formatting filenames
   mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 }     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
 ## lf integration
-LFCD=~/.config/lf/lfcd.sh
-[ -f "$LFCD" ] && source "$LFCD"
+lfcd() {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
 alias lf="lfcd"
 
 # view and edit files
