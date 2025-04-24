@@ -20,7 +20,10 @@ alias rem="trash-put"
 format() {    # snake-case formatting filenames
   mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 }     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
-
+## lf integration
+LFCD=~/.config/lf/lfcd.sh
+[ -f "$LFCD" ] && source "$LFCD"
+alias lf="lfcd"
 
 # view and edit files
 ## text
