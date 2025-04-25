@@ -1,5 +1,7 @@
 set autoquit true
 set hidden
+#set previewer ~/.config/lf/previewer.sh
+
 # ALT COMMANDS
 
 
