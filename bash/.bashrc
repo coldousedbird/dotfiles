@@ -11,7 +11,8 @@ PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w ${PS1_CMD1}\[\e[0m\] \$ '
 ANSIBLE_INVENTORY='~/axi/Ansible-inventory/inventory'
 # for kitty to work in ubuntu wsl
 # export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=0
+# export LIBGL_ALWAYS_INDIRECT=0
+export HISTTIMEFORMAT="%F %T "
 
 # source global definitions
 if [ -f /etc/bashrc ]; then
@@ -28,5 +29,3 @@ if [ -f ~/.bash_specific ]; then
 . ~/.bash_specific
 fi
 
-# greetings!
-ff
