@@ -21,11 +21,16 @@ fi
 
 # user aliases
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+. ~/.config/.bash_aliases
+fi
+
+# fzf shell integration
+if [ -f ~/.fzf.bash ]; then
+. ~/.config/.bash_fzf
 fi
 
 # host-specific aliases (not in repo)
 if [ -f ~/.bash_specific ]; then
-. ~/.bash_specific
+. ~/.config/.bash_specific
 fi
 

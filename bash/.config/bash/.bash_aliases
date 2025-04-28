@@ -51,7 +51,7 @@ decompress() {
 
 
 # terminal stuff
-alias new="clear && cd && exec bash"
+alias new="clear && exec bash"
 alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
@@ -133,8 +133,8 @@ ssh-add-server () {
 
 # fzf
 ## eval "$(fzf --bash)"
-source /usr/share/doc/fzf/examples/completion.bash
-source /usr/share/doc/fzf/examples/key-bindings.bash
+#source /usr/share/doc/fzf/examples/completion.bash
+#source /usr/share/doc/fzf/examples/key-bindings.bash
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
 
