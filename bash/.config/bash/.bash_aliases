@@ -96,18 +96,18 @@ dsh () {
 
 
 # ssh
-kssh() {
-  if [ -n ${1+x} ]; then
-    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-      echo "ssh agent evaluation"
-      eval $(ssh-agent)
-      ssh-add ~/.ssh/id_ecdsa
-    fi
-    kitten ssh $1
-  else
-    echo "set server name or use fssh command"
-  fi
+ssh-check-agent() {
+  # check if ssh-agent exist, and if not - create it and save it's stdout (with environment variables) to file
+  ! pgrep -u "$USER" ssh-agent > /dev/null && ssh-agent > ~/.ssh/agent_env
+  # source environment variables from file
+  source ~/.ssh/agent_env > /dev/null
+  # check if key added to agent and add if not
+  ! ssh-add -l > /dev/null && ssh-add
 }
+# run on every terminal startup, so ssh is always ready
+ssh-check-agent
+
+alias kssh="kitten ssh"
 ssh-add-server () {
   if [ -z "$1" ]; then
     echo "! set server name"
