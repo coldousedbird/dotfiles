@@ -1,11 +1,17 @@
 set autoquit true
 set hidden
-#set previewer ~/.config/lf/previewer.sh
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/cleaner.sh
+set number
+set relativenumber
 
-# ALT COMMANDS
+map i $~/.config/lf/pv.sh $f | less -R
+map i $LESSOPEN='| ~/.config/lf/pv.sh %s' less -R $f
+
 
 
 # INTEGRATIONS
+
 ## TRASH-CLI
 cmd trash %trash-put -- $fx
 ## EZA
