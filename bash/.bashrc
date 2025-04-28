@@ -1,4 +1,4 @@
-# dotfiles/bash/.bashrc
+#!/bin/sh
 
 # environment variables
 EDITOR=nvim
@@ -14,23 +14,15 @@ ANSIBLE_INVENTORY='~/axi/Ansible-inventory/inventory'
 # export LIBGL_ALWAYS_INDIRECT=0
 export HISTTIMEFORMAT="%F %T "
 
-# source global definitions
-if [ -f /etc/bashrc ]; then
-. /etc/bashrc
-fi
+# importing configuration files
+files=(
+	/etc/bashrc                   # system default bashrc
+	~/.config/bash/.bash_aliases  # my bash aliases
+	~/.config/bash/.bash_fzf      # fzf shell integration
+	~/.config/bash/.bash_specific # file for host specific stuff
+)
+for file in ${files[@]}; do
+  test -f $file && source $file
+done
 
-# user aliases
-if [ -f ~/.bash_aliases ]; then
-. ~/.config/.bash_aliases
-fi
-
-# fzf shell integration
-if [ -f ~/.fzf.bash ]; then
-. ~/.config/.bash_fzf
-fi
-
-# host-specific aliases (not in repo)
-if [ -f ~/.bash_specific ]; then
-. ~/.config/.bash_specific
-fi
 
