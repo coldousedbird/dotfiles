@@ -104,10 +104,9 @@ ssh-check-agent() {
   # check if key added to agent and add if not
   ! ssh-add -l > /dev/null && ssh-add
 }
-# run on every terminal startup, so ssh is always ready
-ssh-check-agent
 
-alias kssh="kitten ssh"
+alias kssh="ssh-check-agent ; kitten ssh"
+
 ssh-add-server () {
   if [ -z "$1" ]; then
     echo "! set server name"
@@ -158,6 +157,7 @@ fssh() {
   cd ${1:-.}
   host=$(fhost)
   echo $host
+  ssh-check-agent
   kssh $host
 }
 
