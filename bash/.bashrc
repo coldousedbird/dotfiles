@@ -19,7 +19,7 @@ files=(
 	/etc/bashrc                   # system default bashrc
 	~/.config/bash/.bash_aliases  # my bash aliases
 	~/.config/bash/.bash_fzf      # fzf shell integration
-	~/.config/bash/.bash_specific # file for host specific stuff
+	.bash_specific                # file for host specific stuff
 )
 for file in ${files[@]}; do
   test -f $file && source $file
