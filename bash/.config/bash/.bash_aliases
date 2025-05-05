@@ -88,7 +88,8 @@ decompress() {
 # git & github
 alias g="git"
 alias gs="git status"
-alias gtree="git log --graph --decorate --oneline --color | less -R"
+alias gl="git log"
+alias gltr="git log --graph --decorate --oneline --color | less -R"
 ## fuzzyfind changed files
 alias gfch="git status --porcelain | fzf | awk '{print \$NF}'"
 gd() { # diff only in less
@@ -108,6 +109,9 @@ gfa() {
   ga $(gfch)
 }
 alias gc="git commit"
+alias gpu="git push"
+alias gpl="git pull"
+
 alias gh_log="gh auth login"
 alias gh_auth="gh auth setup-git"
 
