@@ -1,6 +1,34 @@
 # dotfiles/bash/.bash_aliases
 
-
+# terminal stuff
+alias new="clear && exec bash"
+alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
+alias ya="yazi"
+alias c="cmatrix -sC yellow -u 3"
+alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
+alias bat="bat --theme='Monokai Extended Bright'"
+alias icat="kitty icat"
+# language translation
+alias ru="trans -t russian -v -j"     # translate english to russian
+alias en="trans -t english -v -j"     # translate russian to english
+# specific
+alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
+alias llm_setup="~/Programming/GPT/llm_setup.sh"
+alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
+alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
+# network
+alias ports="ss -tunlp"
+alias check_tcp="nc -zvn"
+# fzf
+eval "$(fzf --bash 2> /dev/null)"
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
+fcd() {
+  cd ${1:-.}
+  FIND_DIRECTORY=$(fd --no-require-git -iHL --type directory | \fzf)
+  cd ${FIND_DIRECTORY:--}
+}
+alias fzfi="fzf --preview='bat --color=always {}'"
 
 # list file system related stuff
 alias ls="ls -a --color=auto --group-directories-first"
@@ -30,6 +58,13 @@ alias lf="lfcd"
 # view and edit files
 ## text
 alias vi="$EDITOR"
+fvi() {
+  FILE=$(fzf --preview='bat --color=always {}')
+  if [ -n "$FILE" ]; then
+    echo $FILE
+    $EDITOR $FILE
+  fi
+}
 alias conf="cd ~/dotfiles && $EDITOR"
 alias note="cd ~/Notes && $EDITOR"
 
@@ -50,29 +85,32 @@ decompress() {
 }
 
 
-# terminal stuff
-alias new="clear && exec bash"
-alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
-alias ya="yazi"
-alias c="cmatrix -sC yellow -u 3"
-alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
-alias icat="kitty icat"
-# language translation
-alias ru="trans -t russian -v -j"     # translate english to russian
-alias en="trans -t english -v -j"     # translate russian to english
-# specific
-alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
-alias llm_setup="~/Programming/GPT/llm_setup.sh"
-alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
-alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
-# network
-alias ports="ss -tunlp"
-alias check_tcp="nc -zvn"
-
 # git & github
 alias g="git"
+alias gs="git status"
+alias gtree="git log --graph --decorate --oneline --color | less -R"
+## fuzzyfind changed files
+alias gfch="git status --porcelain | fzf | awk '{print \$NF}'"
+gd() { # diff only in less
+  git diff --color $1 | less -R
+}
+alias gds="git diff --color --staged | less -R"
+gfd() { # fuzzy find changed file and show it's diff
+  gd $(gfch)
+}
+gfsw() { # fuzzy switch branch
+  branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
+  echo $branch
+  gsw $branch
+}
+alias ga="git add"
+gfa() {
+  ga $(gfch)
+}
+alias gc="git commit"
 alias gh_log="gh auth login"
 alias gh_auth="gh auth setup-git"
+
 
 # docker aliases/functions
 alias d="docker"
@@ -107,49 +145,8 @@ ssh-check-agent() {
 
 alias kssh="ssh-check-agent ; kitten ssh"
 
-ssh-add-server () {
-  if [ -z "$1" ]; then
-    echo "! set server name"
-    return 1
-  fi
-  for hostname in "$@"; do
-    server=$(grep "$hostname" ${ANSIBLE_INVENTORY/#\~/$HOME}) # ~/axi/Ansible-inventory/inventory)
-    server_name=$(echo $server | awk '{print $1}')
-    server_addr=$(echo $server | awk '{split($2, a, "="); print a[2]}')
-    if [ -z "$server" ]; then
-      echo "! server $1 not found"
-      return 1
-    fi
-    if [ -n "$(grep $server_addr ~/.ssh/config)" ]; then
-      echo "! server with address $server_addr already exists in ~/.ssh/config"
-      return 1
-    fi
-    echo -e "Host $server_name\n  Hostname $server_addr" >> ~/.ssh/config
-    echo "+ added $server_name:$server_addr to ssh config"
-  done
-}
 
 
-# fzf
-## eval "$(fzf --bash)"
-#source /usr/share/doc/fzf/examples/completion.bash
-#source /usr/share/doc/fzf/examples/key-bindings.bash
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-# export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
-
-alias fzfi="fzf --preview='bat --color=always {}'"
-fcd() { 
-  cd ${1:-.}
-  FIND_DIRECTORY=$(fd --no-require-git -iHL --type directory | \fzf)
-  cd ${FIND_DIRECTORY:--}
-}
-fvi() { 
-  FILE=$(fzf --preview='bat --color=always {}') 
-  if [ -n "$FILE" ]; then
-    echo $FILE
-    $EDITOR $FILE
-  fi
-}
 fhost() {
   grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf 
 }
