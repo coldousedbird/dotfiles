@@ -100,7 +100,7 @@ gfd() { # fuzzy find changed file and show it's diff
   gd $(gfch)
 }
 gfsw() { # fuzzy switch branch
-  branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
+  branch=$(git branch | fzf | cut -c 3- | awk "{print \$1}")
   echo $branch
   gsw $branch
 }
