@@ -99,7 +99,7 @@ alias gds="git diff --color --staged | less -R"
 gfd() { # fuzzy find changed file and show it's diff
   gd $(gfch)
 }
-gfsw() { # fuzzy switch branch
+gsw() { # fuzzy switch branch
   branch=$(git branch | fzf | cut -c 3- | awk "{print \$1}")
   echo $branch
   gsw $branch
