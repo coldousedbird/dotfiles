@@ -5,9 +5,8 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[0m\]\n'
-# PS0='   \t   \n'
-PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'
-PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w ${PS1_CMD1}\[\e[0m\] \$ '
+PROMPT_COMMAND="echo -ne \"\033]0;$HOSTNAME\007\""
+PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w $(git branch --show-current 2>/dev/null)\[\e[0m\] \$ '
 #
 # User specific aliases and functions
 export HISTTIMEFORMAT="%F %T "
