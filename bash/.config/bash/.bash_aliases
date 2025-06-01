@@ -88,25 +88,26 @@ decompress() {
 # git & github
 alias g="git"
 alias gs="git status"
-alias gl="git log"
-alias gltr="git log --graph --decorate --oneline --color | less -R"
+gl() {
+  git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | less -R 
+}
 ## fuzzyfind changed files
-alias gfch="git status --porcelain | fzf | awk '{print \$NF}'"
+alias gfs="git status --porcelain | fzf | awk '{print \$NF}'"
 gd() { # diff only in less
-  git diff --color $1 | less -R
+  git diff --color=always $@ | diff-so-fancy | less -R
 }
 alias gds="git diff --color --staged | less -R"
 gfd() { # fuzzy find changed file and show it's diff
-  gd $(gfch)
+  gd $@ $(gfs)
 }
-gfsw() { # fuzzy switch branch
+alias gbr="git branch"
+gsw() { # fuzzy switch branch
   branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
-  echo $branch
-  gsw $branch
+  git switch $branch >/dev/null
 }
 alias ga="git add"
 gfa() {
-  ga $(gfch)
+  ga $(gfs)
 }
 alias gc="git commit"
 alias gpu="git push"

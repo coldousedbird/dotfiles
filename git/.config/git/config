@@ -1,0 +1,60 @@
+[user]
+  email = coldousedbird@gmail.com
+  name = coldousedbird
+[credential]
+  helper = cache --timeout 7200
+  helper = oauth
+[credential "https://github.com"]
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
+[core]
+  editor = nvim
+[web]
+  browser = chromium
+[init]
+  defaultBranch = main
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
+[log]
+  abbrevCommit = true
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+[color "diff"]
+  meta       = bold brightblue
+  frag       = bold magenta
+#  context    = white
+  whitespace = green
+  old        = red
+[push]
+  default = current  # push only current branch by default
+  autoSetupRemote = true  # easier to push new branches
+  followTags = true  # push also tags
+  gpgSign = false    # my remotes doesn't support sign pushes
+[pull]
+  default = current  # push only current branch by default
+  rebase = true
+[rebase]
+  autoStash = true
+  missingCommitsCheck = warn
+[color]
+  ui = true
+[alias]
+  s = status
+  a = add
+  c = commit
+  pu = push
+  pl = pull
+  l = log
+  # brances related aliases
+  br = branch -av
+  brcur = !git branch | grep "^*" | awk '{ print $2 }'
+  brdel = branch -D
+  brch = !git checkout $(git branch | awk '{print $NF}' | fzf)
+
