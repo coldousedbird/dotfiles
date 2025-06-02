@@ -12,6 +12,20 @@ export PAGER="less -R"
 export MANPAGER="nvim +Man! -"
 export HISTTIMEFORMAT="%F %T "
 
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# readline inputrc
+set editing-mode vi
+set keymap vi-command
+set show-all-if-unmodified on
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+set colored-completion-prefix On
+set menu-complete-display-prefix On
+set echo-control-characters off
+
 # importing configuration files
 files=(
 	/etc/bashrc                   # system default bashrc
