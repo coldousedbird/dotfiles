@@ -153,7 +153,8 @@ alias kssh="ssh-check-agent ; kitten ssh"
 
 
 fhost() {
-  grep '^Host ' ~/.ssh/config | awk '{print $2}' | fzf 
+  grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/config \
+  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t\t/g;s/  Hostname //;s/Host //' | fzf | awk '{print $2}'
 }
 fssh() {
   cd ${1:-.}
