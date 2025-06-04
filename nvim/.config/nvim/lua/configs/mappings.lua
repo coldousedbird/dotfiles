@@ -36,8 +36,10 @@ wk.add({
     { "<C-S-l>",    "<cmd>vertical resize -6<CR>",     desc = "Resize window right" },
 
     -- File Navigation
-    { "<C-d>",      "<C-d>zz",                         desc = "Scroll down and center" },
-    { "<C-u>",      "<C-u>zz",                         desc = "Scroll up and center" },
+    -- { "<C-d>",      "<C-d>zz",                         desc = "Scroll down and center" },
+    -- { "<C-u>",      "<C-u>zz",                         desc = "Scroll up and center" },
+    { "<C-u>",      "<C-y>k<C-y>k",                         desc = "Scroll down and center" },
+    { "<C-d>",      "<C-e>j<C-e>j",                         desc = "Scroll up and center" },
 
     -- Search
     { "N",          "Nzzzv",                           desc = "Previous search result and center" },
