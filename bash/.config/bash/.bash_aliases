@@ -107,8 +107,13 @@ gsw() { # fuzzy switch branch
 }
 alias ga="git add"
 gfa() {
-  ga $(gfs)
-}
+  file=$(gfs)
+  gd $file
+  read -p "add? (y/n): " responce
+  response=${response,,}
+  test $responce == 'y' && ga $file
+  test $responce == 'yes' && ga $file
+  }
 alias gc="git commit"
 alias gpu="git push"
 alias gpl="git pull"
@@ -154,14 +159,21 @@ alias kssh="ssh-check-agent ; kitten ssh"
 
 fhost() {
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/config \
-  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t\t/g;s/  Hostname //;s/Host //' | fzf | awk '{print $2}'
+  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
 }
 fssh() {
   cd ${1:-.}
   host=$(fhost)
   echo $host
   ssh-check-agent
-  kssh $host
+  kssh -o ConnectTimeout=60 $host
+}
+fussh() {
+  cd ${1:-.}
+  host=$(fhost)
+  echo $host
+  ssh-check-agent
+  ssh -o ConnectTimeout=60 $host
 }
 
 
