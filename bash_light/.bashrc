@@ -1,5 +1,9 @@
 # .bashrc
 # light version for server usage
+# sourcing default config
+test $USER == root && test -f /root/bashrc && source /root/bashrc
+test -f /etc/bashrc && source /etc/bashrc
+test -f /etc/bash.bashrc && source /etc/bash.bashrc
 
 # prompt
 PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[0m\]\n'
@@ -24,36 +28,31 @@ set echo-control-characters off
 # remove kitty directory (temp solution)
 test $USER != root && test -d kitty && rm -r /home/$USER/kitty
 
-# gathering config files to ~/.common_rc
-test -f /etc/bashrc && sudo cat /etc/bashrc > ~/.common_rc && source /etc/bashrc
-test -f /root/.bashrc && sudo cat /root/.bashrc > ~/.common_rc && source /root/.bashrc
-cat ~/.bashrc >> ~/.common_rc
-
-
 # aliases
 ## common
 alias l="ls -a --group-directories-first --color=auto"
 alias ll="ls -alh --group-directories-first --color=auto"
 alias fd="find -iname '*PATTERN*'"
+alias rm='rm -iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkd='mkdir -vp'
 
-s() {
-  sudo -i bash --rcfile ~/.common_rc
-  echo $?
-}
-alias new="clear;exec bash --rcfile ~/.common_rc"
-alias n="clear;exec bash --rcfile ~/.common_rc"
+test $USER != root && \
+alias s="sudo -i bash --rcfile ~/.bashrc"
+alias n="clear;exec bash"
 alias e="exit"
 
 ## docker
-test -f "/bin/docker" && (
+test -f "/bin/docker" && {
   alias d="docker"
   dsh() {
     docker exec -it $1 /bin/sh
   }
   alias dl="docker logs"
   alias dlf="docker logs -f --tail=300"
-)
-test -f "/bin/docker-compose" && (
+}
+test -f "/bin/docker-compose" && {
   alias dc="docker compose"
-)
+}
 
