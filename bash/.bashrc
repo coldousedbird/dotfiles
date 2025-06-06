@@ -4,6 +4,9 @@
 export LESSSECURE=1
 export LESSHISTFILE=-
 export LESSHISTSIZE=0
+export TERMINAL="kitty"
+export TERMINAL_PROG="kitty"
+export BROWSER="chromium"
 export EDITOR="nvim"
 export PAGER="less -R"
 export MANPAGER="nvim +Man! -"
@@ -12,6 +15,15 @@ export HISTTIMEFORMAT="%F %T "
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+export HISTFILE="$XDG_STATE_HOME"/bash/history
+export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
