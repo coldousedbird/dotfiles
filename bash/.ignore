@@ -1,3 +1,4 @@
 Trash/
 .local/
 .cache/
+*venv/
