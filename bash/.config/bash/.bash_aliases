@@ -1,7 +1,8 @@
 # dotfiles/bash/.bash_aliases
 
 # terminal stuff
-alias new="clear && exec bash"
+alias n="clear && exec bash"
+alias e="exit"
 alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
 alias ya="yazi"
 alias c="cmatrix -sC yellow -u 3"
