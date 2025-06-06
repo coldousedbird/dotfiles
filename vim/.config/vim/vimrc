@@ -1,0 +1,3 @@
+set number
+set relativenumber
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
