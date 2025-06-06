@@ -12,7 +12,12 @@ export HISTTIMEFORMAT="%F %T "
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
-export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+#export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 # readline inputrc
 set editing-mode vi
@@ -28,7 +33,7 @@ set echo-control-characters off
 # importing configuration files
 files=(
   /etc/bashrc                   # system default bashrc
-  /etc/bash.bashrc                   # system default bashrc
+  /etc/bash.bashrc              # system default bashrc
   ~/.config/bash/.bash_aliases  # my bash aliases
   .bash_specific                # file for host specific stuff
 )
