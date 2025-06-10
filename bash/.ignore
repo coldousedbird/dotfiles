@@ -2,3 +2,4 @@ Trash/
 .local/
 .cache/
 *venv/
+~/.config
