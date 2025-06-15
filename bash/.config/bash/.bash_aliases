@@ -9,6 +9,9 @@ alias c="cmatrix -sC yellow -u 3"
 alias ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 alias bat="bat --theme='Monokai Extended Bright'"
 alias icat="kitty icat"
+fancydi() {
+  diff -u $1 $2 | diff-so-fancy | less -R
+}
 # language translation
 alias ru="trans -t russian -v -j"     # translate english to russian
 alias en="trans -t english -v -j"     # translate russian to english
@@ -66,8 +69,9 @@ fvi() {
     $EDITOR $FILE
   fi
 }
-alias conf="cd ~/dotfiles && $EDITOR"
-alias note="cd ~/Notes && $EDITOR"
+alias conf="cd ~/dotfiles && fvi"
+alias note="cd ~/Notes && fvi"
+
 
 ## audio
 alias tags="id3v2"
@@ -154,27 +158,30 @@ ssh-check-agent() {
   ! ssh-add -l > /dev/null && ssh-add
 }
 
-alias kssh="ssh-check-agent ; kitten ssh"
-
-
-
 fhost() {
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/config \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
 }
+kssh() {
+  ssh-check-agent
+  # infocmp -a xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
+  rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc # -e "ssh -A" 
+  ssh $@ 
+}
+# alias kssh="kitten ssh"
+
 fssh() {
   cd ${1:-.}
   host=$(fhost)
   echo $host
-  ssh-check-agent
-  kssh -o ConnectTimeout=60 $host
+  kssh  $host
 }
 fussh() {
   cd ${1:-.}
   host=$(fhost)
   echo $host
   ssh-check-agent
-  ssh -o ConnectTimeout=60 $host
+  ssh $host
 }
 
 

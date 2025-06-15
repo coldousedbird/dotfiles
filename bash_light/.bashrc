@@ -13,6 +13,7 @@ PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w $(git branch --show-current 2>/dev/nu
 # env vars
 export HISTTIMEFORMAT="%F %T "
 export LC_ALL=en_US.utf8
+export TERM=xterm-256color
 
 # readline inputrc
 set editing-mode vi
@@ -46,6 +47,7 @@ alias e="exit"
 ## docker
 test -f "/bin/docker" && {
   alias d="docker"
+  alias dex="docker exec -it"
   dsh() {
     docker exec -it $1 /bin/sh
   }
