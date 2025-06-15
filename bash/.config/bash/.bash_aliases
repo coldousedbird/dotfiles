@@ -105,6 +105,9 @@ alias gds="gd --staged"
 gfd() { # fuzzy find changed file and show it's diff
   gd $@ $(gfs)
 }
+gfds() { # fuzzy find changed file and show it's diff
+  gds $@ $(gfs)
+}
 alias gbr="git branch"
 gsw() { # fuzzy switch branch
   branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
