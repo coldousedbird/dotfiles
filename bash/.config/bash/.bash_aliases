@@ -101,7 +101,7 @@ alias gfs="git status --porcelain | fzf | awk '{print \$NF}'"
 gd() { # diff only in less
   git diff --color=always $@ | diff-so-fancy | less -R
 }
-alias gds="git diff --color --staged | less -R"
+alias gds="gd --staged"
 gfd() { # fuzzy find changed file and show it's diff
   gd $@ $(gfs)
 }
