@@ -13,7 +13,10 @@ PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w $(git branch --show-current 2>/dev/nu
 # env vars
 export HISTTIMEFORMAT="%F %T "
 export LC_ALL=en_US.utf8
-export TERM=xterm-256color
+export TERM=xterm
+
+# terminal var
+test -n $(find /usr/share/terminfo -type f | grep xterm-256color) && export TERM=xterm-256color
 
 # readline inputrc
 set editing-mode vi
