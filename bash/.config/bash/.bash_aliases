@@ -162,7 +162,7 @@ ssh-check-agent() {
 }
 
 fhost() {
-  grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/config \
+  grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
 }
 
@@ -177,7 +177,7 @@ fssh() {
   host=$(fhost)
   test -z $host && return 0
   echo $host
-  kssh  $host
+  syncssh $host
 }
 fussh() {
   host=$(fhost)
