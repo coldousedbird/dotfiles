@@ -165,23 +165,23 @@ fhost() {
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/config \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
 }
-kssh() {
+
+syncssh() {
   ssh-check-agent
   # infocmp -a xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
   rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc # -e "ssh -A" 
   ssh $@ 
 }
-# alias kssh="kitten ssh"
 
 fssh() {
-  cd ${1:-.}
   host=$(fhost)
+  test -z $host && return 0
   echo $host
   kssh  $host
 }
 fussh() {
-  cd ${1:-.}
   host=$(fhost)
+  test -z $host && return 0
   echo $host
   ssh-check-agent
   ssh $host
