@@ -1,6 +1,8 @@
 [user]
   email = coldousedbird@gmail.com
   name = coldousedbird
+[includeIf "gitdir:~/work/"]
+  path = ~/axi/.gitconfig
 [credential]
   helper = store
 [credential "https://github.com"]
