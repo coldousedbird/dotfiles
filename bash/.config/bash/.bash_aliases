@@ -169,8 +169,18 @@ fhost() {
 syncssh() {
   ssh-check-agent
   # infocmp -a xterm-kitty | ssh $1 tic -x -o \~/.terminfo /dev/stdin
-  rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc # -e "ssh -A" 
-  ssh $@ 
+  
+  # test $? != 0 \
+  #  && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
+  #  || rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc  # -e "ssh -A" 
+  rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 2> /dev/null
+  test $? != 0 && (
+      read -p "rsync is not available. load configs via scp? (y/n): " responce
+      response=${response,,}
+      test $responce == 'y' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
+      test $responce == 'yes' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc
+    )
+  ssh $1 
 }
 
 fssh() {
