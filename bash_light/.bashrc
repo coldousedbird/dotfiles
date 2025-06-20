@@ -16,7 +16,7 @@ export LC_ALL=en_US.utf8
 export TERM=xterm
 
 # terminal var
-test -n $(find /usr/share/terminfo -type f | grep xterm-256color) && export TERM=xterm-256color
+test -n $(find "/usr/share/terminfo" -type f | grep "xterm-256color" | head -n 1) && export TERM="xterm-256color"
 
 # readline inputrc
 set editing-mode vi
@@ -34,8 +34,8 @@ test $USER != root && test -d kitty && rm -r /home/$USER/kitty
 
 # aliases
 ## common
-alias l="ls -a --group-directories-first --color=auto"
-alias ll="ls -alh --group-directories-first --color=auto"
+alias l="ls -aH --group-directories-first --color=auto"
+alias ll="ls -alHh --group-directories-first --color=auto"
 alias fd="find -iname '*PATTERN*'"
 alias rm='rm -iv'
 alias cp='cp -iv'
@@ -48,16 +48,24 @@ alias n="clear;exec bash"
 alias e="exit"
 
 ## docker
-test -f "/bin/docker" && {
+
+docker --version >& /dev/null && {
   alias d="docker"
+  alias di="docker images"
+  alias dn="docker networks"
+  alias dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
   alias dex="docker exec -it"
   dsh() {
     docker exec -it $1 /bin/sh
   }
   alias dl="docker logs"
-  alias dlf="docker logs -f --tail=300"
+  alias dlf="docker logs -f"
+  alias dllf="docker logs -f --tail 300"
 }
-test -f "/bin/docker-compose" && {
+docker-compose --version >& /dev/null && {
+  alias dc="docker-compose"
+}
+docker compose version >& /dev/null && {
   alias dc="docker compose"
 }
 
