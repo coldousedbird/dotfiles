@@ -13,16 +13,16 @@ fancydi() {
   diff -u $1 $2 | diff-so-fancy | less -R
 }
 # language translation
-alias ru="trans -t russian -v -j"     # translate english to russian
-alias en="trans -t english -v -j"     # translate russian to english
+alias ru="trans -t russian -v -j" \    # translate english to russian
+      en="trans -t english -v -j"      # translate russian to english 
 # specific
 alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
 alias llm_setup="~/Programming/GPT/llm_setup.sh"
 alias llm="~/Programming/GPT/Llama-3.2-1B-Instruct.Q6_K.llamafile"
-alias doom="cd ~/Games/terminal-doom && zig-out/bin/terminal-doom"
+alias tags="id3v2"
 # network
-alias ports="ss -tunlp"
-alias check_tcp="nc -zvn"
+alias ports="ss -tunlp" \
+      check_tcp="nc -zvn" 
 # fzf
 eval "$(fzf --bash 2> /dev/null)"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -32,23 +32,23 @@ fcd() {
   FIND_DIRECTORY=$(fd --no-require-git -iHL --type directory | \fzf)
   cd ${FIND_DIRECTORY:--}
 }
-alias fzfi="fzf --preview='bat --color=always {}'"
 
 # list file system related stuff
-alias ls="ls -aHh --color=auto --group-directories-first"
-alias l='eza -a --group-directories-first'
-alias ll='eza -alh --group-directories-first --git-repos'
-alias lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore'
-alias llt='eza -alhT --group-directories-first --git-repos --git-ignore'
-alias lsblk="lsblk -o NAME,TYPE,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS"
-alias sizes="sudo du --max-depth=1 -hL"
-alias grep="grep --color=auto"
+alias ls="ls -aHh --color=auto --group-directories-first" \
+      l='eza -a --group-directories-first' \
+      ll='eza -alh --group-directories-first --git-repos' \
+      lt='eza -alhTL=2 --group-directories-first --git-repos --git-ignore' \
+      llt='eza -alhT --group-directories-first --git-repos --git-ignore' \
+      lsblk="lsblk -o NAME,TYPE,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS" \
+      sizes="sudo du --max-depth=1 -hL" \
+      grep="grep --color=auto" 
 
 # edit file structure
-alias mv='mv -v'
-alias mkd='mkdir -vp'
-alias rm="echo you probably need to use rem"
-alias rem="trash-put"
+alias mv='mv -v' \
+      mkd='mkdir -vp' \
+      rm="echo you probably need to use rem" \
+      rem="trash-put" \
+      lf="lfcd"
 format() {    # snake-case formatting filenames
   mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
 }     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
@@ -57,11 +57,12 @@ lfcd() {
     # `command` is needed in case `lfcd` is aliased to `lf`
     cd "$(command lf -print-last-dir "$@")"
 }
-alias lf="lfcd"
 
 # view and edit files
 ## text
-alias vi="$EDITOR"
+alias vi="$EDITOR" \
+      conf="cd ~/dotfiles && fvi" \
+      note="cd ~/Notes && fvi"
 fvi() {
   FILE=$(fzf --preview='bat --color=always {}')
   if [ -n "$FILE" ]; then
@@ -69,12 +70,9 @@ fvi() {
     $EDITOR $FILE
   fi
 }
-alias conf="cd ~/dotfiles && fvi"
-alias note="cd ~/Notes && fvi"
 
 
 ## audio
-alias tags="id3v2"
 
 ## archives
 compress() {
@@ -91,29 +89,33 @@ decompress() {
 
 
 # git & github
-alias g="git"
-alias gs="git status"
+alias g="git" \
+      gs="git status" \
+      gfs="git status --porcelain | fzf | awk '{print \$NF}'" \
+      gds="gd --staged" \
+      ga="git add" \
+      gbr="git branch" \
+      gc="git commit" \
+      gpu="git push" \
+      gpl="git pull" \
+      gh_log="gh auth login" \
+      gh_auth="gh auth setup-git"
 gl() {
   git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | less -R 
 }
-## fuzzyfind changed files
-alias gfs="git status --porcelain | fzf | awk '{print \$NF}'"
-gd() { # diff only in less
+gd() {  # fuzzyfind changed files
   git diff --color=always $@ | diff-so-fancy | less -R
 }
-alias gds="gd --staged"
 gfd() { # fuzzy find changed file and show it's diff
   gd $@ $(gfs)
 }
 gfds() { # fuzzy find changed file and show it's diff
   gds $@ $(gfs)
 }
-alias gbr="git branch"
 gsw() { # fuzzy switch branch
   branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
   git switch $branch >/dev/null
 }
-alias ga="git add"
 gfa() {
   file=$(gfs)
   gd $file
@@ -122,20 +124,14 @@ gfa() {
   test $responce == 'y' && ga $file
   test $responce == 'yes' && ga $file
   }
-alias gc="git commit"
-alias gpu="git push"
-alias gpl="git pull"
-
-alias gh_log="gh auth login"
-alias gh_auth="gh auth setup-git"
 
 
 # docker aliases/functions
-alias d="docker"
-alias di="docker images"
-alias dn="docker network"
-alias dc="docker compose"
-alias dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
+alias d="docker" \
+      di="docker images" \
+      dn="docker network" \
+      dc="docker compose" \
+      dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
 drem () {
   d kill $1 ; d rm $1 ; d rmi $1  
 }
