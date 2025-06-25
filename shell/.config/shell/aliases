@@ -13,8 +13,8 @@ fancydi() {
   diff -u $1 $2 | diff-so-fancy | less -R
 }
 # language translation
-alias ru="trans -t russian -v -j" \    # translate english to russian
-      en="trans -t english -v -j"      # translate russian to english 
+alias ru="trans -t russian -v -j"      # translate english to russian
+alias en="trans -t english -v -j"      # translate russian to english 
 # specific
 alias rustlings="cd ~/Programming/rustlings && /home/coldousedbird/.cargo/bin/rustlings"
 alias llm_setup="~/Programming/GPT/llm_setup.sh"
@@ -62,7 +62,9 @@ lfcd() {
 ## text
 alias vi="$EDITOR" \
       conf="cd ~/dotfiles && fvi" \
-      note="cd ~/Notes && fvi"
+      note="cd ~/Notes && fvi" \
+      viall="find -mindepth 1 -type f,l | xargs nvim -p"
+
 fvi() {
   FILE=$(fzf --preview='bat --color=always {}')
   if [ -n "$FILE" ]; then
@@ -98,6 +100,9 @@ alias g="git" \
       gc="git commit" \
       gpu="git push" \
       gpl="git pull" \
+      gsh="git show" \
+      grv="git revert" \
+      grs="git reset" \
       gh_log="gh auth login" \
       gh_auth="gh auth setup-git"
 gl() {
