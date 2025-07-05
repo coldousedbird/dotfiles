@@ -24,6 +24,9 @@ for file in ${files[@]}; do
   test -f $file && source $file
 done
 
+# fzf shell integration
+eval "$(fzf --bash 2> /dev/null)"
+
 # prompt
 export PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[0m\]\n'
 export PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w $(git branch --show-current 2>/dev/null)\[\e[0m\] \$ '

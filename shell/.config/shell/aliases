@@ -24,7 +24,6 @@ alias tags="id3v2"
 alias ports="ss -tunlp" \
       check_tcp="nc -zvn" 
 # fzf
-eval "$(fzf --bash 2> /dev/null)"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='rg --ignore --hidden --ignore --files --follow'
 fcd() {
