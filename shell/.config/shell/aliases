@@ -2,12 +2,11 @@
 
 # misc
 alias c="clear" \
-      n="c && exec bash" \
+      n="c && exec $SHELL" \
       e="exit" \
       q="exit" \
       sudo='sudo ' \
       doas='doas ' \
-      keys="bind -p | grep -v '^#\|self-insert\|^$'" \
       cmatrix="cmatrix -sC yellow -u 3" \
       ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 
@@ -41,12 +40,13 @@ alias mv='mv -v' \
       lf="lfcd" \
       y="yazi" 
 
-format() {    # snake-case formatting filenames
-  mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-}     # e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
-lfcd() {  # lf file manager integration
-    cd "$(command lf -print-last-dir "$@")"
-}
+# snake-case formatting filenames
+# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+format() { mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_') ; }     
+
+# lf file manager integration
+lfcd() { cd "$(command lf -print-last-dir "$@")" ; }
+
 fcd() {  # cd to folder via fzf
   cd ${1:-.}
   FIND_DIRECTORY=$(fd --no-require-git -iHL --type directory | \fzf)
@@ -56,15 +56,14 @@ fcd() {  # cd to folder via fzf
 
 # read & edit files
 alias bat="bat --theme='Monokai Extended Bright'" \
-      vi="$EDITOR" \
+      vi="nvim" \
       dot="cd ~/dotfiles && fvi" \
       not="cd ~/Notes && fvi" \
       va="find -mindepth 1 -type f,l | xargs nvim -p" \
       icat="kitty icat"
 
-dif() {  # diff fancy
-  diff -u $@ | diff-so-fancy | less -R
-}
+# diff fancy
+dif() { diff -u $@ | diff-so-fancy | less -R ; }
 fvi() {  # fuzzy find file and open it in vi
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && $EDITOR $FILE
@@ -83,7 +82,9 @@ tarx() {  # tar extract
 
 
 # git & github
-git --version >& /dev/null && {
+GIT_EXISTS=$(docker --version >& /dev/null ; echo $?)
+# aliases
+test GIT_EXISTS==0 && {
   alias g="git" \
         gi="g init" \
         gcl="g clone" \
@@ -91,7 +92,6 @@ git --version >& /dev/null && {
         gpl="g pull" \
         gpu="g push" \
         gs="g status" \
-        gfs="g status --porcelain | fzf | awk '{print \$NF}'" \
         ga="g add" \
         gb="g branch" \
         gc="g commit" \
@@ -102,23 +102,23 @@ git --version >& /dev/null && {
         grs="g reset" \
         gsh="g stash" \
         gh_log="gh auth login" \
-        gh_auth="gh auth setup-git"
-  gl() {
-    git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | less -R 
-  }
-  gd() {  # fuzzyfind changed files
-    git diff --color=always $@ | diff-so-fancy | less -R
-  }
-  gfd() { # fuzzy find changed file and show it's diff
-    gd $@ $(gfs)
-  }
-  gfds() { # fuzzy find changed file and show it's diff
-    gds $@ $(gfs)
-  }
-  gsw() { # fuzzy switch branch
-    branch=$(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}")
-    git switch $branch >/dev/null
-  }
+        gh_auth="gh auth setup-git" \
+        gfs="g status --porcelain | fzf | awk '{print \$NF}'"
+}
+# functions
+test GIT_EXISTS==0 && {
+  # fancy git log
+  gl() { git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | less -R ; }
+  
+  # fuzzyfind changed files
+  gd() { git diff --color=always $@ | diff-so-fancy | less -R ; }
+
+  # fuzzy find changed file and show it's diff
+  gfd() { gd $@ $(gfs) ; }
+  # fuzzy find changed file and show it's staged diff
+  gfds() { gds $@ $(gfs) ; }
+  # fuzzy switch branch
+  gsw() { git switch $(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}") >/dev/null ; }
   gfa() {
     file=$(gfs)
     gd $file
@@ -126,12 +126,14 @@ git --version >& /dev/null && {
     response=${response,,}
     test $responce == 'y' && ga $file
     test $responce == 'yes' && ga $file
-    }
+  }
 }
 
 
 # docker & compose
-docker --version >& /dev/null && {
+DOCKER_EXISTS=$(docker --version >& /dev/null ; echo $?)
+# aliases
+test DOCKER_EXISTS==0 && {
   alias d="docker" \
         di="d images" \
         dn="d networks" \
@@ -140,9 +142,11 @@ docker --version >& /dev/null && {
         dlf="d logs -f" \
         dllf="d logs -f --tail 300" \
         dps="d ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
-  dsh() {
-    docker exec -it $1 /bin/sh
-  }
+}
+# functions
+test DOCKER_EXISTS==0 && {
+  # open given container's shell
+  dsh() { d exec -it $1 /bin/sh ; }
 }
 docker-compose --version >& /dev/null && {
   alias dc="docker-compose"

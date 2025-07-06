@@ -32,3 +32,5 @@ export PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[
 export PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w $(git branch --show-current 2>/dev/null)\[\e[0m\] \$ '
 PROMPT_COMMAND="echo -ne \"\033]0;$HOSTNAME\007\""
 
+# shell-specific aliases
+alias keys="bind -p | grep -v '^#\|self-insert\|^$'"
