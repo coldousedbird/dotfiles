@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # misc
 alias c="clear" \
       n="c && exec $SHELL" \
@@ -66,7 +64,11 @@ alias bat="bat --theme='Monokai Extended Bright'" \
 dif() { diff -u $@ | diff-so-fancy | less -R ; }
 fvi() {  # fuzzy find file and open it in vi
   FILE=$(fzf --preview='bat --color=always {}')
-  test -n "$FILE" && echo $FILE && $EDITOR $FILE
+  test -n "$FILE" && echo $FILE && vi $FILE
+}
+fhx() {  # fuzzy find file and open it in vi
+  FILE=$(fzf --preview='bat --color=always {}')
+  test -n "$FILE" && echo $FILE && hx $FILE
 }
 tarc() {  # tar compress
   tar -cz $1 -f $1.tar.gz
