@@ -102,6 +102,7 @@ test GIT_EXISTS==0 && {
         grv="g revert" \
         grb="g rebase" \
         grs="g reset" \
+        grr="g restore" \
         gsh="g stash" \
         gh_log="gh auth login" \
         gh_auth="gh auth setup-git" \
