@@ -16,7 +16,6 @@ for file in ${files[@]}; do
 done
 
 
-
 # options
 setopt autocd extendedglob notify inc_append_history prompt_subst
 unsetopt beep nomatch
@@ -39,21 +38,23 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+
 # prompt! 
 ## git integration
-git_repo_color() {
-  git_status="$(git status 2> /dev/null)"
-  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%F{green}"
-  [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%F{yellow}"
-  [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%F{red}"
+git_repo() {
+  local branch="%F{black}$(git branch --show-current 2> /dev/null) %f%k "
+  local git_status="$(git status 2> /dev/null)"
+  [[ "$git_status" =~ "working tree clean" ]] && echo -n "%K{#d3c6aa} $branch" && return 0
+  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%K{green} $branch" && return 0
+  [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%K{red} $branch" && return 0
+  [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%K{yellow} $branch" && return 0
 }
-git_branch() {
-  git branch --show-current 2> /dev/null
+## command start time
+preexec() {
+  print -P '%K{#d3c6aa}%F{black}   %*   %f%k'
 }
-
 NEWLINE=$'\n'
-PROMPT="${NEWLINE}%K{#d3c6aa}%F{000} %n %f%k %K{#d3c6aa}%F{000} %~ %f%k $ "
-RPROMPT="$(git_repo_color) ($(git_branch)) %f %K{#d3c6aa}%F{000} %* %f%k"
+PROMPT='${NEWLINE}%K{#d3c6aa}%F{000} %n %f%k %K{#d3c6aa}%F{000} %~ %f%k $(git_repo)$ '
 
 
 # autosuggestions
