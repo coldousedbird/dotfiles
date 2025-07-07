@@ -1,23 +1,4 @@
-# options
-setopt autocd extendedglob notify inc_append_history
-unsetopt beep nomatch
-
-# completion setup
-_comp_options+=(globdots)
-zstyle :compinstall filename '/home/coldousedbird/.zshrc'
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-autoload -U compinit && compinit
-autoload -U colors && colors
-
-
-# vim mode
-bindkey -v
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+# finally, zoomer shell config
 
 
 # fzf shell integration
@@ -34,12 +15,46 @@ for file in ${files[@]}; do
   test -f $file && source $file
 done
 
-# prompt
-# PS1="%B%{$fg[white]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-# PROMPT="${NEWLINE}%K{#2E3440}%F{#E5E9F0}$(date +%_I:%M%P) %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ "
-PROMPT="${NEWLINE}%K{#d3c6aa}%F{#000} %n %f%k %K{#d3c6aa}%F{#000} %~ %f%k $ "
-PS0="${NEWLINE}%K{#2E3440}%F{#E5E9F0}$(date +%T)"
+
+# options
+setopt autocd extendedglob notify inc_append_history prompt_subst
+unsetopt beep nomatch
+
+# completion setup
+_comp_options+=(globdots)
+zstyle :compinstall filename '/home/coldousedbird/.zshrc'
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+autoload -U compinit && compinit
+
+# enabling colors!
+autoload -U colors && colors
+
+# vim mode
+bindkey -v
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# prompt! 
+## git integration
+git_repo_color() {
+  git_status="$(git status 2> /dev/null)"
+  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%F{green}"
+  [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%F{yellow}"
+  [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%F{red}"
+}
+git_branch() {
+  git branch --show-current 2> /dev/null
+}
+
+NEWLINE=$'\n'
+PROMPT="${NEWLINE}%K{#d3c6aa}%F{000} %n %f%k %K{#d3c6aa}%F{000} %~ %f%k $ "
+RPROMPT="$(git_repo_color) ($(git_branch)) %f %K{#d3c6aa}%F{000} %* %f%k"
+
 
 # autosuggestions
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
