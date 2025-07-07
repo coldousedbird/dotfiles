@@ -124,7 +124,8 @@ test GIT_EXISTS==0 && {
   gfa() {
     file=$(gfs)
     gd $file
-    read "add? (y/n): " responce
+    echo "add? (y/n): "
+    read responce
     response=${response,,}
     test $responce == 'y' && ga $file
     test $responce == 'yes' && ga $file
@@ -179,7 +180,8 @@ fssh() { # ssh into chosen server and copy configs
   # copying configs to server
   rsync ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 2> /dev/null
   test $? != 0 && (
-      read "rsync is not available. load configs via scp? (y/n): " responce
+      echo "rsync is not available. load configs via scp? (y/n): "
+      read responce
       response=${response,,}
       test $responce == 'y' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
       test $responce == 'yes' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc
