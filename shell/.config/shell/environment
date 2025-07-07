@@ -6,11 +6,13 @@ export LESSHISTSIZE=0
 export TERMINAL="kitty"
 export TERMINAL_PROG="kitty"
 export BROWSER="chromium"
-#export EDITOR="nvim"
-export EDITOR="hx"
+export EDITOR="nvim"
+#export EDITOR="hx"
 export PAGER="less -R"
 export MANPAGER="nvim +Man! -"
 export HISTTIMEFORMAT="%F %T "
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # XDG
@@ -20,6 +22,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # export HISTFILE="$XDG_STATE_HOME"/bash/history
+export HISTFILE="$XDG_STATE_HOME/shell/history"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
