@@ -1,5 +1,4 @@
-# .bashrc
-# light version for server usage
+# light bashrc for server usage
 # sourcing default config
 test $USER == root && test -f /root/bashrc && source /root/bashrc
 test -f /etc/bashrc && source /etc/bashrc
@@ -14,7 +13,7 @@ PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w \[\e[0m\] \$ '
 export HISTTIMEFORMAT="%F %T "
 export LC_ALL=en_US.utf8
 export TERM=xterm
-
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 # terminal var
 test -n $(find "/usr/share/terminfo" -type f | grep "xterm-256color" | head -n 1) && export TERM="xterm-256color"
 
@@ -28,9 +27,6 @@ set mark-symlinked-directories On
 set colored-completion-prefix On
 set menu-complete-display-prefix On
 set echo-control-characters off
-
-# remove kitty directory (temp solution)
-test $USER != root && test -d kitty && rm -r /home/$USER/kitty
 
 # aliases
 ## common
@@ -48,7 +44,6 @@ alias n="clear;exec bash"
 alias e="exit"
 
 ## docker
-
 docker --version >& /dev/null && {
   alias d="docker"
   alias di="docker images"
