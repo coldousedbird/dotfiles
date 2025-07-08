@@ -168,6 +168,10 @@ ssh-check-agent() {
   # check if key added to agent and add if not
   ! ssh-add -l > /dev/null && ssh-add
 }
+scpa() {
+  ssh-check-agent
+  ssh -A $@
+}
 fhost() { # choose known ssh host via fzf
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
@@ -182,8 +186,8 @@ fssh() { # ssh into chosen server and copy configs
   [ "$?" != "0" ] && (
       echo -n "rsync is not available. load configs via scp? (y/n): "
       read responce
-      test $responce == 'y' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
-      test $responce == 'yes' && scp ~/dotfiles/bash_light/.bashrc $1:~/.bashrc
+      test $responce == 'y' && scp -A ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
+      test $responce == 'yes' && scp -A ~/dotfiles/bash_light/.bashrc $1:~/.bashrc
     )
   ssh $host $@
 }
