@@ -175,12 +175,12 @@ fssh() { # ssh into chosen server and copy configs
   echo $host
   ssh-check-agent
   # copying configs to server
-  rsync ~/dotfiles/bash_light/.bashrc $host:~/.bashrc #2> /dev/null
+  rsync -contimeout=4 ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 2> /dev/null
   [ "$?" != "0" ] && (
       echo -n "rsync is not available. load configs via scp? (y/n): "
       read responce
-      test $responce == 'y' && scp -A ~/dotfiles/bash_light/.bashrc $1:~/.bashrc 
-      test $responce == 'yes' && scp -A ~/dotfiles/bash_light/.bashrc $1:~/.bashrc
+      [ $responce == 'y' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 
+      [ test $responce == 'yes' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
     )
   ssh $host $@
 }
