@@ -70,17 +70,10 @@ fhx() {  # fuzzy find file and open it in vi
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && hx $FILE
 }
-tarc() {  # tar compress
-  tar -cz $1 -f $1.tar.gz
-}
-tarx() {  # tar extract
-  dest_name=$(basename $1)
-  dest_path=$(dirname $1)/${dest_name:0:-7}
-  if [ ! -d "$dest_path" ]; then
-    mkdir -v $dest_path
-  fi
-  tar -xzf $1 -C $dest_path
-}
+# tar compress
+tarc() { tar -cz $1 -f $1.tar.gz ; }
+# tar extract
+tarx="tar -xzf"
 
 
 # git & github
