@@ -180,7 +180,7 @@ fssh() { # ssh into chosen server and copy configs
       echo -n "rsync is not available. load configs via scp? (y/n): "
       read responce
       [ $responce == 'y' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 
-      [ test $responce == 'yes' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
+      [ $responce == 'yes' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
     )
   ssh $host $@
 }
