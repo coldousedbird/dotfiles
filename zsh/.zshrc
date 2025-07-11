@@ -56,6 +56,7 @@ preexec() {
 NEWLINE=$'\n'
 PROMPT='${NEWLINE}%K{#d3c6aa}%F{000} %n %f%k %K{#d3c6aa}%F{000} %~ %f%k $ '
 RPROMPT='$(git_repo)'
+echo -ne "\033]0;$NAME\007"
 
 
 # autosuggestions
