@@ -44,6 +44,7 @@ bindkey -v '^?' backward-delete-char
 git_repo() {
   local branch="%F{black}$(git branch --show-current 2> /dev/null) %f%k "
   local git_status="$(git status 2> /dev/null)"
+  [[ "$git_status" =~ "Your branch is" ]] && echo -n "%K{blue} $branch" && return 0
   [[ "$git_status" =~ "working tree clean" ]] && echo -n "%K{#d3c6aa} $branch" && return 0
   [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%K{green} $branch" && return 0
   [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%K{red} $branch" && return 0
