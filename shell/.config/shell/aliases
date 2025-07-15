@@ -73,7 +73,7 @@ fhx() {  # fuzzy find file and open it in vi
 # tar compress
 tarc() { tar -cz $1 -f $1.tar.gz ; }
 # tar extract
-tarx="tar -xzf"
+tarx="tar -xzpsf"
 
 
 # git & github
