@@ -96,7 +96,7 @@ test GIT_EXISTS==0 && {
         grb="g rebase" \
         grs="g reset" \
         grr="g restore" \
-        gsh="g stash" \
+        gst="g stash" \
         gh_log="gh auth login" \
         gh_auth="gh auth setup-git" \
         gfs="g status --porcelain | fzf | awk '{print \$NF}'"
