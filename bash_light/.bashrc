@@ -36,6 +36,7 @@ alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkd='mkdir -vp'
+alias sudo='sudo '
 
 test $USER != root && \
 alias s="sudo -i bash --rcfile ~/.bashrc"
@@ -46,8 +47,9 @@ alias e="exit"
 docker --version >& /dev/null && {
   alias d="docker"
   alias di="docker images"
-  alias dn="docker networks"
-  alias dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
+  alias dn="docker network"
+  #alias dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
+  alias dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
   alias dex="docker exec -it"
   dsh() {
     docker exec -it $1 /bin/sh

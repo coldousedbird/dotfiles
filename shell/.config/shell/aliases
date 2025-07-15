@@ -132,12 +132,13 @@ DOCKER_EXISTS=$(docker --version >& /dev/null ; echo $?)
 test DOCKER_EXISTS==0 && {
   alias d="docker" \
         di="d images" \
-        dn="d networks" \
+        dn="d network" \
         dex="d exec -it" \
         dl="d logs" \
         dlf="d logs -f" \
         dllf="d logs -f --tail 300" \
-        dps="d ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
+        # dps="d ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'" \
+        dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
 }
 # functions
 test DOCKER_EXISTS==0 && {
@@ -161,10 +162,6 @@ ssh-check-agent() {
   # check if key added to agent and add if not
   ! ssh-add -l > /dev/null && ssh-add
 }
-scpa() {
-  ssh-check-agent
-  ssh -A $@
-}
 fhost() { # choose known ssh host via fzf
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
@@ -175,12 +172,12 @@ fssh() { # ssh into chosen server and copy configs
   echo $host
   ssh-check-agent
   # copying configs to server
-  rsync ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 2> /dev/null
+  rsync --timeout 5 ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 2> /dev/null
   [ "$?" != "0" ] && (
     echo -n "rsync is not available. load configs via scp? (y/n): "
     read responce
-    [ $responce == 'y' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 
-    [ $responce == 'yes' ] && scpa ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
+    [ $responce == 'y' ] && scp -A ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 
+    [ $responce == 'yes' ] && scp -A ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
   )
   echo -ne "\033]0;$host\007"
   ssh $host $@
@@ -224,11 +221,11 @@ test -e /bin/apt && {
         apt_list="apt list" \
         apt_install="apt install" \
         apt_remove="apt autoremove" \
-        apt_upgrade="apt update && apt upgrade" \
+        apt_upgrade="apt upgrade" \
         apt_clean="apt autoclean"
 }
 up() {
-  command -v apt_upgrade &> /dev/null && echo "APT UPGRADE" && doas apt_upgrade
+  command -v apt_upgrade &> /dev/null && echo "APT UPGRADE" && apt update && doas apt_upgrade
   command -v apt_clean &> /dev/null && echo "APT CLEAN" && doas apt_clean
   command -v dnf_upgrade &> /dev/null && echo "DNF UPGRADE" && doas dnf_upgrade
   command -v dnf_clean &> /dev/null && echo "DNF CLEAN" && doas dnf_clean
