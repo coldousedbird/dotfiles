@@ -7,6 +7,7 @@ test -f /etc/bash.bashrc && source /etc/bash.bashrc
 # prompt
 PS0='\[\e[7m\] \[\e[7m\] \[\e[7m\] \t \[\e[7m\] \[\e[7m\] \[\e[7m\] \[\e[0m\]\n'
 PS1='\n\[\e[7m\] \u \[\e[0m\] \[\e[7m\] \w \[\e[0m\] \$ '
+PROMPT_COMMAND='echo -ne "\033]0;$HOSTNAME\007"'
 
 # env vars
 export HISTTIMEFORMAT="%F %T "

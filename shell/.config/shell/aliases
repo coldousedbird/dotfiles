@@ -179,7 +179,7 @@ fssh() { # ssh into chosen server and copy configs
     [ $responce == 'y' ] && scp -A ~/dotfiles/bash_light/.bashrc $host:~/.bashrc 
     [ $responce == 'yes' ] && scp -A ~/dotfiles/bash_light/.bashrc $host:~/.bashrc
   )
-  echo -ne "\033]0;$host\007"
+  #echo -ne "\033]0;$host\007"
   ssh $host $@
 }
 fussh() { # ssh into chosen server (no configs)
