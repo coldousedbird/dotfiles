@@ -54,12 +54,12 @@ git_repo() {
 }
 ## command start time
 preexec() {
+  echo -ne "\033]0;$NAME\007"
   print -P '%K{$DEFAULT_COLOR}%F{black}   %*   %f%k'
 }
 NEWLINE=$'\n'
 PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~ %f%k $ '
 RPROMPT='$(git_repo)'
-echo -ne "\033]0;$NAME\007"
 
 
 # autosuggestions
