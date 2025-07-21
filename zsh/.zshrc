@@ -40,23 +40,24 @@ bindkey -v '^?' backward-delete-char
 
 
 # prompt! 
+DEFAULT_COLOR="cyan" # orange F57D26 light green befc5a pastel d3c6aa
 ## git integration
 git_repo() {
   local branch="%F{black}$(git branch --show-current 2> /dev/null) %f%k "
   local git_status="$(git status 2> /dev/null)"
-  [[ "$git_status" =~ "git pull" ]] && echo -n "%K{pull} $branch" && return 0
-  [[ "$git_status" =~ "git push" ]] && echo -n "%K{blue} $branch" && return 0
-  [[ "$git_status" =~ "working tree clean" ]] && echo -n "%K{#d3c6aa} $branch" && return 0
-  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%K{green} $branch" && return 0
+  [[ "$git_status" =~ "git pull" ]] && echo -n "%K{magenta} $branch" && return 0
+  [[ "$git_status" =~ "git push" ]] && echo -n "%K{magenta} $branch" && return 0
   [[ "$git_status" =~ "Untracked files:" ]] && echo -n "%K{red} $branch" && return 0
   [[ "$git_status" =~ "Changes not staged for commit:" ]] && echo -n "%K{yellow} $branch" && return 0
+  [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%K{green} $branch" && return 0
+  [[ "$git_status" =~ "working tree clean" ]] && echo -n "%K{$DEFAULT_COLOR} $branch" && return 0
 }
 ## command start time
 preexec() {
-  print -P '%K{#d3c6aa}%F{black}   %*   %f%k'
+  print -P '%K{$DEFAULT_COLOR}%F{black}   %*   %f%k'
 }
 NEWLINE=$'\n'
-PROMPT='${NEWLINE}%K{#d3c6aa}%F{000} %n %f%k %K{#d3c6aa}%F{000} %~ %f%k $ '
+PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~ %f%k $ '
 RPROMPT='$(git_repo)'
 echo -ne "\033]0;$NAME\007"
 
