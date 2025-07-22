@@ -4,13 +4,12 @@ wk.add({
   {
     mode = { "n", "v" },
     -- Menus
-    { "<leader>l",  "<cmd>Lazy home<CR>",              desc = "Lazy" },
-    { "<leader>m",  "<cmd>Mason<CR>",                  desc = "Mason" },
+    { "<leader>l",  "<cmd>Lazy home<CR>",              desc = "Packages" },
+    { "<leader>m",  "<cmd>Mason<CR>",                  desc = "LSPs" },
     { "<leader>s",  "<cmd>Telescope find_files<CR>",   desc = "Telescope find files" },
     { "<leader>p",  "<cmd>Telescope live_grep<CR>",    desc = "Telescope live grep" },
     { "<leader>b",  "<cmd>Telescope file_browser<CR>", desc = "Telescope browser" },
-    { "<leader>o",  "<cmd>Oil --float<CR>",            desc = "Telescope browser" },
-    { "<leader>g",  "<cmd>Glow<CR>",                   desc = "Glow markdown" },
+    { "<leader>y",  "<cmd>Yazi cwd<CR>",               desc = "Yazi file browser" },
     -- ??? { "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Substitute word under cursor" },
 
     -- LSP
