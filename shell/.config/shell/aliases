@@ -66,14 +66,14 @@ fvi() {  # fuzzy find file and open it in vi
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && vi $FILE
 }
-fhx() {  # fuzzy find file and open it in vi
+fhx() {  # fuzzy find file and open it in hx
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && hx $FILE
 }
 # tar compress
 tarc() { tar -cz $1 -f $1.tar.gz ; }
 # tar extract
-tarx="tar -xzpsf"
+alias tarx="tar -xzpsf"
 
 
 # git & github
