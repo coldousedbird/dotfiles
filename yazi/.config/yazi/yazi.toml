@@ -3,4 +3,5 @@ ratio = [0, 4, 4]
 sort_by = "none"
 show_hidden = true
 show_symlink = true
+sort_dir_first = true
 linemode = "file_info"
