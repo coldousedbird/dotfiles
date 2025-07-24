@@ -232,7 +232,7 @@ test -e /bin/apt && {
         apt_clean="apt autoclean"
 }
 up() {
-  command -v apt_upgrade &> /dev/null && echo "APT UPGRADE" && apt update && doas apt_upgrade
+  command -v apt_upgrade &> /dev/null && echo "APT UPGRADE" && doas apt update && doas apt_upgrade
   command -v apt_clean &> /dev/null && echo "APT CLEAN" && doas apt_clean
   command -v dnf_upgrade &> /dev/null && echo "DNF UPGRADE" && doas dnf_upgrade
   command -v dnf_clean &> /dev/null && echo "DNF CLEAN" && doas dnf_clean
