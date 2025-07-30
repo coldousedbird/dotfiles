@@ -161,6 +161,7 @@ docker compose version >& /dev/null && {
 
 
 # ssh
+# creating new or activating existing ssh-agent
 ssh-check-agent() {
   # check if ssh-agent exist, and if not - create it and save it's stdout (with environment variables) to file
   ! pgrep -u "$USER" ssh-agent > /dev/null && ssh-agent > ~/.ssh/agent_env
@@ -169,6 +170,8 @@ ssh-check-agent() {
   # check if key added to agent and add if not
   ! ssh-add -l > /dev/null && ssh-add
 }
+ssh-check-agent
+
 fhost() { # choose known ssh host via fzf
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
@@ -177,7 +180,7 @@ fssh() { # ssh into chosen server and copy configs
   host=$(fhost)
   test -z $host && return 0
   echo $host
-  ssh-check-agent
+  # ssh-check-agent
   # copying configs to server
   rsync --timeout 5 ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 2> /dev/null
   [ "$?" != "0" ] && (
@@ -193,7 +196,7 @@ fussh() { # ssh into chosen server (no configs)
   host=$(fhost)
   test -z $host && return 0
   echo $host
-  ssh-check-agent
+  # ssh-check-agent
   ssh $host $@
 }
 
