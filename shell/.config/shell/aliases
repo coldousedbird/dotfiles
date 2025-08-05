@@ -60,7 +60,7 @@ fcd() {  # cd to folder via fzf
 
 
 # read & edit files
-alias bat="bat --theme='Monokai Extended Bright'" \
+alias b="bat --paging=always --theme='Monokai Extended Bright'" \ 
       vi="nvim" \
       dot="cd ~/dotfiles && fvi" \
       not="cd ~/Notes && fvi" \
