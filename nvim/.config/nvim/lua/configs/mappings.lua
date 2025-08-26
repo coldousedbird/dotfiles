@@ -19,8 +19,8 @@ wk.add({
     { "<leader>c",  vim.lsp.buf.code_action,           desc = "Code actions" },
 
     -- Tabs
-    { "<leader>t",  ":tabe<CR>",                       desc = "Spawn new empty tab" },
-    { "t",          ":tabn<CR>",                       desc = "Switch to next tab" },   -- <C-t>
+    { "<leader>t",  ":tabe<CR>",                       desc = "Spawn new empty tab" }, -- <Tab>
+    { "t",          ":tabn<CR>",                       desc = "Switch to next tab" },
     { "<S-t>",      ":tabp<CR>",                       desc = "Switch to previous tab" },
 
     -- Windows
@@ -37,8 +37,8 @@ wk.add({
     -- File Navigation
     -- { "<C-d>",      "<C-d>zz",                         desc = "Scroll down and center" },
     -- { "<C-u>",      "<C-u>zz",                         desc = "Scroll up and center" },
-    { "<C-u>",      "<C-y>k<C-y>k",                         desc = "Scroll down and center" },
-    { "<C-d>",      "<C-e>j<C-e>j",                         desc = "Scroll up and center" },
+    { "<C-u>",      "<C-y>k<C-y>k",                    desc = "Scroll down and center" },
+    { "<C-d>",      "<C-e>j<C-e>j",                    desc = "Scroll up and center" },
 
     -- Search
     { "N",          "Nzzzv",                           desc = "Previous search result and center" },
@@ -46,6 +46,7 @@ wk.add({
 
     -- Editing
     { "<C-,>",      "$a,<Esc>",                        desc = "Comma at end" },
+    { "U",          "<C-r>",                           desc = "Comma at end" },
     { "<C-Return>", "$a<CR><Esc>",                     desc = "New line at end" },
     { "==",         "gg=G",                            desc = "Reindent file" },
     { "J",          "mzJ`z",                           desc = "Join line with next" },
