@@ -31,17 +31,17 @@ set echo-control-characters off
 
 # aliases
 ## common
-alias l="ls -aH --group-directories-first --color=auto"
-alias ll="ls -alHh --group-directories-first --color=auto"
+alias l="ls -a --group-directories-first --color=auto"
+alias ll="ls -alh --group-directories-first --color=auto"
 alias fd="find -iname '*PATTERN*'"
 alias rm='rm -iv'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkd='mkdir -vp'
-alias sudo='sudo '
+alias s='sudo '
 
 test $USER != root && \
-alias s="sudo -i bash --rcfile ~/.bashrc"
+alias su="sudo -i bash --rcfile ~/.bashrc"
 alias n="clear;exec bash"
 alias e="exit"
 
