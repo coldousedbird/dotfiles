@@ -60,7 +60,8 @@ fcd() {  # cd to folder via fzf
 
 
 # read & edit files
-alias b="bat --paging='always' --pager='less -iR' --theme='Monokai Extended Bright'" \
+alias le="less -iR" \
+      b="bat --paging='always' --pager='less -iR' --theme='Monokai Extended Bright'" \
       vi="nvim" \
       dot="cd ~/dotfiles && fvi" \
       not="cd ~/Notes && fvi" \
@@ -68,7 +69,7 @@ alias b="bat --paging='always' --pager='less -iR' --theme='Monokai Extended Brig
       icat="kitty icat"
 
 # diff fancy
-dif() { diff -u $@ | diff-so-fancy | less -R ; }
+dif() { diff -u $@ | diff-so-fancy | le ; }
 fvi() {  # fuzzy find file and open it in vi
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && vi $FILE
@@ -111,10 +112,10 @@ test GIT_EXISTS==0 && {
 # functions
 test GIT_EXISTS==0 && {
   # fancy git log
-  gl() { git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | b ; }
+  gl() { git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | b ; } 
   
   # fuzzyfind changed files
-  gd() { git diff --color=always $@ | diff-so-fancy | b ; } #  
+  gd() { git diff --color=always $@ | diff-so-fancy | le ; }
 
   # fuzzy find changed file and show it's diff
   gfd() { gd $@ $(gfs) ; }
