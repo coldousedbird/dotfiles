@@ -11,7 +11,10 @@ my dotfiles for everything: settings, aliases, functions and other.
 
 
 ## os
-i use fedora, arch, and wsl ubuntu on different devices.
+i use
+- fedora - as main OS 
+- arch - as experiments field
+- wsl ubuntu - at work
 
 
 ## terminal programs
@@ -29,11 +32,11 @@ i use fedora, arch, and wsl ubuntu on different devices.
 - wl-clipboard    - wayland clipboard manager 
 - eza             - better ls+tree
 - cmus            - tty music player in C
-- id3v2           - terminal id3-tags editor
 - bat             - cat with syntax higlighting
 - btop            - great resource monitoring tool
 
 ### potentially useful
+- id3v2           - terminal id3-tags editor
 - zoxide/mcfly       - cd with memory
 - most                - more and less pagers alternative
 - xxh                 - tool for using dotfiles via SSH connection (maybe `kitten ssh` would be more useful)
@@ -71,16 +74,39 @@ i use fedora, arch, and wsl ubuntu on different devices.
 
 
 ## dots
-- bash     - important files, which are placed in user home directory ~.
-- kitty    - simple config of wonderful terminal emulator.
-- nvim     - complex modular text editor. 
-             config was massively inspired by [typecraft](https://github.com/cpow/neovim-for-newbs) and [ampersand](https://github.com/Andrey0189/nvim-config).
-             kudos to these distinguished gentlemans.
-- sway     - tiling window compositor, running under Wayland. there are also dots for wofi and other related stuff.
-- mangohud - monitoring overlay. mostly for games.
-- fonts    - cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
-- themes   - borderless everforest themes for Gtk and gnome-shell
+- bash        - .bashrc
+- zsh         - .zshrc
+- shell       - aliases, environment variables and other non-distrospecific terminal stuff. included from .*shrc
+- kitty       - config of wonderful terminal emulator
+- git         - version control system
+- htop        - process monitoring TUI app
+- bash_server - .bashrc for server. containing envvars, aliases and so on
+- vim         - basic text editor
+- nvim        - complex modular text editor 
+                config was massively inspired by [typecraft](https://github.com/cpow/neovim-for-newbs) and [ampersand](https://github.com/Andrey0189/nvim-config).
+                kudos to these distinguished gentlemans.
+- helix       - nvim alternative, not in active usage now
+- sway        - tiling window compositor, running under Wayland. there are also dots for wofi and other related stuff.
+- mangohud    - monitoring overlay for games.
+- fonts       - cool "CommitMono" nerdfont from [here](https://www.nerdfonts.com/font-downloads)
+- corne       - ergonomic split keyboard layout
+- yazi/lf     - file managers
 
+
+
+## themes
+Everforest Dark theme - i use it everywhere I'm able to: browsers, terminals, text editors. everywhere.
+
+## fonts
+i like CommitMono nerdfonts.
+to download
+```bash
+mkdir -vp ~/.local/share/fonts/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/CommitMono.zip -O ~/.local/share/fonts/CommitMono.zip
+unzip ~/.local/share/fonts/CommitMono.zip -d ~/.local/share/fonts/
+rm ~/.local/share/fonts/CommitMono.zip
+```
+also fontconfig is needed.
 
 ## how to use?
 ```bash
