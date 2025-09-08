@@ -3,6 +3,7 @@ alias c="clear" \
       n="c && exec $SHELL" \
       e="exit" \
       q="exit" \
+      py="python3" \
       sudo='sudo ' \
       doas='doas ' \
       cmatrix="cmatrix -sC yellow -u 3" \
