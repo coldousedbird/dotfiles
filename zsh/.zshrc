@@ -1,21 +1,6 @@
 # finally, zoomer shell config
 
 
-# fzf shell integration
-eval "$(fzf --zsh 2> /dev/null)"
-
-# importing configuration files
-files=(
-  ~/.config/shell/environment  # shell environment
-  ~/.config/shell/aliases      # shell aliases
-  ~/.config/shell/inputrc      # inputrc config
-  ~/.specific                  # file for host specific stuff
-)
-for file in ${files[@]}; do
-  test -f $file && source $file
-done
-
-
 # options
 setopt autocd extendedglob notify inc_append_history prompt_subst
 unsetopt beep nomatch
@@ -27,7 +12,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 autoload -U compinit && compinit
 
-# enabling colors!
+# enabling colors
 autoload -U colors && colors
 
 # vim mode
@@ -62,8 +47,22 @@ PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~
 RPROMPT='$(git_repo)'
 
 
-# autosuggestions
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fzf shell integration
+eval "$(fzf --zsh 2> /dev/null)"
+
+# importing configuration files
+files=(
+  ~/.config/shell/environment  # shell environment
+  ~/.config/shell/aliases      # shell aliases
+  ~/.config/shell/inputrc      # inputrc config
+  ~/.specific                  # file for host specific stuff
+)
+for file in ${files[@]}; do
+  test -f $file && source $file
+done
+
+
+
