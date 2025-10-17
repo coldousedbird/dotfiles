@@ -99,7 +99,6 @@ test GIT_EXISTS==0 && {
         ga="g add" \
         gb="g branch" \
         gc="g commit" \
-        gsh="g show" \
         gds="gd --staged" \
         grv="g revert" \
         grb="g rebase" \
@@ -132,6 +131,10 @@ test GIT_EXISTS==0 && {
     test $responce == 'y' && ga $file
     test $responce == 'yes' && ga $file
   }
+  ## not yet ready to use
+  # gsh() {
+  #   g show $(git log --oneline)" 
+  # }
 }
 
 
@@ -185,14 +188,15 @@ fssh() { # ssh into chosen server and copy configs
   # ssh-check-agent
   # copying configs to server
   rsync --timeout 5 ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 2> /dev/null
-  [ "$?" != "0" ] && (
-    echo -n "rsync is not available. load configs via scp? (y/n): "
-    read responce
-    [ $responce == 'y' ] && scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 
-    [ $responce == 'yes' ] && scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc
-  )
+  [ "$?" != "0" ] && echo -n "rsync is not available. "
   #echo -ne "\033]0;$host\007"
   ssh $host $@
+}
+fscp() {
+  host=$(fhost)
+  test -z $host && return 0
+  echo "copiyng cfg to $host"
+  scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 
 }
 fussh() { # ssh into chosen server (no configs)
   host=$(fhost)
