@@ -148,10 +148,10 @@ wk.add({
     { "<leader>w",  ":write<CR>",                      desc = "Write"},
     { "<leader>q",  ":quit<CR>",                       desc = "Quit"},
     { "<leader>o",  ":so<CR>",                         desc = "Source"},
+    { "U",          "<C-r>",                           desc = "Redo"},
     { "<C-,>",      "$a,<Esc>",                        desc = "Comma at end" },
     { "<C-Return>", "$a<CR><Esc>",                     desc = "New line at end" },
     { "==",         "gg=G",                            desc = "Reindent file" },
-    { "J",          "mzJ`z",                           desc = "Join line with next" },
   },
   {
     mode = { "v" },
