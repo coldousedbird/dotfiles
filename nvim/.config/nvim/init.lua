@@ -139,8 +139,8 @@ wk.add({
     { "<C-S-k>",    "<cmd>resize -3<CR>",              desc = "Resize window up" },
     { "<C-S-l>",    "<cmd>vertical resize -6<CR>",     desc = "Resize window right" },
     -- File Navigation
-    -- { "<C-u>",      "<C-y>k<C-y>k",                    desc = "Scroll down and center" },
-    -- { "<C-d>",      "<C-e>j<C-e>j",                    desc = "Scroll up and center" },
+    { "<C-u>",      "2<C-y>2k",                        desc = "Scroll two lines down" },
+    { "<C-d>",      "2<C-e>2j",                        desc = "Scroll two lines up" },
     -- Search
     { "N",          "Nzzzv",                           desc = "Previous search result and center" },
     { "n",          "nzzzv",                           desc = "Next search result and center" },
