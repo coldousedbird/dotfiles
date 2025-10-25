@@ -24,7 +24,7 @@ wk.add({
     { "<S-t>",      ":tabp<CR>",                       desc = "Switch to previous tab" },
 
     -- Windows
-    { "<leader>w",  ":vsplit<CR>",                     desc = "Spawn new window (inside tab)" },
+    { "<leader>vs",  ":vsplit<CR>",                     desc = "Spawn new window (inside tab)" },
     { "<C-h>",      "<C-w><C-h>",                      desc = "Move to left window" },
     { "<C-j>",      "<C-w><C-j>",                      desc = "Move to below window" },
     { "<C-k>",      "<C-w><C-k>",                      desc = "Move to above window" },
@@ -45,8 +45,10 @@ wk.add({
     { "n",          "nzzzv",                           desc = "Next search result and center" },
 
     -- Editing
+    { "<leader>w",  ":write<CR>",                      desc = "Write file"},
+    { "<leader>q",  ":quit<CR>",                       desc = "Quit"},
+    { "U",          "<C-r>",                           desc = "Redo" },
     { "<C-,>",      "$a,<Esc>",                        desc = "Comma at end" },
-    { "U",          "<C-r>",                           desc = "Comma at end" },
     { "<C-Return>", "$a<CR><Esc>",                     desc = "New line at end" },
     { "==",         "gg=G",                            desc = "Reindent file" },
     { "J",          "mzJ`z",                           desc = "Join line with next" },
