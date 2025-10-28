@@ -94,6 +94,8 @@ vim.pack.add({
   {src='https://github.com/MeanderingProgrammer/render-markdown.nvim', name='markdown'},
   -- {src="https://github.com/xiyaowong/transparent.nvim"},
   -- {src="https://github.com/nvim-lualine/lualine.nvim"},
+  {src='https://github.com/nvim-treesitter/nvim-treesitter', name='treesitter'},
+  {src='https://github.com/nvim-mini/mini.nvim', name='mini'},
 })
 
 -- make windows transparent
