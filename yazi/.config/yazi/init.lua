@@ -7,6 +7,3 @@ end
 -- 	-- sub_ignore = {"~/deskenv/master","~/deskenv/dev"} -- sub path match
 -- })
 -- 
-require("fg"):setup({
-    default_action = "menu", -- nvim, jump
-})
