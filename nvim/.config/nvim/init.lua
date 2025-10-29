@@ -98,6 +98,13 @@ vim.pack.add({
   {src='https://github.com/nvim-mini/mini.nvim', name='mini'},
 })
 
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {"sway", "lua", "asm", "bash", "vim", "regex", "dockerfile", "yaml", "c", "cpp", "rust", "html", "css", "csv", "sql", "markdown", "markdown_inline", "jinja", "jinja_inline", "comment", "jsonc" },
+  sync_install = false,
+  highlight = { enable = true },
+  indent = { enable = true },
+})
+
 -- make windows transparent
 vim.cmd [[
   colorscheme everforest
