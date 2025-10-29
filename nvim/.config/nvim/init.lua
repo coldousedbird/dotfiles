@@ -11,8 +11,8 @@ local options = {
   relativenumber = true,     -- show relative to current line numbers
   cursorline = true,         -- highlight current line
   wrap = false,              -- not wrapping long lines 
-  scrolloff = 10,            -- keep some space below and above cursor
-  sidescrolloff = 8,         -- keep some space to left and right of cursor
+  scrolloff = 7,            -- keep some space below and above cursor
+  sidescrolloff = 7,         -- keep some space to left and right of cursor
   
   -- indentation
   tabstop = 2,               -- number of spaces for single <tab>
