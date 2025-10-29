@@ -102,8 +102,7 @@ require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql",                      -- scripts
     "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv", "markdown", "markdown_inline", -- markup
-    "vim", "dockerfile", "sway", "comment", "regex"                                                       -- aux
-  },
+    "vim", "dockerfile", "sway", "comment", "regex" },                                                    -- aux
   sync_install = false,
   highlight = { enable = true },
   indent = { enable = true },
@@ -113,7 +112,10 @@ require("mason-lspconfig").setup({
   ensure_installed = { 'lua_ls', 'ast_grep' },
   automatic_enable = true,
 })
+vim.lsp.config("lua_ls", {
+  settings = { Lua = { workspace = { library = vim.api.nvim_get_runtime_file("", true) } } }
 
+})
 -- make windows transparent
 vim.cmd [[
   colorscheme everforest
