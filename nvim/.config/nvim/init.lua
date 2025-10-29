@@ -79,27 +79,25 @@ vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
 vim.opt.path:append("**")                         -- include subdirectories in search
 vim.opt.iskeyword:append("-")                     -- Treat dash as part of word
 
-
 -- PLUGINS
 vim.pack.add({
-  { src = 'https://github.com/neanias/everforest-nvim',                 name = 'everforest' },
-  { src = 'https://github.com/folke/which-key.nvim',                    name = 'which-key' },
+  { src = 'https://github.com/neanias/everforest-nvim',                   name = 'everforest' },
+  { src = 'https://github.com/folke/which-key.nvim',                      name = 'which-key' },
   -- {src='https://github.com/folke/snacks.nvim', name='snacks'},
   --"rcarriga/nvim-notify",
-  { src = 'https://github.com/folke/noice.nvim',                        name = 'noice' },
-  { src = 'https://github.com/neovim/nvim-lspconfig',                   name = 'lspconfig' },
-  { src = 'https://github.com/rcarriga/nvim-notify',                    name = 'notify' },
-  { src = 'https://github.com/nvim-lua/plenary.nvim',                   name = 'plenary' },
-  { src = 'https://github.com/mikavilpas/yazi.nvim',                    name = 'yazi' },
+  { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
+  { src = 'https://github.com/rcarriga/nvim-notify',                      name = 'notify' },
+  { src = 'https://github.com/mikavilpas/yazi.nvim',                      name = 'yazi' },
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', name = 'markdown' },
   -- {src="https://github.com/xiyaowong/transparent.nvim"},
   -- {src="https://github.com/nvim-lualine/lualine.nvim"},
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',         name = 'treesitter' },
-  -- {src='https://github.com/nvim-mini/mini.nvim', name='mini'},
-  { src = 'https://github.com/mason-org/mason.nvim',                    name = 'mason' },
-  { src = 'https://github.com/mason-org/mason-lspconfig.nvim',          name = 'mason-lspconfig' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',           name = 'treesitter' },
+  { src = 'https://github.com/nvim-mini/mini.icons',                      name = 'mini-icons' },
+  { src = 'https://github.com/mason-org/mason.nvim',                      name = 'mason' },
+  { src = 'https://github.com/mason-org/mason-lspconfig.nvim',            name = 'mason-lspconfig' },
 })
-
+require('mini.icons').setup()
+require('render-markdown').setup({ latex = { enabled = false } })
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql",                      -- scripts
