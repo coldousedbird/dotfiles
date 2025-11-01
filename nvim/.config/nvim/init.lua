@@ -88,6 +88,7 @@ vim.pack.add({
   { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
   { src = 'https://github.com/rcarriga/nvim-notify',                      name = 'notify' },
   { src = 'https://github.com/mikavilpas/yazi.nvim',                      name = 'yazi' },
+  { src = 'https://github.com/nvim-lua/plenary.nvim',                     name = 'plenary' },
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', name = 'markdown' },
   -- {src="https://github.com/xiyaowong/transparent.nvim"},
   -- {src="https://github.com/nvim-lualine/lualine.nvim"},
