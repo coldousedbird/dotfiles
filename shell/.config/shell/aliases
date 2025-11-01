@@ -67,7 +67,8 @@ alias le="less -iR" \
       dot="cd ~/dotfiles && fvi" \
       not="cd ~/Notes && fvi" \
       va="find -mindepth 1 -type f,l | xargs nvim -p" \
-      icat="kitty icat"
+      icat="kitty icat" \
+      clmn="column -tL -s $'\t'"
 
 # diff fancy
 dif() { diff -u $@ | diff-so-fancy | le ; }
