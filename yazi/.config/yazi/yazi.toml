@@ -5,24 +5,21 @@ show_hidden = true
 show_symlink = true
 sort_dir_first = true
 linemode = "file_info"
+scrolloff = 7
+
+# git plugin
+# [[plugin.prepend_fetchers]]
+# id   = "git"
+# name = "*"
+# run  = "git"
+# [[plugin.prepend_fetchers]]
+# id   = "git"
+# name = "*/"
+# run  = "git"
+
 
 # [plugin]
 # fetchers = [
 # 	{ id = "current-size", name = "*/", run = "current-size", prio = "normal" },
 # 	{ id = "current-size", name = "*", run = "current-size",prio = "normal" },
 # ]
-
-[[manager.prepend_keymap]]
-on   = [ "f","g" ]
-run  = "plugin fg"
-desc = "find file by content (fuzzy match)"
-
-[[manager.prepend_keymap]]
-on   = [ "f","G" ]
-run  = "plugin fg -- rg"
-desc = "find file by content (ripgrep match)"
-
-[[manager.prepend_keymap]]
-on   = [ "f","f" ]
-run  = "plugin fg -- fzf"
-desc = "find file by filename"
