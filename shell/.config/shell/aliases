@@ -67,6 +67,7 @@ fcd() {  # cd to folder via fzf
 alias le="less -iR" \
       b="bat --paging='always' --pager='less -iR' --theme='Monokai Extended Bright'" \
       vi="nvim" \
+      hx="helix" \
       dot="cd ~/dotfiles && fvi" \
       not="cd ~/Notes && fvi" \
       va="find -mindepth 1 -type f,l | xargs nvim -p" \
