@@ -5,7 +5,10 @@ alias c="clear" \
       q="exit" \
       py="python3" \
       sudo='sudo ' \
+      s='sudo ' \
+      su='sudo -s' \
       doas='doas ' \
+      ds='doas ' \
       cmatrix="cmatrix -sC yellow -u 3" \
       ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 
