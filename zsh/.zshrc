@@ -47,8 +47,6 @@ PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~
 RPROMPT='$(git_repo)'
 
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # fzf shell integration
 eval "$(fzf --zsh 2> /dev/null)"
@@ -59,6 +57,11 @@ files=(
   ~/.config/shell/aliases      # shell aliases
   ~/.config/shell/inputrc      # inputrc config
   ~/.specific                  # file for host specific stuff
+  # zsh plugins
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  /usr/share/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlightning.zsh
+  /usr/share/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 )
 for file in ${files[@]}; do
   test -f $file && source $file
