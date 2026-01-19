@@ -143,9 +143,8 @@ test GIT_EXISTS==0 && {
 }
 
 
-# docker & compose
+# docker
 DOCKER_EXISTS=$(docker --version >& /dev/null ; echo $?)
-# aliases
 test DOCKER_EXISTS==0 && {
   alias d="docker" \
         di="d images" \
@@ -156,17 +155,26 @@ test DOCKER_EXISTS==0 && {
         dllf="d logs -f --tail 300" \
         # dps="d ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'" \
         dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
-}
-# functions
-test DOCKER_EXISTS==0 && {
-  # open given container's shell
+  docker-compose --version >& /dev/null && alias dc="docker-compose"
+  docker compose version >& /dev/null && alias dc="docker compose"
   dsh() { d exec -it $1 /bin/sh ; }
 }
-docker-compose --version >& /dev/null && {
-  alias dc="docker-compose"
-}
-docker compose version >& /dev/null && {
-  alias dc="docker compose"
+
+# podman
+PODMAN_EXISTS=$( ; echo $?)
+test PODMAN_EXISTS==0 && {
+  alias p="podman" \
+        pi="p images" \
+        pn="p network" \
+        pex="p exec -it" \
+        pl="p logs" \
+        plf="p logs -f" \
+        pllf="p logs -f --tail 300" \
+        # pps="p ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'" \
+        pps="p ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
+  podman compose version >& /dev/null && alias pc="podman compose"
+  podman-compose version >& /dev/null && alias pc="podman-compose"
+  psh() { p exec -it $1 /bin/sh ; }
 }
 
 
