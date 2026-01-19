@@ -161,7 +161,7 @@ test DOCKER_EXISTS==0 && {
 }
 
 # podman
-PODMAN_EXISTS=$( ; echo $?)
+PODMAN_EXISTS=$(podman --version >& /dev/null ; echo $?)
 test PODMAN_EXISTS==0 && {
   alias p="podman" \
         pi="p images" \
