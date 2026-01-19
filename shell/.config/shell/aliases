@@ -37,6 +37,7 @@ alias ls="ls -aHh --color=auto --group-directories-first" \
 # edit file structure
 alias mv='mv -v' \
       mkd='mkdir -vp' \
+      mnt='mount' \
       rm="echo you probably need to use rem" \
       rem="trash-put" \
       lf="lfcd"
