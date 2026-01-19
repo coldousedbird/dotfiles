@@ -39,10 +39,14 @@ alias mv='mv -v' \
       mkd='mkdir -vp' \
       mnt='mount' \
       rm="echo you probably need to use rem" \
-      rem="trash-put" \
-      lf="lfcd"
+      rem="trash-put"
 
-y() { # yazi wrapper
+# snake-case formatting filenames
+# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
+format() { mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_') ; }     
+
+# yazi
+test -e /bin/yazi && y() { # yazi wrapper
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
 	IFS= read -r -d '' cwd < "$tmp"
@@ -50,12 +54,11 @@ y() { # yazi wrapper
 	rem -f -- "$tmp"
 }
 
-# snake-case formatting filenames
-# e.g. "sOmEtHING VEry Interesting" -> "something_very_interesting"
-format() { mv -vT "$1" $(echo $1 | tr '[:upper:]' '[:lower:]' | tr ' ' '_') ; }     
-
-# lf file manager integration
-lfcd() { cd "$(command lf -print-last-dir "$@")" ; }
+# lf
+test -e /bin/lf && {
+  lfcd() { cd "$(command lf -print-last-dir "$@")" ; }
+  alias lf="lfcd"
+}
 
 fcd() {  # cd to folder via fzf
   cd ${1:-.}
@@ -75,6 +78,7 @@ alias le="less -iR" \
       icat="kitty icat" \
       clmn="column -tL -s $'\t'"
 
+
 # diff fancy
 dif() { diff -u $@ | diff-so-fancy | le ; }
 fvi() {  # fuzzy find file and open it in vi
@@ -85,10 +89,10 @@ fhx() {  # fuzzy find file and open it in hx
   FILE=$(fzf --preview='bat --color=always {}')
   test -n "$FILE" && echo $FILE && hx $FILE
 }
-# tar compress
-tarc() { tar -cz $1 -f $1.tar.gz ; }
-# tar extract
-alias tarx="tar -xzpsf"
+
+# tar
+tarc() { tar -cz $1 -f $1.tar.gz ; } # compress
+alias tarx="tar -xzpsf" # extract
 
 
 # git & github
@@ -111,6 +115,7 @@ test GIT_EXISTS==0 && {
         grs="g reset" \
         grr="g restore" \
         gst="g stash" \
+        gsh="g show" \
         gh_log="gh auth login" \
         gh_auth="gh auth setup-git" \
         gfs="g status --porcelain | fzf | awk '{print \$NF}'"
@@ -119,10 +124,8 @@ test GIT_EXISTS==0 && {
 test GIT_EXISTS==0 && {
   # fancy git log
   gl() { git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | b ; } 
-  
   # fuzzyfind changed files
   gd() { git diff --color=always $@ | diff-so-fancy | le ; }
-
   # fuzzy find changed file and show it's diff
   gfd() { gd $@ $(gfs) ; }
   # fuzzy find changed file and show it's staged diff
@@ -137,10 +140,6 @@ test GIT_EXISTS==0 && {
     test $responce == 'y' && ga $file
     test $responce == 'yes' && ga $file
   }
-  ## not yet ready to use
-  # gsh() {
-  #   g show $(git log --oneline)" 
-  # }
 }
 
 
@@ -158,7 +157,7 @@ test DOCKER_EXISTS==0 && {
         dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
   docker-compose --version >& /dev/null && alias dc="docker-compose"
   docker compose version >& /dev/null && alias dc="docker compose"
-  dsh() { d exec -it $1 /bin/sh ; }
+  dsh() { docker exec -it $1 /bin/sh ; }
 }
 
 # podman
@@ -175,7 +174,7 @@ test PODMAN_EXISTS==0 && {
         pps="p ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
   podman compose version >& /dev/null && alias pc="podman compose"
   podman-compose version >& /dev/null && alias pc="podman-compose"
-  psh() { p exec -it $1 /bin/sh ; }
+  psh() { podman exec -it $1 /bin/sh ; }
 }
 
 
