@@ -91,7 +91,7 @@ alias tarx="tar -xzpsf"
 
 
 # git & github
-GIT_EXISTS=$(docker --version >& /dev/null ; echo $?)
+GIT_EXISTS=$(git --version >& /dev/null ; echo $?)
 # aliases
 test GIT_EXISTS==0 && {
   alias g="git" \
