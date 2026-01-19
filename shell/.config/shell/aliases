@@ -231,20 +231,22 @@ test -e /bin/dnf && {
         dnf_clean="dnf autoremove -y ; dnf clean all"
 }
 test -e /bin/flatpak && {
-  alias flat_search="flatpak search" \
-        flat_list="flatpak list" \
-        flat_install="flatpak install --noninteractive -y" \
-        flat_remove="flatpak remove --noninteractive -y" \
-        flat_upgrade="flatpak upgrade --noninteractive -y" \
-        flat_clean="flatpak uninstall --unused -y ; flatpak repair"
+  alias ftp="flatpak" \
+        ftp_search="ftp search" \
+        ftp_list="ftp list" \
+        ftp_install="ftp install --noninteractive -y" \
+        ftp_remove="ftp remove --noninteractive -y" \
+        ftp_upgrade="ftp upgrade --noninteractive -y" \
+        ftp_clean="ftp uninstall --unused -y ; flatpak repair"
 }
 test -e /bin/pacman && {
-  alias pacman_search="pacman -Ss" \
-        pacman_search_installed="pacman -Qs" \
-        pacman_install="pacman -S" \
-        pacman_remove="sudo pacman -Rs" \
-        pacman_upgrade="sudo pacman -Syu" \
-        pacman_clean="sudo pacman -Qdtq | pacman -Rs -"
+  alias pcm="pacman" \
+        pacman_search="pcm -Ss" \
+        pacman_search_installed="pcm -Qs" \
+        pacman_install="pcm -S" \
+        pacman_remove="pcm -Rs" \
+        pacman_upgrade="pcm -Syu" \
+        pacman_clean="pcm -Qdtq | pcm -Rs -"
 }
 test -e /bin/apt && {
   alias apt_search="apt search" \
