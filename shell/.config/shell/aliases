@@ -248,12 +248,12 @@ test -e /bin/flatpak && {
 }
 test -e /bin/pacman && {
   alias pcm="pacman" \
-        pacman_search="pcm -Ss" \
-        pacman_search_installed="pcm -Qs" \
-        pacman_install="pcm -S" \
-        pacman_remove="pcm -Rs" \
-        pacman_upgrade="pcm -Syu" \
-        pacman_clean="pcm -Qdtq | pcm -Rs -"
+        pcm_search="pcm -Ss" \
+        pcm_search_installed="pcm -Qs" \
+        pcm_install="pcm -S" \
+        pcm_remove="pcm -Rs" \
+        pcm_upgrade="pcm -Syu" \
+        pcm_clean="pcm -Qdtq | pcm -Rs -"
 }
 test -e /bin/apt && {
   alias apt_search="apt search" \
