@@ -12,12 +12,14 @@ alias c="clear" \
       cmatrix="cmatrix -sC yellow -u 3" \
       ff="fastfetch -s Title:Separator:OS:Host:Kernel:Uptime:Bluetooth:Packages:Processes:Display:DE:WM:Terminal:Shell:Editor:Theme:Font:CPU:GPU:Memory:Swap:Disk:Battery:Separator:Colors"
 
+
 # wifi TUI
 test -e /bin/impala && alias wifi="impala"
 # bluetooth TUI
 test -e /bin/bluetui && alias blth="bluetui"
 
-# language translation
+
+# translation
 test -e /bin/trans && alias \
   ru="trans -t russian -v -j" \
   en="trans -t english -v -j"
@@ -161,8 +163,7 @@ test DOCKER_EXISTS==0 && {
         dl="d logs" \
         dlf="d logs -f" \
         dllf="d logs -f --tail 300" \
-        dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
-        # dps="d ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'" \
+        dps="d ps --format 'table {{.Names}}\t{{.ID}}\t{{.Image}}\n{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\n———————————\t————————————\t—————'"
   docker-compose --version >& /dev/null && alias dc="docker-compose"
   docker compose version >& /dev/null && alias dc="docker compose"
   dsh() { docker exec -it $1 /bin/sh ; }
@@ -178,8 +179,7 @@ test PODMAN_EXISTS==0 && {
         pl="p logs" \
         plf="p logs -f" \
         pllf="p logs -f --tail 300" \
-        pps="p ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
-        # pps="p ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'" \
+        pps="p ps --format 'table {{.Names}}\t{{.ID}}\t{{.Image}}\n{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\n———————————\t————————————\t—————'"
   podman compose version >& /dev/null && alias pc="podman compose"
   podman-compose version >& /dev/null && alias pc="podman-compose"
   psh() { podman exec -it $1 /bin/sh ; }
