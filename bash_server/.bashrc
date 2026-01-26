@@ -50,8 +50,7 @@ docker --version >& /dev/null && {
   alias d="docker"
   alias di="docker images"
   alias dn="docker network"
-  #alias dps="docker ps --format 'container:\t{{.ID}}, {{.Names}}, {{.Image}}\nlifetime:\t{{.RunningFor}}, {{.Status}}\nports:\t{{.Ports}}\n' | column -tL -s $'\t'"
-  alias dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Image}}\n{{.Ports}}\n--------'"
+  alias dps="d ps --format 'table {{.Names}}\t{{.ID}}\t{{.Image}}\n{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\n———————————\t————————————\t—————'"
   alias dex="docker exec -it"
   dsh() {
     docker exec -it $1 /bin/sh
