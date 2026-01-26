@@ -163,7 +163,7 @@ test DOCKER_EXISTS==0 && {
         dl="d logs" \
         dlf="d logs -f" \
         dllf="d logs -f --tail 300" \
-        dps="d ps --format 'table {{.Names}}\t{{.ID}}\t{{.Image}}\n{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\n———————————\t————————————\t—————'"
+        dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Image}}\n{{.ID}}\t{{.Status}}\t{{.Ports}}\n———————————\t————————————\t—————'"
   docker-compose --version >& /dev/null && alias dc="docker-compose"
   docker compose version >& /dev/null && alias dc="docker compose"
   dsh() { docker exec -it $1 /bin/sh ; }
