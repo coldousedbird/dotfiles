@@ -13,6 +13,8 @@ local options = {
   wrap = false,              -- not wrapping long lines
   scrolloff = 7,             -- keep some space below and above cursor
   sidescrolloff = 7,         -- keep some space to left and right of cursor
+  -- cyrillic additional layout
+  langmap='ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz',
 
   -- indentation
   tabstop = 2,        -- number of spaces for single <tab>
