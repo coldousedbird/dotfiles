@@ -58,4 +58,5 @@ docker --version >&/dev/null && {
   docker-compose --version >&/dev/null && alias dc="docker-compose"
   docker compose version >&/dev/null && alias dc="docker compose"
   dsh() { docker exec -it $1 /bin/sh ; }
+}
 
