@@ -173,7 +173,7 @@ wk.add({
     { "<C-Return>", "$a<CR><Esc>",                 desc = "New line at end" },
     { "==",         "gg=G",                        desc = "Reindent file" },
 
-    { "<C-k>",      "i- [](<Esc>pa)<Esc>F[a",      desc = "Markdown link template" }
+    { "<C-k>",      "i[](<Esc>pa)<Esc>F[a",        desc = "Markdown link template" }
   },
   {
     mode = { "v" },
