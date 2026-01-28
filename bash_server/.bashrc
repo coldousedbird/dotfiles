@@ -46,23 +46,16 @@ alias n="clear;exec bash"
 alias e="exit"
 
 ## docker
-docker --version >& /dev/null && {
-  alias d="docker"
-  alias di="docker images"
-  alias dn="docker network"
-  alias dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Image}}\n{{.ID}}\t{{.Status}}\t{{.Ports}}\n————————————\t———————\t—————'"
-  alias dex="docker exec -it"
-  dsh() {
-    docker exec -it $1 /bin/sh
-  }
-  alias dl="docker logs"
-  alias dlf="docker logs -f"
-  alias dllf="docker logs -f --tail 300"
-}
-docker-compose --version >& /dev/null && {
-  alias dc="docker-compose"
-}
-docker compose version >& /dev/null && {
-  alias dc="docker compose"
-}
+docker --version >&/dev/null && {
+  alias d="docker" \
+        di="d images" \
+        dn="d network" \
+        dex="d exec -it" \
+        dl="d logs" \
+        dlf="d logs -f" \
+        dllf="d logs -f --tail 300" \
+        dps="d ps --format 'table {{.Names}}\t{{.RunningFor}}\t{{.Image}}\n{{.ID}}\t{{.Status}}\t{{.Ports}}\n————————————\t———————\t—————'"
+  docker-compose --version >&/dev/null && alias dc="docker-compose"
+  docker compose version >&/dev/null && alias dc="docker compose"
+  dsh() { docker exec -it $1 /bin/sh ; }
 

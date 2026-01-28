@@ -154,8 +154,7 @@ test GIT_EXISTS==0 && {
 
 
 # docker
-DOCKER_EXISTS=$(docker --version >& /dev/null ; echo $?)
-test DOCKER_EXISTS==0 && {
+docker --version >&/dev/null && {
   alias d="docker" \
         di="d images" \
         dn="d network" \
@@ -170,8 +169,7 @@ test DOCKER_EXISTS==0 && {
 }
 
 # podman
-PODMAN_EXISTS=$(podman --version >& /dev/null ; echo $?)
-test PODMAN_EXISTS==0 && {
+podman --version >&/dev/null && {
   alias p="podman" \
         pi="p images" \
         pn="p network" \
