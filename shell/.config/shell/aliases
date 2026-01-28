@@ -106,16 +106,13 @@ alias tarx="tar -xzpsf" # extract
 
 
 # git & github
-GIT_EXISTS=$(git --version >& /dev/null ; echo $?)
-# aliases
-test GIT_EXISTS==0 && {
+git --version >&/dev/null && {
   alias g="git" \
         gi="g init" \
         gcl="g clone" \
         gf="g fetch" \
         gpl="g pull" \
         gpu="g push" \
-        gs="g status" \
         ga="g add" \
         gb="g branch" \
         gc="g commit" \
@@ -124,14 +121,16 @@ test GIT_EXISTS==0 && {
         grb="g rebase" \
         grs="g reset" \
         grr="g restore" \
-        gst="g stash" \
+        gs="g status" \
         gsh="g show" \
+        gst="g stash" \
+        gsw="g switch" \
         gh_log="gh auth login" \
         gh_auth="gh auth setup-git" \
         gfs="g status --porcelain | fzf | awk '{print \$NF}'"
 }
 # functions
-test GIT_EXISTS==0 && {
+git --version >&/dev/null && {
   # fancy git log
   gl() { git log --color --graph --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n" $@ | b ; } 
   # fuzzyfind changed files
@@ -141,7 +140,7 @@ test GIT_EXISTS==0 && {
   # fuzzy find changed file and show it's staged diff
   gfds() { gds $@ $(gfs) ; }
   # fuzzy switch branch
-  gsw() { git switch $(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}") >/dev/null ; }
+  gfsw() { gsw $(git branch -a | grep -v "remotes" | fzf | cut -c 3- | awk "{print \$1}") >/dev/null ; }
   gfa() {
     file=$(gfs)
     gd $file
