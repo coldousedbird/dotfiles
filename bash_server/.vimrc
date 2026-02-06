@@ -5,15 +5,12 @@ let g:loaded_netrwPlugin = 0
 
 " OPTIONS
 " basic
-set clipboard=unnamedplus
-set number
-set relativenumber
-set cursorline
 set nowrap
 set scrolloff=7
 set sidescrolloff=7
 " cyrillic additional layout
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+" colorscheme koehler
 
 " indentation
 set tabstop=2
@@ -31,9 +28,6 @@ set hlsearch
 set incsearch
 
 " visuals
-if has('termguicolors')
-  set termguicolors
-endif
 set signcolumn=no
 set showmatch
 set matchtime=2
@@ -41,12 +35,6 @@ set cmdheight=1
 set completeopt=menuone,noinsert,noselect
 set noshowmode
 set pumheight=10
-if has('nvim') " pumblend requires Neovim
-  set pumblend=10
-endif
-if exists('+winblend') " winblend requires Neovim or Vim 8.2+
-  set winblend=0
-endif
 set conceallevel=0
 set concealcursor=
 set lazyredraw
@@ -84,24 +72,7 @@ set splitright
 set path+=**
 set iskeyword+=-
 
-" Colors and transparency
-colorscheme everforest
-highlight Normal guibg=none
-highlight NonText guibg=none
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-
 " KEY MAPPINGS
-" Menus (Note: Mason and Yazi commands require Neovim plugins)
-nnoremap <leader>m :echo "Mason requires Neovim plugin"<CR>
-nnoremap <leader>y :echo "Yazi requires Neovim plugin"<CR>
-
-" LSP mappings (Note: LSP functions require Neovim/LSP plugins)
-nnoremap <leader>h :echo "LSP hover requires Neovim/LSP setup"<CR>
-nnoremap <leader>d :echo "LSP definition requires Neovim/LSP setup"<CR>
-nnoremap <leader>f :echo "LSP format requires Neovim/LSP setup"<CR>
-nnoremap <leader>c :echo "LSP code actions requires Neovim/LSP setup"<CR>
-
 " Tabs
 nnoremap <leader>t :tabe<CR>
 nnoremap t :tabn<CR>
@@ -144,3 +115,4 @@ xnoremap <leader>p "_dP
 
 " Help window in tab (simplified for Vim)
 autocmd BufWinEnter *.txt wincmd T
+

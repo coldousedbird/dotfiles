@@ -112,13 +112,14 @@ require("nvim-treesitter.configs").setup({
 })
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { 'lua_ls', 'ast_grep' },
+  ensure_installed = { 'lua_ls', 'ast_grep', 'yamlls', 'spectral' },
   automatic_enable = true,
 })
 vim.lsp.config("lua_ls", {
   settings = { Lua = { workspace = { library = vim.api.nvim_get_runtime_file("", true) } } }
-
 })
+vim.lsp.enable('spectral')
+
 -- make windows transparent
 vim.cmd [[
   colorscheme everforest
@@ -173,7 +174,7 @@ wk.add({
     { "<C-Return>", "$a<CR><Esc>",                 desc = "New line at end" },
     { "==",         "gg=G",                        desc = "Reindent file" },
 
-    { "<C-k>",      "i[](<Esc>pa)<Esc>F[a",        desc = "Markdown link template" }
+    { "<C-k>",      "a[](<Esc>pa)<Esc>F[a",        desc = "Markdown link template" }
   },
   {
     mode = { "v" },
