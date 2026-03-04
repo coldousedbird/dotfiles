@@ -38,8 +38,9 @@ alias ls="ls -aHh --color=auto --group-directories-first" \
       llt='eza -alhT --group-directories-first --git-repos --git-ignore' \
       lsblk="lsblk -o NAME,TYPE,FSTYPE,FSVER,LABEL,SIZE,FSUSE%,FSUSED,FSAVAIL,MOUNTPOINTS" \
       sizes="sudo du --max-depth=1 -hL" \
-      gr="grep --color=auto"
-
+      gr="grep --color=auto" \
+      grep="grep --color=always"
+rg --version >&/dev/null && alias rg="rg --color=always"
       
 # edit file structure
 alias mv='mv -v' \
@@ -79,6 +80,7 @@ fcd() {  # cd to folder via fzf
 
 # read & edit files
 alias le="less -iR" \
+      less="less -iR" \
       b="bat --paging='always' --pager='less -iR' --theme='Monokai Extended Bright'" \
       vi="nvim" \
       hx="helix" \
