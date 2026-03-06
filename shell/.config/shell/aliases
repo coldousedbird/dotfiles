@@ -88,7 +88,7 @@ alias le="less -iR" \
       not="cd ~/Notes && fvi" \
       va="find -mindepth 1 -type f,l | xargs nvim -p" \
       icat="kitty icat" \
-      clmn="column -tL -s $'\t'"
+      clmn="column -tLs $'\t'"
 
 
 # diff fancy
@@ -233,7 +233,7 @@ up() {
 # ssh
 fhost() { # choose known ssh host via fzf
   grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
-  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -t -s $'\t' | fzf | awk '{print $2}'
+  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -ts $'\t' | fzf --ansi | awk '{print $2}'
 }
 fssh() { # ssh into chosen server and copy configs
   host=$(fhost)
@@ -270,3 +270,4 @@ ssh-check-agent() {
 }
 ssh-check-agent
 
+source ~/work/AdminScripts/Other/ansible-command-constructor.sh
