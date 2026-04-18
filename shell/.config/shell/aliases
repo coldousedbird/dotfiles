@@ -270,4 +270,3 @@ ssh-check-agent() {
 }
 ssh-check-agent
 
-source ~/work/AdminScripts/Other/ansible-command-constructor.sh
