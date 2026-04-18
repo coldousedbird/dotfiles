@@ -45,7 +45,6 @@ local options = {
   winblend = 0,                              -- Floating window transparency
   conceallevel = 0,                          -- Don't hide markup
   concealcursor = "",                        -- Don't hide cursor line markup
-  lazyredraw = true,                         -- Don't redraw during macros
   synmaxcol = 300,                           -- Syntax highlighting limit
 
   hidden = true,                             -- Allow hidden buffers
@@ -85,40 +84,36 @@ vim.opt.iskeyword:append("-")                     -- Treat dash as part of word
 vim.pack.add({
   { src = 'https://github.com/neanias/everforest-nvim',                   name = 'everforest' },
   { src = 'https://github.com/folke/which-key.nvim',                      name = 'which-key' },
-  -- {src='https://github.com/folke/snacks.nvim', name='snacks'},
-  --"rcarriga/nvim-notify",
   { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
+  { src = 'https://github.com/MunifTanjim/nui.nvim',                      name = 'nui' },
+  { src = 'https://github.com/folke/noice.nvim',                          name = 'noice' },
   { src = 'https://github.com/rcarriga/nvim-notify',                      name = 'notify' },
   { src = 'https://github.com/mikavilpas/yazi.nvim',                      name = 'yazi' },
   { src = 'https://github.com/nvim-lua/plenary.nvim',                     name = 'plenary' },
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', name = 'markdown' },
-  -- {src="https://github.com/xiyaowong/transparent.nvim"},
-  -- {src="https://github.com/nvim-lualine/lualine.nvim"},
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter',           name = 'treesitter' },
   { src = 'https://github.com/nvim-mini/mini.icons',                      name = 'mini-icons' },
   { src = 'https://github.com/mason-org/mason.nvim',                      name = 'mason' },
   { src = 'https://github.com/mason-org/mason-lspconfig.nvim',            name = 'mason-lspconfig' },
 })
+
+require('noice').setup()
 require('mini.icons').setup()
-require('render-markdown').setup({ latex = { enabled = false } })
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql",                      -- scripts
-    "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv", "markdown", "markdown_inline", -- markup
-    "vim", "dockerfile", "sway", "comment", "regex" },                                                    -- aux
-  sync_install = false,
-  highlight = { enable = true },
-  indent = { enable = true },
-})
+require('render-markdown').setup()  -- { latex = { enabled = false } }
+--require("nvim-treesitter.configs").setup({
+  -- ensure_installed = {
+  --   "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql",                      -- scripts
+  --   "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv", "markdown", "markdown_inline", -- markup
+  --   "vim", "dockerfile", "sway", "comment", "regex" },                                                    -- aux
+--  sync_install = false,
+--  highlight = { enable = true },
+--  indent = { enable = true },
+--})
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { 'lua_ls', 'ast_grep', 'yamlls', 'spectral' },
+  ensure_installed = { 'lua_ls', 'ast_grep', 'yamlls' },
   automatic_enable = true,
 })
-vim.lsp.config("lua_ls", {
-  settings = { Lua = { workspace = { library = vim.api.nvim_get_runtime_file("", true) } } }
-})
-vim.lsp.enable('spectral')
 
 -- make windows transparent
 vim.cmd [[
