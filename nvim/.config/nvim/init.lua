@@ -97,7 +97,7 @@ vim.pack.add({
   { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
 })
 
--- require('noice').setup()
+require('noice').setup()
 require('mini.icons').setup()
 require('render-markdown').setup()  -- { latex = { enabled = false } }
 --require("nvim-treesitter.configs").setup({
