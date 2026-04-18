@@ -84,20 +84,20 @@ vim.opt.iskeyword:append("-")                     -- Treat dash as part of word
 vim.pack.add({
   { src = 'https://github.com/neanias/everforest-nvim',                   name = 'everforest' },
   { src = 'https://github.com/folke/which-key.nvim',                      name = 'which-key' },
-  { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',           name = 'treesitter' },
+  { src = 'https://github.com/nvim-lua/plenary.nvim',                     name = 'plenary' },
   { src = 'https://github.com/MunifTanjim/nui.nvim',                      name = 'nui' },
   { src = 'https://github.com/folke/noice.nvim',                          name = 'noice' },
   { src = 'https://github.com/rcarriga/nvim-notify',                      name = 'notify' },
   { src = 'https://github.com/mikavilpas/yazi.nvim',                      name = 'yazi' },
-  { src = 'https://github.com/nvim-lua/plenary.nvim',                     name = 'plenary' },
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', name = 'markdown' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter',           name = 'treesitter' },
   { src = 'https://github.com/nvim-mini/mini.icons',                      name = 'mini-icons' },
   { src = 'https://github.com/mason-org/mason.nvim',                      name = 'mason' },
   { src = 'https://github.com/mason-org/mason-lspconfig.nvim',            name = 'mason-lspconfig' },
+  { src = 'https://github.com/neovim/nvim-lspconfig',                     name = 'lspconfig' },
 })
 
-require('noice').setup()
+-- require('noice').setup()
 require('mini.icons').setup()
 require('render-markdown').setup()  -- { latex = { enabled = false } }
 --require("nvim-treesitter.configs").setup({
