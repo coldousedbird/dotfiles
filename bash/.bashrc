@@ -17,7 +17,7 @@ files=(
   /etc/bash.bashrc             # system default bashrc
   ~/.config/shell/environment  # shell environment
   ~/.config/shell/aliases      # shell aliases
-  ~/.config/shell/inputrc      # inputrc config
+  ~/.inputrc                   # inputrc config
   ~/.specific                  # file for host specific stuff
 )
 for file in ${files[@]}; do

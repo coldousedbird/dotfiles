@@ -64,7 +64,6 @@ eval "$(fzf --zsh 2> /dev/null)"
 files=(
   ~/.config/shell/environment  # shell environment
   ~/.config/shell/aliases      # shell aliases
-  ~/.config/shell/inputrc      # inputrc config
   ~/.config/shell/fzf-git.sh   # fzf-git integration script
   ~/.specific                  # file for host specific stuff
   # zsh plugins
