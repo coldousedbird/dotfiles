@@ -1,0 +1,34 @@
+[shell]
+rcfile = "~/.brushrc"
+
+[ui]
+#:schema ./schema.json
+syntax-highlighting = true
+
+[completion]
+case_sensitive = false
+menu_style = "select"
+show_hidden = true
+
+[history]
+size = 10000
+
+[edit_mode]
+mode = "vi"
+
+[editor]
+syntax_highlighting = true
+color_prompt = true
+
+[theme]
+# Basic color scheme
+default = "white"
+keyword = "cyan"
+string = "green"
+comment = "bright black"
+
+
+[experimental]
+zsh-hooks = true
+terminal-shell-integration = true
+
