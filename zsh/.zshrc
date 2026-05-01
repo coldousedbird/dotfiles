@@ -72,6 +72,9 @@ files=(
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   /usr/share/zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlightning.zsh
   /usr/share/zsh-plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  ## arch
+  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+  /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
 )
 for file in ${files[@]}; do
   test -f $file && source $file
