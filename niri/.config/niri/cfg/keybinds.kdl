@@ -1,0 +1,253 @@
+// to test hotkey commands: `niri msg action <do-something>`.
+// for searching XKB symbols for keys, use external programs like wev.
+// "Mod" is a special modifier equal to Super when running on a TTY, and to Alt when running as a winit window.
+binds {
+  
+  // Open stuff
+  Super+Shift+Slash { show-hotkey-overlay; } // Mod-? - cheetsheet
+  Super+Return hotkey-overlay-title="run launcher" { spawn "hyprlauncher"; }
+  Alt+Return hotkey-overlay-title="run terminal" { spawn-sh "kitty --single-instance"; }
+  Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
+  Super+R hotkey-overlay-title="Reload Niri" { spawn-sh "niri validate && niri msg action load-config-file"; }
+  Super+B hotkey-overlay-title="Reload Waybar" { spawn-sh "killall waybar ; niri msg action spawn 'waybar'"; }
+  Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; } // standard bind to toggle the screen reader (orca).
+
+  // SPACE ORIENTATION HOTKEYS
+  // action+[environment]+[object]+direction
+  // action: 
+  // Alt - focus object
+  // Super (Super) - move object
+  // environment:
+  // None - on current monitor 
+  // Shift - between monitors
+  // object:
+  // None - window
+  // Ctrl - workspace
+
+  // windows
+  Super+Escape repeat=false { toggle-overview; }
+  Super+Q repeat=false { close-window; }
+
+  // focus windows
+  Alt+Left        { focus-column-left; }
+  Alt+Down        { focus-window-down; }
+  Alt+Up          { focus-window-up; }
+  Alt+Right       { focus-column-right; }
+  Alt+H           { focus-column-left; }
+  Alt+J           { focus-window-or-workspace-down; }
+  Alt+K           { focus-window-or-workspace-up; }
+  Alt+L           { focus-column-right; }
+  Alt+Home        { focus-column-first; }
+  Alt+End         { focus-column-last; }
+  Alt+Page_Down   { focus-workspace-down; }
+  Alt+Page_Up     { focus-workspace-up; }
+
+  // focus monitors
+  Alt+Shift+Left  { focus-monitor-left; }
+  Alt+Shift+Down  { focus-monitor-down; }
+  Alt+Shift+Up    { focus-monitor-up; }
+  Alt+Shift+Right { focus-monitor-right; }
+  Alt+Shift+H     { focus-monitor-left; }
+  Alt+Shift+J     { focus-monitor-down; }
+  Alt+Shift+K     { focus-monitor-up; }
+  Alt+Shift+L     { focus-monitor-right; }
+
+  // move windows on current monitor
+  Super+Left  { move-column-left; }
+  Super+Down  { move-window-down-or-to-workspace-down; }
+  Super+Up    { move-window-up-or-to-workspace-up; }
+  Super+Right { move-column-right; }
+  Super+H     { move-column-left; }
+  Super+J     { move-window-down-or-to-workspace-down; }
+  Super+K     { move-window-up-or-to-workspace-up; }
+  Super+L     { move-column-right; }
+  Super+Home  { move-column-to-first; }
+  Super+End   { move-column-to-last; }
+  Super+Page_Down { move-window-down-or-to-workspace-down; }
+  Super+Page_Up   { move-window-up-or-to-workspace-up; }
+
+  // move workspace on current monitor
+  Super+Ctrl+J { move-workspace-down; }
+  Super+Ctrl+K { move-workspace-up; }
+  Super+Ctrl+Down { move-workspace-down; }
+  Super+Ctrl+Up   { move-workspace-up; }
+
+  // move windows between monitors
+  Super+Shift+Left  { move-column-to-monitor-left; }
+  Super+Shift+Down  { move-column-to-monitor-down; }
+  Super+Shift+Up    { move-column-to-monitor-up; }
+  Super+Shift+Right { move-column-to-monitor-right; }
+  Super+Shift+H     { move-column-to-monitor-left; }
+  Super+Shift+J     { move-column-to-monitor-down; }
+  Super+Shift+K     { move-column-to-monitor-up; }
+  Super+Shift+L     { move-column-to-monitor-right; }
+
+  // move workspaces between monitors (i have only monitor on top, horisontal move is useless)
+  // Super+Ctrl+Shift+Left  { move-workspace-to-monitor-left; }
+  Super+Ctrl+Shift+Down  { move-workspace-to-monitor-down; }
+  Super+Ctrl+Shift+Up    { move-workspace-to-monitor-up; }
+  // Super+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
+  // Super+Ctrl+Shift+H     { move-workspace-to-monitor-left; }
+  Super+Ctrl+Shift+J     { move-workspace-to-monitor-down; }
+  Super+Ctrl+Shift+K     { move-workspace-to-monitor-up; }
+  // Super+Ctrl+Shift+L     { move-workspace-to-monitor-right; }
+
+  // MOUSE & TOUCHPAD
+  // mouse and touchpad only move focus. moving windows is happening only through overview mode.
+  Alt+WheelScrollDown cooldown-ms=150 { focus-column-right; }
+  Alt+WheelScrollUp   cooldown-ms=150 { focus-column-left; }
+  Super+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+  Super+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+  // horisontal scroll ???
+  // Super+WheelScrollRight      { focus-column-right; }
+  // Super+WheelScrollLeft       { focus-column-left; }
+  // Super+Ctrl+WheelScrollRight { move-column-right; }
+  // Super+Ctrl+WheelScrollLeft  { move-column-left; }
+  Alt+TouchpadScrollLeft  cooldown-ms=150 { focus-column-left; }
+  Alt+TouchpadScrollDown  cooldown-ms=150 { focus-workspace-down; }
+  Alt+TouchpadScrollUp    cooldown-ms=150 { focus-workspace-up; }
+  Alt+TouchpadScrollRight cooldown-ms=150 { focus-column-right; }
+
+  // USELESS ?
+  // You can refer to workspaces by index. However, keep in mind that
+  // niri is a dynamic workspace system, so these commands are kind of
+  // "best effort". Trying to refer to a workspace index bigger than
+  // the current workspace count will instead refer to the bottommost
+  // (empty) workspace.
+  //
+  // // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
+  // // will all refer to the 3rd workspace.
+  // Super+1 { focus-workspace 1; }
+  // Super+2 { focus-workspace 2; }
+  // Super+3 { focus-workspace 3; }
+  // Super+4 { focus-workspace 4; }
+  // Super+5 { focus-workspace 5; }
+  // Super+6 { focus-workspace 6; }
+  // Super+7 { focus-workspace 7; }
+  // Super+8 { focus-workspace 8; }
+  // Super+9 { focus-workspace 9; }
+  // Super+Ctrl+1 { move-column-to-workspace 1; }
+  // Super+Ctrl+2 { move-column-to-workspace 2; }
+  // Super+Ctrl+3 { move-column-to-workspace 3; }
+  // Super+Ctrl+4 { move-column-to-workspace 4; }
+  // Super+Ctrl+5 { move-column-to-workspace 5; }
+  // Super+Ctrl+6 { move-column-to-workspace 6; }
+  // Super+Ctrl+7 { move-column-to-workspace 7; }
+  // Super+Ctrl+8 { move-column-to-workspace 8; }
+  // Super+Ctrl+9 { move-column-to-workspace 9; }
+
+  // Alternatively, there are commands to move just a single window:
+  // Super+Ctrl+1 { move-window-to-workspace 1; }
+
+  // Switches focus between the current and the previous workspace.
+  // Super+Tab { focus-workspace-previous; }
+
+  // The following binds move the focused window in and out of a column.
+  // If the window is alone, they will consume it into the nearby column to the side.
+  // If the window is already in a column, they will expel it out.
+  Super+BracketLeft  { consume-or-expel-window-left; }
+  Super+BracketRight { consume-or-expel-window-right; }
+
+  // Consume one window from the right to the bottom of the focused column.
+  Super+Comma  { consume-window-into-column; }
+  // Expel the bottom window from the focused column to the right.
+  Super+Period { expel-window-from-column; }
+
+  Super+P { switch-preset-column-width; }
+  // Cycling through the presets in reverse order is also possible.
+  // Super+R { switch-preset-column-width-back; }
+  Super+Shift+R { switch-preset-window-height; }
+  Super+Ctrl+R { reset-window-height; }
+  Super+F { maximize-column; }
+  Super+Shift+F { fullscreen-window; }
+
+  // Expand the focused column to space not taken up by other fully visible columns.
+  // Makes the column "fill the rest of the space".
+  Super+Ctrl+F { expand-column-to-available-width; }
+
+  Super+C { center-column; }
+
+  // Center all fully visible columns on screen.
+  Super+Ctrl+C { center-visible-columns; }
+
+  // Finer width adjustments.
+  // This command can also:
+  // * set width in pixels: "1000"
+  // * adjust width in pixels: "-5" or "+5"
+  // * set width as a percentage of screen width: "25%"
+  // * adjust width as a percentage of screen width: "-10%" or "+10%"
+  // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+  // set-column-width "100" will make the column occupy 200 physical screen pixels.
+  Super+Minus { set-column-width "-10%"; }
+  Super+Equal { set-column-width "+10%"; }
+
+  // Finer height adjustments when in column with other windows.
+  Super+Shift+Minus { set-window-height "-10%"; }
+  Super+Shift+Equal { set-window-height "+10%"; }
+
+  // Move the focused window between the floating and the tiling layout.
+  Super+V       { toggle-window-floating; }
+  Super+Shift+V { switch-focus-between-floating-and-tiling; }
+
+  // Toggle tabbed column display mode.
+  // Windows in this column will appear as vertical tabs,
+  // rather than stacked on top of each other.
+  Super+W { toggle-column-tabbed-display; }
+
+  // Actions to switch layouts.
+  // Note: if you uncomment these, make sure you do NOT have
+  // a matching layout switch hotkey configured in xkb options above.
+  // Having both at once on the same hotkey will break the switching,
+  // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+  // Super+Space       { switch-layout "next"; }
+  // Super+Shift+Space { switch-layout "prev"; }
+
+  // --- Screenshot ---
+  Print { screenshot; }
+  Ctrl+Print { screenshot-screen; }
+  Alt+Print { screenshot-window; }
+
+
+
+  // Media
+  // Example volume keys mappings for PipeWire & WirePlumber.
+  // The allow-when-locked=true property makes them work even when the session is locked.
+  // Using spawn-sh allows to pass multiple arguments together with the command.
+  // "-l 1.0" limits the volume to 100%.
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+  // Example media keys mapping using playerctl.
+  // This will work with any MPRIS-enabled media player.
+  XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+  XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+  XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+  XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+  // Example brightness key mappings for brightnessctl.
+  // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+  // but you need to manually put each argument in separate "" quotes.
+  XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+
+  // ???
+  // Applications such as remote-desktop clients and software KVM switches may
+  // request that niri stops processing the keyboard shortcuts defined here
+  // so they may, for example, forward the key presses as-is to a remote machine.
+  // It's a good idea to bind an escape hatch to toggle the inhibitor,
+  // so a buggy application can't hold your session hostage.
+  //
+  // The allow-inhibiting=false property can be applied to other binds as well,
+  // which ensures niri always processes them, even when an inhibitor is active.
+  // Super+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+  // USELESS
+  // Powers off the monitors. To turn them back on, do any input like
+  // moving the mouse or pressing any other key.
+  // Super+Shift+P { power-off-monitors; }
+  // The quit action will show a confirmation dialog to avoid accidental exits.
+  // Super+Shift+E { quit; }
+  // Ctrl+Alt+Delete { quit; }
+}
+
