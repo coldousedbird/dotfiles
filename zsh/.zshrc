@@ -17,11 +17,20 @@ autoload -U colors && colors
 
 # vim mode
 bindkey -v
+bindkey '^[[H'    beginning-of-line      # Home
+bindkey '^[[F'    end-of-line            # End
+bindkey '^[[3~'   delete-char            # Delete
+bindkey '^[[1;5C' forward-word           # Ctrl+Right
+bindkey '^[[1;5D' backward-word          # Ctrl-Left
+bindkey '^[[1;2C' forward-word           # Shift+Right
+bindkey '^[[1;2D' backward-word          # Shift-Left
+bindkey '^[[5~'   beginning-of-history   # Page Up - scroll back through history
+bindkey '^[[6~'   end-of-history         # Page Down - scroll forward through history
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+bindkey -v '^?'           backward-delete-char
 
 
 # prompt! 
