@@ -3,7 +3,7 @@ font-family-bold = "CommitMono Nerd Font Mono Bold"
 font-family-italic = "CommitMono Nerd Font Mono Italic"
 font-family-bold-italic = "CommitMono Nerd Font Mono Bold Italic"
 
-theme = "Everforest Dark - Hard"
+theme = "Everforest Dark Hard"
 
 shell-integration = bash
 
