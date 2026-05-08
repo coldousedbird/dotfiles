@@ -232,7 +232,7 @@ up() {
 
 # ssh
 fhost() { # choose known ssh host via fzf
-  grep --no-group-separator -A 1 '^Host [^*]*$' ~/.ssh/hosts \
+  grep --no-group-separator -hA 1 '^Host [^*]*$' ~/.ssh/*hosts \
   | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -ts $'\t' | fzf --ansi | awk '{print $2}'
 }
 fssh() { # ssh into chosen server and copy configs
