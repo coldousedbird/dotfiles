@@ -36,7 +36,7 @@ bindkey -v '^?'           backward-delete-char
 # prompt! 
 DEFAULT_COLOR="cyan" # orange F57D26 light green befc5a pastel d3c6aa
 ## git integration
-git_repo() {
+function git_repo {
   local branch="%F{black}$(git branch --show-current 2> /dev/null) %f%k "
   local git_status="$(git status 2> /dev/null)"
   [[ "$git_status" =~ "git pull" ]] && echo -n "%K{magenta} $branch" && return 0
@@ -46,15 +46,16 @@ git_repo() {
   [[ "$git_status" =~ "Changes to be committed:" ]] && echo -n "%K{green} $branch" && return 0
   [[ "$git_status" =~ "working tree clean" ]] && echo -n "%K{$DEFAULT_COLOR} $branch" && return 0
 }
-## command start time
-preexec() {
-  echo -ne "\033]0;$NAME\007"
-  print -P '%K{$DEFAULT_COLOR}%F{black}   %*   %f%k'
-}
 NEWLINE=$'\n'
 PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~ %f%k $ '
 RPROMPT='$(git_repo)'
 
+## command start time and header
+function set-tab-title { echo -ne "\033]0;$NAME$1\007" }
+set-tab-title
+function print-time { print -P '%K{$DEFAULT_COLOR}%F{black}   %*   %f%k' } # $(hostname):${1[(w)1]}
+function precmd {  ; print-time }
+function preexec { set-tab-title ":${1[(w)1]}" ; print-time }
 
 
 # fzf shell integration
@@ -76,7 +77,7 @@ files=(
   /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
 )
 for file in ${files[@]}; do
-  test -f $file && source $file
+  [[ -f $file ]] && source $file
 done
 
 
