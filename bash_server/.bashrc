@@ -18,16 +18,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 # terminal var
 test -n $(find "/usr/share/terminfo" -type f | grep "xterm-256color" | head -n 1) && export TERM="xterm-256color"
 
-# readline inputrc
-set editing-mode vi
-set keymap vi-command
-set show-all-if-unmodified on
-set colored-stats On
-set visible-stats On
-set mark-symlinked-directories On
-set colored-completion-prefix On
-set menu-complete-display-prefix On
-set echo-control-characters off
+shopt -s cmdhist lithist
 
 # aliases
 ## common
