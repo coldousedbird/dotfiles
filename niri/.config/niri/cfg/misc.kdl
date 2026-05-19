@@ -3,9 +3,6 @@
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png"
 
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
-
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
@@ -29,3 +26,5 @@ debug {
 hotkey-overlay {
   skip-at-startup
 }
+
+
