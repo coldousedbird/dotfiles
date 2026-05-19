@@ -1,5 +1,5 @@
 // Note that running niri as a session supports xdg-desktop-autostart, which may be more convenient to use.
 
-spawn-sh-at-startup "swaybg -i /home/coldousedbird/pictures/wallpaper.jpg"
+// spawn-sh-at-startup "swaybg -i /home/coldousedbird/pictures/wallpaper.jpg"
 spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
 spawn-sh-at-startup "qs -c noctalia-shell"
