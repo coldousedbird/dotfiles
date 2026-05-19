@@ -51,7 +51,7 @@ PROMPT='${NEWLINE}%K{$DEFAULT_COLOR}%F{000} %n %f%k %K{$DEFAULT_COLOR}%F{000} %~
 RPROMPT='$(git_repo)'
 
 ## command start time and header
-function set-title { echo -ne "\033]0;$NAME$1\007" }
+function set-title { echo -ne "\033]0;$(cat /etc/hostname)$1\007" }
 function print-time { print -P '%K{$DEFAULT_COLOR}%F{black}   %*   %f%k' }
 function precmd { set-title ; print-time }
 function preexec { set-title ":${1[(w)1]}" ; print-time }
