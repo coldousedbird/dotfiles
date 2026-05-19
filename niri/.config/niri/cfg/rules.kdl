@@ -2,13 +2,20 @@
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 
+// layer-rule {
+//   match namespace="^wallpaper$"
+//   place-within-backdrop false
+// }
+
 layer-rule {
-  match namespace="^wallpaper$"
-  place-within-backdrop false
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
 }
 
 window-rule {
   draw-border-with-background false
+  geometry-corner-radius 15
+  clip-to-geometry true
 }
 
 // Work around WezTerm's initial configure bug
