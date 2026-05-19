@@ -2,15 +2,11 @@
 // for searching XKB symbols for keys, use external programs like wev.
 // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt when running as a winit window.
 binds {
-  
-  // Open stuff
-  Super+Shift+Slash { show-hotkey-overlay; } // Mod-? - cheetsheet
-  Super+Return hotkey-overlay-title="run launcher" { spawn "hyprlauncher"; }
-  Alt+Return hotkey-overlay-title="run terminal" { spawn-sh "kitty --single-instance"; }
-  Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "hyprlock"; }
-  Super+R hotkey-overlay-title="Reload Niri" { spawn-sh "niri validate && niri msg action load-config-file"; }
-  Super+B hotkey-overlay-title="Reload Waybar" { spawn-sh "killall waybar ; niri msg action spawn 'waybar'"; }
-  Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; } // standard bind to toggle the screen reader (orca).
+  Super+Shift+Slash hotkey-overlay-title="this"        { show-hotkey-overlay; } // Mod-? - cheetsheet
+  Super+Return      hotkey-overlay-title="launcher"    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+  Alt+Return        hotkey-overlay-title="terminal"    { spawn-sh "kitty --single-instance"; }
+  Super+Alt+L       hotkey-overlay-title="lock"        { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+  Super+R           hotkey-overlay-title="reload niri" { spawn-sh "niri validate && niri msg action load-config-file"; }
 
   // SPACE ORIENTATION HOTKEYS
   // action+[environment]+[object]+direction
@@ -206,6 +202,7 @@ binds {
   Print { screenshot; }
   Ctrl+Print { screenshot-screen; }
   Alt+Print { screenshot-window; }
+  Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; } // standard bind to toggle the screen reader (orca).
 
 
 

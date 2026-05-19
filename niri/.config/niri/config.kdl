@@ -3,11 +3,11 @@
 // full config description: https://yalter.github.io/niri/Configuration:-Introduction
 
 include "./cfg/autostart.kdl"
-
 include "./cfg/keybinds.kdl"
 include "./cfg/input.kdl"
 include "./cfg/display.kdl"
 include "./cfg/layout.kdl"
 include "./cfg/rules.kdl"
 include "./cfg/misc.kdl"
+include "./noctalia.kdl"
 
