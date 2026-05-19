@@ -34,7 +34,7 @@ bindkey -v '^?'           backward-delete-char
 
 
 # prompt! 
-DEFAULT_COLOR="cyan" # orange F57D26 light green befc5a pastel d3c6aa
+[[ -z "$SSH_TTY" ]] && DEFAULT_COLOR="cyan" || DEFAULT_COLOR="yellow"
 ## git integration
 function git_repo {
   local branch="%F{black}$(git branch --show-current 2> /dev/null) %f%k "
