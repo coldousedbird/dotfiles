@@ -10,7 +10,7 @@ local options = {
   number = true,             -- show current line number
   relativenumber = true,     -- show relative to current line numbers
   cursorline = true,         -- highlight current line
-  wrap = false,              -- not wrapping long lines
+  wrap = false,              -- not wrapping long lines by default
   scrolloff = 7,             -- keep some space below and above cursor
   sidescrolloff = 7,         -- keep some space to left and right of cursor
   -- cyrillic additional layout
@@ -24,6 +24,10 @@ local options = {
   smartindent = true, -- auto indentation on new lines
   autoindent = true,  -- auto indentation on new lines
   smarttab = true,    -- autochoice number of spaces on <tab>
+
+  -- if wrap enabled
+  linebreak = true,   -- don't break words
+  breakindent = true, -- respect indentation
 
   -- search
   ignorecase = true, -- case insensitive search
