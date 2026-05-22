@@ -26,8 +26,9 @@ local options = {
   smarttab = true,    -- autochoice number of spaces on <tab>
 
   -- if wrap enabled
-  linebreak = true,   -- don't break words
-  breakindent = true, -- respect indentation
+  linebreak = true,           -- wrap doesn't break words
+  breakindent = true,         -- wrap respect indentation
+  breakindentopt = 'shift:1', -- shift wrapped lines
 
   -- search
   ignorecase = true, -- case insensitive search
@@ -127,10 +128,6 @@ vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
--- vim.cmd.colorscheme("everforest")
--- vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
--- vim.api.nvim_set_hl(0, "NormalNC", {bg = "none"})
--- vim.api.nvim_set_hl(0, "EndOfBuffer", {bg = "none"})
 
 local wk = require("which-key")
 wk.add({
@@ -164,22 +161,24 @@ wk.add({
     -- Search
     { "N",          "Nzzzv",                       desc = "Previous search result and center" },
     { "n",          "nzzzv",                       desc = "Next search result and center" },
+    -- Display
+    { "<leader>w",  ":set wrap!<CR>",              desc = "Toggle line wrapping" },
     -- Editing
-    { "<leader>w",  ":write<CR>",                  desc = "Write" },
+    { "<leader>s",  ":write<CR>",                  desc = "Save" },
     { "<leader>q",  ":quit<CR>",                   desc = "Quit" },
     { "<leader>o",  ":so<CR>",                     desc = "Source" },
     { "U",          "<C-r>",                       desc = "Redo" },
     { "<C-,>",      "$a,<Esc>",                    desc = "Comma at end" },
     { "<C-Return>", "$a<CR><Esc>",                 desc = "New line at end" },
     { "==",         "gg=G",                        desc = "Reindent file" },
-
-    { "<C-k>",      "a[](<Esc>pa)<Esc>F[a",        desc = "Markdown link template" }
+    { "<leader>k",  "a[](<Esc>pa)<Esc>F[a",        desc = "Markdown link" }
   },
   {
     mode = { "v" },
-    { "J", ":m '>+1<CR>gv=gv", desc = "Move line down" },
-    { "K", ":m '<-2<CR>gv=gv", desc = "Move line up" },
-    { "p", "\"0p",             desc = "Paste no cut" },
+    { "J", ":m '>+1<CR>gv=gv",                            desc = "Move line down" },
+    { "K", ":m '<-2<CR>gv=gv",                            desc = "Move line up" },
+    { "p", "\"0p",                                        desc = "Paste no cut" },
+    { "<leader>k", "\"zdi[<C-r>z](<Esc>pa)",              desc = "Markdown link" }
   },
   {
     mode = { "x" },
