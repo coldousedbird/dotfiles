@@ -1,6 +1,5 @@
 # finally, zoomer shell config
 
-
 # options
 setopt autocd extendedglob notify inc_append_history prompt_subst
 unsetopt beep nomatch
@@ -57,8 +56,11 @@ function precmd { set-title ; print-time }
 function preexec { set-title ":${1[(w)1]}" ; print-time }
 
 
-# fzf shell integration
-eval "$(fzf --zsh 2> /dev/null)"
+# shell integrations (if available)
+fzf --version 2>&1 >/dev/null && \
+  source <(fzf --zsh 2> /dev/null)
+kubectl version --client 2>&1 >/dev/null && \
+  source <(kubectl completion zsh 2>/dev/null)
 
 # importing configuration files
 files=(
@@ -78,6 +80,4 @@ files=(
 for file in ${files[@]}; do
   [[ -f $file ]] && source $file
 done
-
-
 
