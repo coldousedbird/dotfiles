@@ -22,12 +22,15 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 
-export KUBECONFIG="$XDG_CONFIG_HOME/kube/config" 
+#export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export KUBECONFIG=$(find "$XDG_CONFIG_HOME/kube/configs" -type f -name "*.yaml" | tr '\n' ':')
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
 # export HISTFILE="$XDG_STATE_HOME"/bash/history
 export HISTFILE="$XDG_STATE_HOME/shell/history"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
@@ -37,5 +40,7 @@ export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
 #export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
 export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
+export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
 
 
