@@ -6,10 +6,10 @@ unsetopt beep nomatch
 
 # completion setup
 _comp_options+=(globdots)
-zstyle :compinstall filename '/home/coldousedbird/.zshrc'
+zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-autoload -U compinit && compinit
+autoload -U compinit && compinit -D -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 
 # enabling colors
 autoload -U colors && colors
@@ -80,4 +80,5 @@ files=(
 for file in ${files[@]}; do
   [[ -f $file ]] && source $file
 done
+
 
