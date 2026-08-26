@@ -21,26 +21,24 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-
-#export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export KUBECONFIG=$(find "$XDG_CONFIG_HOME/kube/configs" -type f -name "*.yaml" | tr '\n' ':')
-export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
-export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
-# export HISTFILE="$XDG_STATE_HOME"/bash/history
+export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
+export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export HISTFILE="$XDG_STATE_HOME/shell/history"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+export KUBECONFIG=$(find "$XDG_CONFIG_HOME/kube/configs" -type f -name "*.yaml" | tr '\n' ':')
+export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
+export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
+export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history",
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
-export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export ANSIBLE_HOME="${XDG_CONFIG_HOME}/ansible"
-#export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible.cfg"
-export ANSIBLE_GALAXY_CACHE_DIR="${XDG_CACHE_HOME}/ansible/galaxy_cache"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
-export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
-
-
