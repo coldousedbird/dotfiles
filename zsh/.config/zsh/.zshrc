@@ -9,7 +9,7 @@ _comp_options+=(globdots)
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-autoload -U compinit && compinit -D -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
+autoload -U compinit && compinit
 
 # enabling colors
 autoload -U colors && colors
