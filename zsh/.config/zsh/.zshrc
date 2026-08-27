@@ -64,10 +64,9 @@ kubectl version --client 2>&1 >/dev/null && \
 
 # importing configuration files
 files=(
-  ~/.config/shell/environment  # shell environment
   ~/.config/shell/aliases      # shell aliases
-  ~/.config/shell/fzf-git.sh   # fzf-git integration script
   ~/.specific                  # file for host specific stuff
+  ~/.config/shell/fzf-git.sh   # fzf-git integration script
   # zsh plugins
   /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
