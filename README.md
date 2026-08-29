@@ -25,16 +25,6 @@ stow creates symlinks to files, depending on their path, e.g.:
 if file's path is `./dotfiles/kitty/.config/kitty/kitty.conf`, `cd dotfiles && stow kitty` will create symlink to it in `~/.config/kitty/kitty.config`
 
 
-## setup
-terminal: _shell_, _zsh_, _nvim_, _yazi_, _kitty_, _ssh_.
-desktop: _niri_ and _noctalia_.
-
-those configs are pretty nice, because i use and update them frequently.
-the other are kinda abandoned or wait for their moment.
-
-go to [state](## state) section for description of each.
-
-
 ## themes
 i use theme `Everforest Dark` everywhere i can.
 
@@ -49,6 +39,14 @@ unzip ~/.local/share/fonts/CommitMono.zip -d ~/.local/share/fonts/
 rm ~/.local/share/fonts/CommitMono.zip
 ```
 also `fontconfig` is required.
+
+
+## setup
+terminal: _shell_, _zsh_, _nvim_, _yazi_, _kitty_, _ssh_.
+desktop: _niri_ and _noctalia_.
+
+those configs are pretty nice, because i use and update them frequently.
+the others are kinda abandoned or wait for their moment.
 
 
 ## dotfiles state
