@@ -57,9 +57,9 @@ function preexec { set-title ":${1[(w)1]}" ; print-time }
 
 
 # shell integrations (if available)
-fzf --version 2>&1 >/dev/null && \
+fzf --version &>/dev/null && \
   source <(fzf --zsh 2> /dev/null)
-kubectl version --client 2>&1 >/dev/null && \
+kubectl version --client &>/dev/null && \
   source <(kubectl completion zsh 2>/dev/null)
 
 # importing configuration files

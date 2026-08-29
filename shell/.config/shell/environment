@@ -29,7 +29,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export HISTFILE="$XDG_STATE_HOME/shell/history"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
 export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
-export KUBECONFIG=$(find "$XDG_CONFIG_HOME/kube/configs" -type f -name "*.yaml" | tr '\n' ':')
+export KUBECONFIG=$(find "$XDG_CONFIG_HOME/kube/configs" -type f -name "*.yaml" &>/dev/null | tr '\n' ':')
 export MAVEN_ARGS="--settings $XDG_CONFIG_HOME/maven/settings.xml"
 export MAVEN_OPTS=-Dmaven.repo.local="$XDG_DATA_HOME"/maven/repository
 export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
