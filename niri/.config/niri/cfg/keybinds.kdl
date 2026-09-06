@@ -3,9 +3,11 @@
 // "Mod" is a special modifier equal to Super when running on a TTY, and to Alt when running as a winit window.
 binds {
   Super+Shift+Slash hotkey-overlay-title="this"        { show-hotkey-overlay; } // Mod-? - cheetsheet
-  Super+Return      hotkey-overlay-title="launcher"    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+  // Super+Return      hotkey-overlay-title="launcher"    { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+  Super+Return      hotkey-overlay-title="launcher"    { spawn-sh "noctalia msg panel-toggle launcher"; }
   Alt+Return        hotkey-overlay-title="terminal"    { spawn-sh "kitty --single-instance"; }
-  Super+Alt+L       hotkey-overlay-title="lock"        { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+  // Super+Alt+L       hotkey-overlay-title="lock"        { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+  Super+Alt+L       hotkey-overlay-title="lock"        { spawn-sh "noctalia msg session lock"; }
   Super+R           hotkey-overlay-title="reload niri" { spawn-sh "niri validate && niri msg action load-config-file"; }
 
   // SPACE ORIENTATION HOTKEYS
