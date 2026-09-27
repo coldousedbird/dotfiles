@@ -12,7 +12,7 @@ output "eDP-1" {
   // If the mode is omitted altogether or is invalid, niri will pick one automatically.
   // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
   mode "1920x1080@120.030"
-  scale 1.2
+  scale 1.0
   transform "normal"
 
   // Position of the output in the global coordinate space.
