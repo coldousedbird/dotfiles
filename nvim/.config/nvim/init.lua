@@ -116,7 +116,6 @@ require('render-markdown').setup()  -- { latex = { enabled = false } }
 --})
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { 'lua_ls', 'ast_grep', 'yamlls' },
   automatic_enable = true,
 })
 
