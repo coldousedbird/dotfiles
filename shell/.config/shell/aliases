@@ -230,35 +230,38 @@ up() {
   command -v pacman_clean &> /dev/null && echo "PACMAN CLEAN" && doas pacman_clean
 }
 
-# ssh
+# SSH
 fhost() { # choose known ssh host via fzf
   grep --no-group-separator -hA 1 '^Host [^*]*$' ~/.ssh/*hostlist \
-  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -ts $'\t' | fzf --ansi | awk '{print $2}'
+  | sed 'h;s/.*//;N;G;s/^\n//;s/\n/\t/g;s/  Hostname //;s/Host //' | column -ts $'\t' | fzf -m --ansi | awk '{print $2}'
 }
 fssh() { # ssh into chosen server and copy configs
   host=$(fhost)
-  test -z $host && return 0
-  echo $host
-  # ssh-check-agent
-  # copying configs to server
-  rsync --timeout 5 ~/dotfiles/bash_server/.* $host:~/ 2> /dev/null
-  [ "$?" != "0" ] && echo -n "rsync is not available. "
-  #echo -ne "\033]0;$host\007"
-  ssh $host $@
+  ~/.config/shell/ssh-with-rsync.sh $host
+}
+fmsh() { # fuzzy-find multiple servers, open each ssh in a new kitty tab
+  hosts=$(fhost)
+  while IFS= read -r host; do
+    [ -z "$host" ] && continue
+    kitty @ launch --type=tab zsh -c "~/.config/shell/ssh-with-rsync.sh $host; exec zsh"
+  done <<< "$hosts"
 }
 fscp() {
-  host=$(fhost)
-  test -z $host && return 0
-  echo "copiyng cfg to $host"
-  scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 
+  hosts=$(fhost)
+  while IFS= read -r host; do
+    [ -z "$host" ] && continue
+    test -z $host && return 0
+    echo "copiyng cfg to $host"
+    scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 
+  done <<< "$hosts"
 }
 fussh() { # ssh into chosen server (no configs)
   host=$(fhost)
   test -z $host && return 0
   echo $host
-  # ssh-check-agent
   ssh $host $@
 }
+
 # creating new or activating existing ssh-agent
 ssh-check-agent() {
   # check if ssh-agent exist, and if not - create it and save it's stdout (with environment variables) to file
