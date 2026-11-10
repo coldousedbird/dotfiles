@@ -105,18 +105,20 @@ vim.pack.add({
 require('noice').setup()
 require('mini.icons').setup()
 require('render-markdown').setup()  -- { latex = { enabled = false } }
---require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup({
   -- ensure_installed = {
-  --   "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql",                      -- scripts
-  --   "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv", "markdown", "markdown_inline", -- markup
-  --   "vim", "dockerfile", "sway", "comment", "regex" },                                                    -- aux
+  --   "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql", -- scripts
+  --   "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv",
+  --   "markdown", "markdown_inline", -- markup
+  --   "vim", "dockerfile", "sway", "comment", "regex" }, -- aux
 --  sync_install = false,
 --  highlight = { enable = true },
 --  indent = { enable = true },
---})
+})
 require("mason").setup()
 require("mason-lspconfig").setup({
   automatic_enable = true,
+  -- ensure_installed = { 'lua_ls', 'helm_ls'}, -- 'yamlls', 'ast_grep'
 })
 
 -- make windows transparent
@@ -174,10 +176,15 @@ wk.add({
   },
   {
     mode = { "v" },
-    { "J", ":m '>+1<CR>gv=gv",                            desc = "Move line down" },
-    { "K", ":m '<-2<CR>gv=gv",                            desc = "Move line up" },
-    { "p", "\"0p",                                        desc = "Paste no cut" },
-    { "<leader>k", "\"zdi[<C-r>z](<Esc>pa)",              desc = "Markdown link" }
+    { "J",         ":m '>+1<CR>gv=gv",       desc = "Move line down" },
+    { "K",         ":m '<-2<CR>gv=gv",       desc = "Move line up" },
+    { "p",         "\"0p",                   desc = "Paste no cut" },
+    { "<leader>k", "\"zdi[<C-r>z](<Esc>pa)", desc = "Markdown link" },
+    {
+      "<leader>t",
+                   ":s/ *| */|/g | '<,'>!column -ts'|' -o' | ' ; sed 's/^ |/|/;s/| $/|/'<CR>:noh<CR>",
+                                             desc = "Markdown table"
+    }
   },
   {
     mode = { "x" },
