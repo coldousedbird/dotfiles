@@ -243,7 +243,7 @@ fmsh() { # fuzzy-find multiple servers, open each ssh in a new kitty tab
   hosts=$(fhost)
   while IFS= read -r host; do
     [ -z "$host" ] && continue
-    kitty @ launch --type=tab zsh -c "~/.config/shell/ssh-with-rsync.sh $host; exec zsh"
+    kitty @ launch --type=tab zsh -c "~/.config/shell/ssh-with-rsync.sh $host; exec zsh" && echo $host
   done <<< "$hosts"
 }
 fscp() {
