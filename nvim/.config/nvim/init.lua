@@ -105,16 +105,16 @@ vim.pack.add({
 require('noice').setup()
 require('mini.icons').setup()
 require('render-markdown').setup()  -- { latex = { enabled = false } }
-require("nvim-treesitter.configs").setup({
+-- require("nvim-treesitter").setup({
   -- ensure_installed = {
   --   "c", "cpp", "rust", "zig", "java", "javascript", "python", "bash", "lua", "sql", -- scripts
   --   "json", "yaml", "jinja", "jinja_inline", "toml", "html", "css", "csv",
   --   "markdown", "markdown_inline", -- markup
   --   "vim", "dockerfile", "sway", "comment", "regex" }, -- aux
 --  sync_install = false,
---  highlight = { enable = true },
---  indent = { enable = true },
-})
+--   highlight = { enable = true },
+--   indent = { enable = true },
+-- })
 require("mason").setup()
 require("mason-lspconfig").setup({
   automatic_enable = true,
@@ -198,4 +198,8 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   callback = function()
     vim.cmd.wincmd('T')
   end,
+})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '<filetype>' },
+  callback = function() vim.treesitter.start() end,
 })
