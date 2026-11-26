@@ -252,7 +252,8 @@ fscp() {
     [ -z "$host" ] && continue
     test -z $host && return 0
     echo "copiyng cfg to $host"
-    scp -A ~/dotfiles/bash_server/.bashrc $host:~/.bashrc 
+    scp -A ~/.files/server/.bashrc $host:~/.bashrc 
+    scp -A ~/.files/server/.vimrc $host:~/.vimrc 
   done <<< "$hosts"
 }
 fussh() { # ssh into chosen server (no configs)
