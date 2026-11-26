@@ -18,7 +18,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 # terminal var
 test -n $(find "/usr/share/terminfo" -type f | grep "xterm-256color" | head -n 1) && export TERM="xterm-256color"
 
-shopt -s cmdhist lithist
+shopt -s cmdhist lithist autocd
 
 # aliases
 ## common
